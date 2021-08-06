@@ -1,0 +1,11 @@
+*                    text=auto
+/Tests               export-ignore
+/.editorconfig       export-ignore
+/.gitlab-ci.yml      export-ignore
+/.gitattributes      export-ignore
+/.gitignore          export-ignore
+/.php_cs             export-ignore
+/phpstan.neon        export-ignore
+/phpunit.ci.xml      export-ignore
+/phpunit.xml         export-ignore
+/typoscript-lint.yml export-ignore

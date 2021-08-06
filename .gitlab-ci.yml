@@ -1,0 +1,98 @@
+variables:
+  COMPOSER_CACHE_DIR: "/cache/composer"
+  COMPOSER_ALLOW_SUPERUSER: "1"
+  COMPOSER_NO_INTERACTION: "1"
+  COMPOSER_VERSION: "2"
+
+default:
+  image: webdevops/php-dev:7.4
+
+stages:
+  - build
+  - lint
+  - sca
+  - test
+
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH
+
+build:
+  stage: build
+  before_script:
+    - composer self-update
+    - composer --version
+    - php --version
+  script:
+    - composer install --no-progress
+  artifacts:
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    expire_in: 1 day
+    paths:
+      - .Build/
+
+lint:composer:
+  stage: lint
+  needs:
+    - build
+  script:
+    - composer normalize --dry-run
+  rules:
+    - if: '$RENDER_DOCS'
+      when: never
+    - when: on_success
+
+lint:php:
+  stage: lint
+  needs:
+    - build
+  script:
+    - composer lint:php -- --dry-run
+  rules:
+    - if: '$RENDER_DOCS'
+      when: never
+    - when: on_success
+
+lint:typoscript:
+  stage: lint
+  needs:
+    - build
+  script:
+    - composer lint:typoscript -- --fail-on-warnings
+  rules:
+    - if: '$RENDER_DOCS'
+      when: never
+    - when: on_success
+
+sca:php:
+  stage: sca
+  needs:
+    - build
+  script:
+    - mkdir -p .Build/log
+    - composer sca:php -- --error-format gitlab > .Build/log/phpstan.json
+  artifacts:
+    reports:
+      codequality: .Build/log/phpstan.json
+  rules:
+    - if: '$RENDER_DOCS'
+      when: never
+    - when: on_success
+
+test:unit:
+  stage: test
+  needs:
+    - build
+  variables:
+    XDEBUG_MODE: 'coverage'
+  script:
+    - composer install --no-progress
+    - composer test:ci -- --testdox
+  coverage: '/^\s*Lines:\s*\d+.\d+\%/'
+  artifacts:
+    reports:
+      junit: .Build/log/coverage/junit.xml
+  rules:
+    - if: '$RENDER_DOCS'
+      when: never
+    - when: on_success
