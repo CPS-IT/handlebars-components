@@ -23,6 +23,11 @@ services:
       - name: handlebars.helper
         identifier: extend
         method: evaluate
+  Fr\Typo3HandlebarsComponents\Renderer\Helper\RenderHelper:
+    tags:
+      - name: handlebars.helper
+        identifier: render
+        method: evaluate
 
   # Template
   handlebars.template_resolver:
