@@ -34,6 +34,7 @@ use TYPO3\CMS\Core\Utility\StringUtility;
  *
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
+ * @see https://fractal.build/guide/core-concepts/naming.html
  */
 class FlatTemplateResolver extends HandlebarsTemplateResolver
 {
