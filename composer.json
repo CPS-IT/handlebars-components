@@ -1,0 +1,69 @@
+{
+	"name": "fr/typo3-handlebars-components",
+	"type": "typo3-cms-extension",
+	"description": "Additional components for the TYPO3 CMS extension \"handlebars\"",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Elias Häußler",
+			"email": "e.haeussler@familie-redlich.de",
+			"homepage": "https://www.familie-redlich.de",
+			"role": "Maintainer"
+		}
+	],
+	"require": {
+		"php": "^7.1 || 8.0.*",
+		"cpsit/typo3-handlebars": "^0.6",
+		"psr/log": "^1.0",
+		"symfony/finder": "^4.4 || ^5.0",
+		"typo3/cms-core": "^10.4 || 11.*.*@dev"
+	},
+	"require-dev": {
+		"ergebnis/composer-normalize": "^2.15",
+		"helmich/typo3-typoscript-lint": "^2.5",
+		"phpstan/phpstan": "^0.12",
+		"phpunit/phpunit": "^9.3",
+		"saschaegerer/phpstan-typo3": "^0.13",
+		"typo3/coding-standards": "^0.3.0",
+		"typo3/testing-framework": "^6.8"
+	},
+	"config": {
+		"bin-dir": ".Build/bin",
+		"sort-packages": true,
+		"vendor-dir": ".Build/vendor"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "handlebars_components",
+			"web-dir": ".Build/web"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"Fr\\Typo3HandlebarsComponents\\": "Classes/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Fr\\Typo3HandlebarsComponents\\Tests\\": "Tests/"
+		}
+	},
+	"scripts": {
+		"post-autoload-dump": [
+			"mkdir -p .Build/web/typo3conf/ext/",
+			"[ -L .Build/web/typo3conf/ext/handlebars_components ] || ln -snvf ../../../../. .Build/web/typo3conf/ext/handlebars_components"
+		],
+		"lint": [
+			"@lint:php",
+			"@lint:typoscript"
+		],
+		"lint:php": "php-cs-fixer fix",
+		"lint:typoscript": "typoscript-lint -c typoscript-lint.yml",
+		"sca": [
+			"@sca:php"
+		],
+		"sca:php": "phpstan analyse -c phpstan.neon",
+		"test": "phpunit -c phpunit.xml",
+		"test:ci": "phpunit -c phpunit.ci.xml"
+	}
+}
