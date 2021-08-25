@@ -26,6 +26,7 @@ namespace Fr\Typo3HandlebarsComponents\Renderer\Template;
 use Fr\Typo3Handlebars\Exception\TemplateNotFoundException;
 use Fr\Typo3Handlebars\Renderer\Template\HandlebarsTemplateResolver;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
 /**
@@ -37,7 +38,7 @@ use TYPO3\CMS\Core\Utility\StringUtility;
 class FlatTemplateResolver extends HandlebarsTemplateResolver
 {
     /**
-     * @var array<string, string>
+     * @var array<string, SplFileInfo>
      */
     protected $flattenedTemplates = [];
 
@@ -63,7 +64,7 @@ class FlatTemplateResolver extends HandlebarsTemplateResolver
         $templateName = ltrim($templatePath, '@');
 
         if (isset($this->flattenedTemplates[$templateName])) {
-            return $this->flattenedTemplates[$templateName];
+            return $this->flattenedTemplates[$templateName]->getPathname();
         }
 
         throw new TemplateNotFoundException($templateName, 1628256108);
@@ -80,6 +81,12 @@ class FlatTemplateResolver extends HandlebarsTemplateResolver
         $finder->name([...$this->buildExtensionPatterns()]);
         $finder->depth(sprintf('< %d', $this->depth));
 
+        // Explicitly sort files and directories by name in order to streamline ordering
+        // with logic used in Fractal to ensure that the first occurrence of a flattened
+        // file is always used instead of relying on random behavior,
+        // see https://fractal.build/guide/core-concepts/naming.html#uniqueness
+        $finder->sortByName();
+
         // Build template map
         foreach ($this->templateRootPaths as $templateRootPath) {
             $path = $this->resolveFilename($templateRootPath);
@@ -87,11 +94,36 @@ class FlatTemplateResolver extends HandlebarsTemplateResolver
             $pathFinder->in($path);
 
             foreach ($pathFinder as $file) {
-                $pathname = $file->getPathname();
-                $filename = pathinfo($pathname, PATHINFO_FILENAME);
-                $this->flattenedTemplates[$filename] = $pathname;
+                if ($this->isFirstOccurrenceInTemplateRoot($file)) {
+                    $this->registerTemplate($file);
+                }
             }
         }
+    }
+
+    protected function isFirstOccurrenceInTemplateRoot(SplFileInfo $file): bool
+    {
+        $filename = $this->resolveFlatFilename($file);
+
+        // Early return if template is not registered yet
+        if (!isset($this->flattenedTemplates[$filename])) {
+            return true;
+        }
+
+        // In order to streamline template file flattening with logic used in Fractal,
+        // we always use the first flat file occurrence as resolved template, but provide
+        // the option to override exactly this file within other template root paths.
+        return $this->flattenedTemplates[$filename]->getRelativePathname() === $file->getRelativePathname();
+    }
+
+    protected function registerTemplate(SplFileInfo $file): void
+    {
+        $this->flattenedTemplates[$this->resolveFlatFilename($file)] = $file;
+    }
+
+    protected function resolveFlatFilename(SplFileInfo $file): string
+    {
+        return pathinfo($file->getPathname(), PATHINFO_FILENAME);
     }
 
     /**
