@@ -1,8 +1,9 @@
+2021-08-26         [RELEASE] Release of handlebars_components 0.1.1 (Elias Häußler)
+2021-08-25 f1d36da [BUGFIX] Provide correct data object to render function of block helpers (Elias Häußler)
+
 2021-08-25         [RELEASE] Release of handlebars_components 0.1.0 (Elias Häußler)
 2021-08-24 0e20dc0 [FEATURE] Introduce "render" helper known from Fractal (Elias Häußler)
 2021-08-24 258c483 [DOCS] Add missing references to shipped components (Elias Häußler)
 2021-08-25 18e2603 [BUGFIX] Streamline flat file iteration with Fractal logic (Elias Häußler)
 2021-08-24 8101731 [TASK] Add missing return types to anonymous functions (Elias Häußler)
 2021-08-06 3237f5e [TASK] Add initial project files (Elias Häußler)
-
-
