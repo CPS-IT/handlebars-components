@@ -64,6 +64,6 @@ class BlockHelper implements HelperInterface
 
         return array_reduce($actions, function (string $value, HandlebarsLayoutAction $action): string {
             return $action->render($value);
-        }, $fn($options, ['data' => $data]));
+        }, $fn($data));
     }
 }
