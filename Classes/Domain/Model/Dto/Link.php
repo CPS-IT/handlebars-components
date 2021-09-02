@@ -46,7 +46,7 @@ class Link
      */
     protected $target;
 
-    private function __construct(string $url, string $label, string $target = null)
+    public function __construct(string $url, string $label, string $target = null)
     {
         $this->url = $url;
         $this->label = $label;
