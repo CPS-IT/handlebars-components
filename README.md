@@ -31,6 +31,7 @@ composer require fr/typo3-handlebars-components
 
 * [`FlatTemplateResolver`](Documentation/FlatTemplateResolver.md)
 * [Handlebars Layouts](Documentation/HandlebarsLayouts.md)
+* [Menu handling](Documentation/MenuHandling.md)
 * [Page rendering](Documentation/PageRendering.md)
 * [`RenderHelper`](Documentation/RenderHelper.md)
 
