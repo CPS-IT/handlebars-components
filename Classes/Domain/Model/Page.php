@@ -56,9 +56,9 @@ class Page
     protected $subtitle = '';
 
     /**
-     * @var string|null
+     * @var string
      */
-    protected $layout;
+    protected $layout = 'default';
 
     public function __construct(int $id, PageType $pageType)
     {
@@ -98,12 +98,12 @@ class Page
         return $this;
     }
 
-    public function getLayout(): ?string
+    public function getLayout(): string
     {
         return $this->layout;
     }
 
-    public function setLayout(?string $layout): self
+    public function setLayout(string $layout): self
     {
         $this->layout = $layout;
         return $this;

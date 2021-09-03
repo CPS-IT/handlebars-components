@@ -25,7 +25,9 @@ namespace Fr\Typo3HandlebarsComponents\Domain\Factory\Page;
 
 use Fr\Typo3HandlebarsComponents\Domain\Model\Page;
 use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageType;
-use TYPO3\CMS\Backend\View\BackendLayoutView;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\RootlineUtility;
+use TYPO3\CMS\Frontend\Page\PageLayoutResolver;
 
 /**
  * PageFactory
@@ -36,13 +38,13 @@ use TYPO3\CMS\Backend\View\BackendLayoutView;
 class PageFactory
 {
     /**
-     * @var BackendLayoutView
+     * @var PageLayoutResolver
      */
-    protected $backendLayoutView;
+    protected $pageLayoutResolver;
 
-    public function __construct(BackendLayoutView $backendLayoutView)
+    public function __construct(PageLayoutResolver $pageLayoutResolver)
     {
-        $this->backendLayoutView = $backendLayoutView;
+        $this->pageLayoutResolver = $pageLayoutResolver;
     }
 
     /**
@@ -72,16 +74,12 @@ class PageFactory
 
     /**
      * @param array<string, mixed> $data
-     * @return string|null
+     * @return string
      */
-    protected function determineLayout(array $data): ?string
+    protected function determineLayout(array $data): string
     {
-        $backendLayout = $this->backendLayoutView->getBackendLayoutForPage($data['uid']);
+        $rootline = GeneralUtility::makeInstance(RootlineUtility::class, $data['uid'])->get();
 
-        if (null === $backendLayout) {
-            return null;
-        }
-
-        return (string)$backendLayout->getIdentifier();
+        return $this->pageLayoutResolver->getLayoutForPage($data, $rootline);
     }
 }
