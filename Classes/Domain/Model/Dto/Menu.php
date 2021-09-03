@@ -31,7 +31,6 @@ namespace Fr\Typo3HandlebarsComponents\Domain\Model\Dto;
  */
 class Menu
 {
-
     /**
      * @var MenuItem[] $items
      */
@@ -43,6 +42,7 @@ class Menu
     protected $type;
 
     /**
+     * @param string $type
      * @param MenuItem[] $items
      */
     public function __construct(string $type, array $items)
