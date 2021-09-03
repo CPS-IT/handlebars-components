@@ -54,6 +54,11 @@ class MenuItem
         return $this->subItems;
     }
 
+    public function hasSubItems(): bool
+    {
+        return $this->subItems !== [];
+    }
+
     /**
      * @param MenuItem[] $subItems
      * @return MenuItem
