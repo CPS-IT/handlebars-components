@@ -16,7 +16,9 @@
 		"cpsit/typo3-handlebars": "^0.6",
 		"psr/log": "^1.0",
 		"symfony/finder": "^4.4 || ^5.0",
-		"typo3/cms-core": "^10.4 || 11.*.*@dev"
+		"typo3/cms-core": "^10.4 || 11.*.*@dev",
+		"typo3/cms-extbase": "^10.4 || 11.*.*@dev",
+		"typo3/cms-frontend": "^10.4 || 11.*.*@dev"
 	},
 	"require-dev": {
 		"ergebnis/composer-normalize": "^2.15",
