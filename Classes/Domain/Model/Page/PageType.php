@@ -56,7 +56,10 @@ class PageType
     public const SYS_FOLDER = PageRepository::DOKTYPE_SYSFOLDER;
     public const RECYCLER = PageRepository::DOKTYPE_RECYCLER;
 
-    private int $type;
+    /**
+     * @var int
+     */
+    protected $type;
 
     public function __construct(int $type)
     {

@@ -34,12 +34,12 @@ class MenuItem
     /**
     * @var MenuItem[]
     */
-    private $subItems = [];
+    protected $subItems = [];
 
     /**
      * @var Link
      */
-    private $link;
+    protected $link;
 
     public function __construct(Link $link)
     {
