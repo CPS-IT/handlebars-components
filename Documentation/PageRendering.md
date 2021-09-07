@@ -16,7 +16,9 @@ as desired.
 
 The page rendering component assumes that a template called
 `cms.hbs` exists in your template root paths. It should
-contain the following content:
+contain the following content and does not have to be used or
+referenced by other handlebars files. The template files allows for
+a more convenient way to render multiple layouts.
 
 ```handlebars
 {{#extend templateName}}
@@ -34,8 +36,7 @@ the `AbstractPagePresenter`.
 
 ### Custom `PagePresenter`
 
-Create a concrete
-[`PagePresenter`](../Classes/Presenter/AbstractPagePresenter.php)
+Create your specific [`PagePresenter`](../Classes/Presenter/AbstractPagePresenter.php)
 first:
 
 ```php
@@ -97,7 +98,7 @@ objects.
 
 #### Create models
 
-First create the concrete `PageHeader` and/or `PageFooter` models:
+First create the custom `PageHeader` and/or `PageFooter` models:
 
 ```php
 # Classes/Domain/Model/Page/PageHeader.php
@@ -193,7 +194,7 @@ services:
 ### Page content rendering
 
 Since the rendering of page content varies from system to system,
-a concrete implementation is also needed for this. The
+a specific implementation is also needed for this. The
 [`PageContentRendererInterface`](../Classes/Renderer/Component/Page/PageContentRendererInterface.php)
 interface must be implemented for this purpose.
 
@@ -230,7 +231,7 @@ class PageContentRenderer implements PageContentRendererInterface, ContentObject
 }
 ```
 
-Now register the implementation in your `Services.yaml`:
+Lastly, you need to register this implementation in your `Services.yaml`:
 
 ```yaml
 # Configuration/Services.yaml

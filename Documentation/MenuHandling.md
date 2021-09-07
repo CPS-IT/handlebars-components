@@ -2,11 +2,13 @@
 
 ## Description
 
-The extension provides basic implementations for menus.
+This extension provides basic implementations for menus.
 These can be used to map different menus. In addition, there
 is a [`MenuFactoryInterface`](../Classes/Domain/Factory/Dto/MenuFactoryInterface.php),
 with whose implementation different menus can be created
-depending on the type.
+depending on their type.
+
+Additionally, it offers `Menu`, `MenuItem`, and `Link` as extendable DTOs.
 
 ## Example
 
