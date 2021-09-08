@@ -147,6 +147,9 @@ class MenuConfiguration
     public function addTypoScriptConfiguration(string $path, $value): self
     {
         try {
+            if (is_array($value)) {
+                $path = rtrim($path, '.') . '.';
+            }
             $this->typoScriptConfiguration = ArrayUtility::setValueByPath($this->typoScriptConfiguration, $path, $value);
         } catch (MissingArrayPathException $exception) {
             // Intentionally left blank.
