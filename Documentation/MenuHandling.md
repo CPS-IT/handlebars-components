@@ -8,7 +8,8 @@ is a [`MenuFactoryInterface`](../Classes/Domain/Factory/Dto/MenuFactoryInterface
 with whose implementation different menus can be created
 depending on their type.
 
-Additionally, it offers `Menu`, `MenuItem`, and `Link` as extendable DTOs.
+Additionally, it offers [`Menu`][1], [`MenuItem`][2], and [`Link`][3]
+as extendable DTOs.
 
 ## Example
 
@@ -46,3 +47,7 @@ class MenuFactory implements MenuFactoryInterface
     }
 }
 ```
+
+[1]: ../Classes/Domain/Model/Dto/Menu.php
+[2]: ../Classes/Domain/Model/Dto/MenuItem.php
+[3]: ../Classes/Domain/Model/Dto/Link.php
