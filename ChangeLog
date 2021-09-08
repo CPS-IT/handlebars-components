@@ -1,3 +1,18 @@
+2021-09-08         [RELEASE] Release of handlebars_components 0.1.2 (Elias Häußler)
+2021-09-08 d351869 [DOCS] Add links to menu-related models in documentation (Elias Häußler)
+2021-09-07 1e7b605 [DOCS] amend documentation (Martin Adler)
+2021-09-04 4e9d977 [BUGFIX] Ensure properties in base classes are protected (Elias Häußler)
+2021-09-03 7b45dc6 [TASK] Use protected properties in base classes (Elias Häußler)
+2021-09-03 7a5a8b8 [DOCS] Add documentation for menu handling component (Elias Häußler)
+2021-09-03 2833ce5 [DOCS] Add documentation for page rendering component (Elias Häußler)
+2021-09-03 b19e81b [BUGFIX] Ensure page layout can be resolved outside of Backend context (Elias Häußler)
+2021-09-03 fc6dcdb [TASK] add hasSubItems() to MenuItem (Martin Adler)
+2021-09-02 9cf31ee [BUGFIX] fix contructor accessibility (Martin Adler)
+2021-09-02 dc97251 [TASK] introduce menu rendering (Martin Adler)
+2021-09-02 c55bb61 [TASK] Add abstract page presenter (Elias Häußler)
+2021-09-01 cbf4b7a [DOCS] Move documentation of shipped components into separate folder (Elias Häußler)
+2021-09-01 d198e63 [WIP][FEATURE] Introduce page rendering (Elias Häußler)
+
 2021-08-26         [RELEASE] Release of handlebars_components 0.1.1 (Elias Häußler)
 2021-08-25 f1d36da [BUGFIX] Provide correct data object to render function of block helpers (Elias Häußler)
 
