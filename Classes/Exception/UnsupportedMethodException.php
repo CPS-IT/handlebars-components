@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the TYPO3 CMS extension "handlebars_components".
  *
@@ -19,21 +21,18 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** @noinspection PhpUndefinedVariableInspection */
-$EM_CONF[$_EXTKEY] = [
-    'title' => 'Handlebars Components',
-    'description' => 'Additional components for EXT:handlebars',
-    'category' => 'fe',
-    'version' => '0.1.2',
-    'state' => 'alpha',
-    'clearCacheOnLoad' => true,
-    'author' => 'Elias Häußler',
-    'author_email' => 'e.haeussler@familie-redlich.de',
-    'author_company' => 'familie redlich digital GmbH',
-    'constraints' => [
-        'depends' => [
-            'typo3' => '10.4.0-11.99.99',
-            'handlebars' => '',
-        ],
-    ],
-];
+namespace Fr\Typo3HandlebarsComponents\Exception;
+
+/**
+ * UnsupportedMethodException
+ *
+ * @author Elias Häußler <e.haeussler@familie-redlich.de>
+ * @license GPL-2.0-or-later
+ */
+class UnsupportedMethodException extends \RuntimeException
+{
+    public static function create(string $method, string $className): self
+    {
+        return new self(sprintf('The method "%s" is not supported by the class "%s".', $method, $className), 1630334335);
+    }
+}
