@@ -50,7 +50,8 @@ abstract class AbstractPagePresenter extends AbstractPresenter
 
         $renderData = [
             'templateName' => $this->determineTemplateName($data),
-            'mainContent' => $data->getContent(),
+            'contentName' => $this->getContentBlockName(),
+            'renderedContent' => $data->getContent(),
         ];
         ArrayUtility::mergeRecursiveWithOverrule($renderData, $this->getAdditionalRenderData($data));
 
@@ -58,6 +59,11 @@ abstract class AbstractPagePresenter extends AbstractPresenter
     }
 
     abstract protected function determineTemplateName(PageProviderResponse $data): string;
+
+    protected function getContentBlockName(): string
+    {
+        return 'mainContent';
+    }
 
     /**
      * @param PageProviderResponse $data

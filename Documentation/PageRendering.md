@@ -22,8 +22,8 @@ a more convenient way to render multiple layouts.
 
 ```handlebars
 {{#extend templateName}}
-    {{#content 'mainContent'}}
-        {{{ mainContent }}}
+    {{#content contentName}}
+        {{{ renderedContent }}}
     {{/content}}
 {{/extend}}
 ```
