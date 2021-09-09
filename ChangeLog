@@ -1,3 +1,11 @@
+2021-09-09         [RELEASE] Release of handlebars_components 0.2.1 (Elias Häußler)
+2021-09-09 a10a00c [DOCS] Add documentation for ConfigurationService (Elias Häußler)
+2021-09-09 8efb1d9 [TASK] Add unit test for MenuConfiguration (Elias Häußler)
+2021-09-09 1f0c910 [BUGFIX] Prevent overwriting of existing menu configuration (Elias Häußler)
+2021-09-09 6259aa6 [TASK] Validate TypoScript arrays using new TypoScriptUtility class (Elias Häußler)
+2021-09-08 78ac4db [TASK] Assure correct path notation in TypoScript configuration arrays (Elias Häußler)
+2021-09-08 3a1fade [FEATURE] Introduce menu service for default/language/custom menus (Elias Häußler)
+
 2021-09-08         [RELEASE] Release of handlebars_components 0.2.0 (Elias Häußler)
 2021-09-08 8deaef9 [!!!][FEATURE] Abstract layout rendering to allow flexible layouts (Elias Häußler)
 
