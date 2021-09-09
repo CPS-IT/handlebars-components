@@ -35,6 +35,11 @@ composer require fr/typo3-handlebars-components
 * [Page rendering](Documentation/PageRendering.md)
 * [`RenderHelper`](Documentation/RenderHelper.md)
 
+## Shipped services
+
+* [Configuration service](Documentation/ConfigurationService.md)
+* [Menu service](Documentation/MenuService.md)
+
 ## License
 
 This project is licensed under [GNU General Public License 2.0 (or later)](LICENSE.md).

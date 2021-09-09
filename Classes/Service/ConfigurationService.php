@@ -23,6 +23,7 @@ declare(strict_types=1);
 
 namespace Fr\Typo3HandlebarsComponents\Service;
 
+use Fr\Typo3HandlebarsComponents\Utility\TypoScriptUtility;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
@@ -86,7 +87,7 @@ class ConfigurationService implements SingletonInterface
                 $configuration = $this->configurationManager->getConfiguration(
                     ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
                 );
-                $pathSegments = $this->transformArrayPathToTypoScriptArrayPath($path);
+                $pathSegments = TypoScriptUtility::transformArrayPathToTypoScriptArrayPath($path);
                 $this->configurationCache[$path] = ArrayUtility::getValueByPath($configuration, $pathSegments);
             } catch (\Exception $e) {
                 $this->configurationCache[$path] = null;
@@ -94,14 +95,5 @@ class ConfigurationService implements SingletonInterface
         }
 
         return $this->configurationCache[$path];
-    }
-
-    /**
-     * @param string $path
-     * @return string[]
-     */
-    protected function transformArrayPathToTypoScriptArrayPath(string $path): array
-    {
-        return preg_split('/(?<=[.!?])/', $path, 0, PREG_SPLIT_NO_EMPTY) ?: [];
     }
 }
