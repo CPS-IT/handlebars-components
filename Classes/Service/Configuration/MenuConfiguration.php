@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace Fr\Typo3HandlebarsComponents\Service\Configuration;
 
 use Fr\Typo3HandlebarsComponents\Exception\InvalidConfigurationException;
+use Fr\Typo3HandlebarsComponents\Utility\TypoScriptUtility;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\Exception\MissingArrayPathException;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
@@ -146,11 +147,18 @@ class MenuConfiguration
      */
     public function addTypoScriptConfiguration(string $path, $value): self
     {
+        // TypoScript paths always contain a trailing dot for array values
+        if (is_array($value)) {
+            $path = rtrim($path, '.') . '.';
+        }
+
         try {
-            if (is_array($value)) {
-                $path = rtrim($path, '.') . '.';
-            }
-            $this->typoScriptConfiguration = ArrayUtility::setValueByPath($this->typoScriptConfiguration, $path, $value);
+            $this->typoScriptConfiguration = ArrayUtility::setValueByPath(
+                $this->typoScriptConfiguration,
+                TypoScriptUtility::transformArrayPathToTypoScriptArrayPath($path),
+                $value
+            );
+            $this->validate();
         } catch (MissingArrayPathException $exception) {
             // Intentionally left blank.
         }
@@ -171,5 +179,7 @@ class MenuConfiguration
         if (self::CUSTOM === $this->type && !isset($this->typoScriptConfiguration['dataProcessing.'])) {
             throw InvalidConfigurationException::create('dataProcessing.');
         }
+
+        TypoScriptUtility::validateTypoScriptArray($this->typoScriptConfiguration);
     }
 }
