@@ -50,6 +50,22 @@ class TypoScriptUtilityTest extends UnitTestCase
 
     /**
      * @test
+     */
+    public function buildTypoScriptArrayFromPathCreatesTypoScriptArrayFromGivenPath(): void
+    {
+        $expected = [
+            'foo.' => [
+                'baz.' => [
+                    'another' => 'foo',
+                ],
+            ],
+        ];
+
+        self::assertSame($expected, TypoScriptUtility::buildTypoScriptArrayFromPath('foo.baz.another', 'foo'));
+    }
+
+    /**
+     * @test
      * @dataProvider validateTypoScriptArrayValidatesGivenTypoScriptArrayDataProvider
      * @param array<string, mixed> $typoScriptArray
      * @param string|null $expectedExceptionPath

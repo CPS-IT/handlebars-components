@@ -44,6 +44,27 @@ class TypoScriptUtility
     }
 
     /**
+     * @param string $path
+     * @param mixed $value
+     * @return array<string, mixed>
+     */
+    public static function buildTypoScriptArrayFromPath(string $path, $value): array
+    {
+        $pathSegments = self::transformArrayPathToTypoScriptArrayPath($path);
+        $typoScriptArray = [];
+        $pointer = &$typoScriptArray;
+
+        foreach ($pathSegments as $pathSegment) {
+            $pointer[$pathSegment] = [];
+            $pointer = &$pointer[$pathSegment];
+        }
+
+        $pointer = $value;
+
+        return $typoScriptArray;
+    }
+
+    /**
      * @param array<string, mixed> $typoScriptArray
      * @param string $path
      * @throws InvalidConfigurationException

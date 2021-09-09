@@ -26,7 +26,6 @@ namespace Fr\Typo3HandlebarsComponents\Service\Configuration;
 use Fr\Typo3HandlebarsComponents\Exception\InvalidConfigurationException;
 use Fr\Typo3HandlebarsComponents\Utility\TypoScriptUtility;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
-use TYPO3\CMS\Core\Utility\Exception\MissingArrayPathException;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
 /**
@@ -152,16 +151,11 @@ class MenuConfiguration
             $path = rtrim($path, '.') . '.';
         }
 
-        try {
-            $this->typoScriptConfiguration = ArrayUtility::setValueByPath(
-                $this->typoScriptConfiguration,
-                TypoScriptUtility::transformArrayPathToTypoScriptArrayPath($path),
-                $value
-            );
-            $this->validate();
-        } catch (MissingArrayPathException $exception) {
-            // Intentionally left blank.
-        }
+        ArrayUtility::mergeRecursiveWithOverrule(
+            $this->typoScriptConfiguration,
+            TypoScriptUtility::buildTypoScriptArrayFromPath($path, $value)
+        );
+        $this->validate();
 
         return $this;
     }
