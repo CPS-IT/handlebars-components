@@ -40,7 +40,7 @@ class ConfigurationServiceTest extends UnitTestCase
      */
     protected $configuration = [
         'foo.' => [
-            'baz',
+            'baz' => 'hello!',
         ],
         'hello' => 'world',
     ];

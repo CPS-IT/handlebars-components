@@ -41,6 +41,16 @@ class MenuItem
      */
     protected $link;
 
+    /**
+     * @var bool
+     */
+    protected $active = false;
+
+    /**
+     * @var bool
+     */
+    protected $current = false;
+
     public function __construct(Link $link)
     {
         $this->link = $link;
@@ -84,6 +94,28 @@ class MenuItem
     public function setLink(Link $link): MenuItem
     {
         $this->link = $link;
+        return $this;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
+        return $this;
+    }
+
+    public function isCurrent(): bool
+    {
+        return $this->current;
+    }
+
+    public function setCurrent(bool $current): self
+    {
+        $this->current = $current;
         return $this;
     }
 }
