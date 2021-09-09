@@ -37,6 +37,7 @@ composer require fr/typo3-handlebars-components
 
 ## Shipped services
 
+* [Configuration service](Documentation/ConfigurationService.md)
 * [Menu service](Documentation/MenuService.md)
 
 ## License
