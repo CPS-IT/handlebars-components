@@ -27,18 +27,26 @@ Now require the package with Composer:
 composer require fr/typo3-handlebars-components
 ```
 
-## Shipped components
+## Features
 
-* [`FlatTemplateResolver`](Documentation/FlatTemplateResolver.md)
-* [Handlebars Layouts](Documentation/HandlebarsLayouts.md)
-* [Menu handling](Documentation/MenuHandling.md)
-* [Page rendering](Documentation/PageRendering.md)
-* [`RenderHelper`](Documentation/RenderHelper.md)
+### Handlebars components
 
-## Shipped services
+* [Page rendering](Documentation/Components/PageRendering.md)
 
-* [Configuration service](Documentation/ConfigurationService.md)
-* [Menu service](Documentation/MenuService.md)
+### Handlebars helpers
+
+* [`block`, `content` and `extend` helpers](Documentation/Helpers/HandlebarsLayouts.md)
+  from _handlebars-layouts_
+* [`render` helper](Documentation/Helpers/RenderHelper.md) from _Fractal_
+
+### Handlebars template resolvers
+
+* [Flat template resolver](Documentation/TemplateResolvers/FlatTemplateResolver.md) from _Fractal_
+
+### Services
+
+* [Configuration service](Documentation/Services/ConfigurationService.md)
+* [Menu service](Documentation/Services/MenuService.md)
 
 ## License
 
