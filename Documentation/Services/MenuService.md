@@ -1,15 +1,22 @@
-# Service: Menu
+# [Menu service](../../Classes/Service/MenuService.php)
 
-The [`MenuService`](../Classes/Service/MenuService.php) can be used to
+The [`MenuService`](../../Classes/Service/MenuService.php) can be used to
 render arbitrary menus using TypoScript configuration. The `MenuProcessor`
 and `LanguageMenuProcessor` from the TYPO3 core are used for this purpose.
 Alternatively, a custom `DataProcessor` can be written if specific data
 processing is required.
 
-A [`MenuConfiguration`](../Classes/Service/Configuration/MenuConfiguration.php)
+A [`MenuConfiguration`](../../Classes/Service/Configuration/MenuConfiguration.php)
 object must be passed to the service, which contains the TypoScript
 configuration. Simplified factory methods are already available for this
 purpose (see examples below).
+
+The resolved menus are objects of [`Menu`][1] that contain various
+[`MenuItem`][2] objects linking to a specific URL using the provided DTO
+model [`Link`][3]. In order to simplify the build process of different
+menus, the extension provides a [`MenuFactoryInterface`][4], with whose
+implementation different menus can be created depending on their type
+(see example at the end).
 
 ## Examples
 
@@ -77,7 +84,7 @@ $menu = $menuService->buildMenu($menuConfiguration);
 
 If a custom implementation is to be used to build a menu, a corresponding
 `DataProcessor` must be created for this purpose. It can either provide a
-ready-made [`Menu`](../Classes/Domain/Model/Dto/Menu.php) object or
+ready-made [`Menu`](../../Classes/Domain/Model/Dto/Menu.php) object or
 alternatively a data structure which corresponds to that of the
 `MenuProcessor` from TYPO3 core.
 
@@ -114,3 +121,67 @@ use \Vendor\Extension\DataProcessing\Menu\CustomMenuProcessor;
 $menuConfiguration = MenuConfiguration::custom(CustomMenuProcessor::class);
 $menu = $menuService->buildMenu($menuConfiguration);
 ```
+
+### Using a custom `MenuFactory`
+
+To summarize the creation of individual menus, a `MenuFactory` can be
+implemented. This can then generate corresponding menus depending on
+the menu type using the `MenuService` as described above.
+
+```php
+# Classes/Domain/Factory/Dto/MenuFactory.php
+
+namespace Vendor\Extension\Domain\Factory\Dto;
+
+use Fr\Typo3HandlebarsComponents\Domain\Factory\Dto\MenuFactoryInterface;
+use Fr\Typo3HandlebarsComponents\Domain\Model\Dto\Menu;
+use Fr\Typo3HandlebarsComponents\Exception\UnsupportedTypeException;
+use Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
+use Fr\Typo3HandlebarsComponents\Service\MenuService;
+
+class MenuFactory implements MenuFactoryInterface
+{
+    /**
+     * @var MenuService
+     */
+    private $menuService;
+
+    public function __construct(MenuService $menuService)
+    {
+        $this->menuService = $menuService;
+    }
+
+    public function get(string $type): Menu
+    {
+        switch ($type) {
+            case 'metaMenu':
+                return $this->buildMetaMenu();
+            case 'mainMenu':
+                return $this->buildMainMenu();
+            default:
+                throw UnsupportedTypeException::create($type);
+        }
+    }
+
+    private function buildMetaMenu(): Menu
+    {
+        $rootPageId = 27;
+        $configuration = MenuConfiguration::directory($rootPageId);
+
+        return $this->menuService->buildMenu($configuration)->setType('metaMenu');
+    }
+
+    private function buildMainMenu(): Menu
+    {
+        $rootPageId = 1;
+        $configuration = MenuConfiguration::directory($rootPageId, 99);
+
+        return $this->menuService->buildMenu($configuration)->setType('mainMenu');
+    }
+}
+```
+
+[1]: ../../Classes/Domain/Model/Dto/Menu.php
+[2]: ../../Classes/Domain/Model/Dto/MenuItem.php
+[3]: ../../Classes/Domain/Model/Dto/Link.php
+[4]: ../../Classes/Domain/Factory/Dto/MenuFactoryInterface.php

@@ -1,4 +1,4 @@
-# Component: [`FlatTemplateResolver`](../Classes/Renderer/Template/FlatTemplateResolver.php)
+# [Flat template resolver](../../Classes/Renderer/Template/FlatTemplateResolver.php)
 
 ## Reference
 

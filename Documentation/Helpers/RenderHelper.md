@@ -1,4 +1,4 @@
-# Component: [`RenderHelper`](../Classes/Renderer/Helper/RenderHelper.php)
+# [`render` helper](../../Classes/Renderer/Helper/RenderHelper.php)
 
 ## Reference
 
