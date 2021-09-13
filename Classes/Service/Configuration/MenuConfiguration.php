@@ -88,7 +88,7 @@ class MenuConfiguration
         ]);
     }
 
-    public static function rootline(int $begin = 1, int $end = -1): self
+    public static function rootline(int $begin = 0, int $end = -1): self
     {
         return new self([
             'special' => 'rootline',
