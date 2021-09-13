@@ -94,7 +94,6 @@ test:
     typo3DatabasePassword: $MYSQL_ROOT_PASSWORD
     typo3DatabaseName: $MYSQL_DATABASE
   script:
-    - composer install --no-progress
     - composer test:ci -- --testdox
     - composer test:ci:merge
   coverage: '/^\s*Lines:\s*\d+.\d+\%/'
