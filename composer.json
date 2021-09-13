@@ -25,8 +25,10 @@
 		"ergebnis/composer-normalize": "^2.15",
 		"helmich/typo3-typoscript-lint": "^2.5",
 		"phpstan/phpstan": "^0.12",
+		"phpunit/phpcov": "^8.2",
 		"phpunit/phpunit": "^9.3",
 		"saschaegerer/phpstan-typo3": "^0.13",
+		"typo3/cms-install": "^10.4 || 11.*.*@dev",
 		"typo3/coding-standards": "^0.3.0",
 		"typo3/testing-framework": "^6.8"
 	},
@@ -66,7 +68,18 @@
 			"@sca:php"
 		],
 		"sca:php": "phpstan analyse -c phpstan.neon",
-		"test": "phpunit -c phpunit.xml",
-		"test:ci": "phpunit -c phpunit.ci.xml"
+		"test": [
+			"@test:functional",
+			"@test:unit"
+		],
+		"test:ci": [
+			"@test:ci:functional",
+			"@test:ci:unit"
+		],
+		"test:ci:functional": "phpunit -c phpunit.ci.functional.xml",
+		"test:ci:merge": "phpcov merge --html .Build/log/coverage/html/_merged --text php://stdout .Build/log/coverage/php",
+		"test:ci:unit": "phpunit -c phpunit.ci.unit.xml",
+		"test:functional": "phpunit -c phpunit.functional.xml",
+		"test:unit": "phpunit -c phpunit.unit.xml"
 	}
 }

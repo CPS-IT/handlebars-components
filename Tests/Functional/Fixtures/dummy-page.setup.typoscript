@@ -1,0 +1,5 @@
+config.disableAllHeaderCode = 1
+
+page = PAGE
+page.10 = USER
+page.10.userFunc = Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyMenuProcessor->process
