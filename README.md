@@ -51,8 +51,9 @@ composer require fr/typo3-handlebars-components
 ## Configuration
 
 Several features can be enabled or disabled via extension configuration.
-This includes f.e. helpers and template resolvers. All features behind such
-feature toggles are enabled by default.
+This includes frontend helpers and template resolvers.
+
+Please note that all available features are enabled by default!
 
 ## License
 
