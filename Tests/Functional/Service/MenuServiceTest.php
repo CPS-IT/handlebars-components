@@ -25,7 +25,7 @@ namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Service;
 
 use Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
 use Fr\Typo3HandlebarsComponents\Service\MenuService;
-use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyMenuProcessor;
+use Fr\Typo3HandlebarsComponentsTestExtension\DummyMenuProcessor;
 use Symfony\Component\Yaml\Yaml;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentDataProcessor;
@@ -42,7 +42,7 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 class MenuServiceTest extends FunctionalTestCase
 {
     protected $testExtensionsToLoad = [
-        'typo3conf/ext/handlebars_components',
+        'typo3conf/ext/handlebars_components/Tests/Functional/Fixtures/test_extension',
     ];
 
     /**
@@ -59,9 +59,7 @@ class MenuServiceTest extends FunctionalTestCase
         $this->importDataSet(dirname(__DIR__) . '/Fixtures/pages.xml');
         $this->importDataSet(dirname(__DIR__) . '/Fixtures/sys_template.xml');
 
-        $this->setUpFrontendRootPage(1, [
-            'EXT:handlebars_components/Tests/Functional/Fixtures/dummy-page.setup.typoscript',
-        ]);
+        $this->setUpFrontendRootPage(1);
         $this->setUpFrontendSite(1);
     }
 
@@ -158,9 +156,10 @@ class MenuServiceTest extends FunctionalTestCase
     private function prepareTypoScriptForMenuConfiguration(MenuConfiguration $configuration): void
     {
         $this->addTypoScriptToTemplateRecord(1, '
+config.disableAllHeaderCode = 1
 page = PAGE
 page.10 = USER
-page.10.userFunc = Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyMenuProcessor->preProcess
+page.10.userFunc = Fr\Typo3HandlebarsComponentsTestExtension\DummyMenuProcessor->preProcess
 page.10.userFunc.menuConfiguration = ' . json_encode($configuration->getTypoScriptConfiguration()) . '
 page.10.userFunc.menuType = ' . $configuration->getType() . '
         ');

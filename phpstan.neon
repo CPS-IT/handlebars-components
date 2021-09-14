@@ -12,3 +12,5 @@ parameters:
         - message: '#^Cannot cast Fr\\Typo3HandlebarsComponents\\Domain\\Model\\Page\\Page(Header|Footer)Interface|null to string\.$#'
           path: Tests/Functional/Data/PageProviderTest.php
           count: 2
+        - message: '#^Variable \$_EXTKEY might not be defined\.$#'
+          path: Tests/Functional/Fixtures/test_extension/ext_emconf.php

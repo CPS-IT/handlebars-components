@@ -40,7 +40,7 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 class RenderHelperTest extends FunctionalTestCase
 {
     protected $testExtensionsToLoad = [
-        'typo3conf/ext/handlebars_components',
+        'typo3conf/ext/handlebars_components/Tests/Functional/Fixtures/test_extension',
     ];
 
     /**
@@ -62,7 +62,7 @@ class RenderHelperTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $templateRootPath = 'EXT:handlebars_components/Tests/Functional/Fixtures';
+        $templateRootPath = 'EXT:test_extension/Resources/Templates/';
         $this->templateResolver = new FlatTemplateResolver([$templateRootPath]);
         $this->renderer = new HandlebarsRenderer(new NullCache(), new EventDispatcher(), $this->templateResolver);
         $this->subject = new RenderHelper($this->renderer);
