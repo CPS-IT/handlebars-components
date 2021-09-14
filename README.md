@@ -48,6 +48,13 @@ composer require fr/typo3-handlebars-components
 * [Configuration service](Documentation/Services/ConfigurationService.md)
 * [Menu service](Documentation/Services/MenuService.md)
 
+## Configuration
+
+Several features can be enabled or disabled via extension configuration.
+This includes, for example, helpers and template resolvers.
+
+Please note that all available features are enabled by default!
+
 ## License
 
 This project is licensed under [GNU General Public License 2.0 (or later)](LICENSE.md).
