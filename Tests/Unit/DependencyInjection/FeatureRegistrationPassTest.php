@@ -23,18 +23,22 @@ declare(strict_types=1);
 
 namespace Fr\Typo3HandlebarsComponents\Tests\Unit\DependencyInjection;
 
+use Fr\Typo3Handlebars\DependencyInjection\Extension\HandlebarsExtension;
 use Fr\Typo3Handlebars\Renderer\Helper\HelperInterface;
 use Fr\Typo3Handlebars\Renderer\RendererInterface;
+use Fr\Typo3Handlebars\Renderer\Template\TemplatePaths;
 use Fr\Typo3HandlebarsComponents\DependencyInjection\FeatureRegistrationPass;
 use Fr\Typo3HandlebarsComponents\Renderer\Helper\BlockHelper;
 use Fr\Typo3HandlebarsComponents\Renderer\Helper\ContentHelper;
 use Fr\Typo3HandlebarsComponents\Renderer\Helper\ExtendHelper;
 use Fr\Typo3HandlebarsComponents\Renderer\Helper\RenderHelper;
 use Fr\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver;
+use Fr\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyConfigurationManager;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\DependencyInjection\PublicServicePass;
 use TYPO3\CMS\Core\Exception;
@@ -176,10 +180,19 @@ class FeatureRegistrationPassTest extends UnitTestCase
         $container->set(ExtensionConfiguration::class, $dummyExtensionConfiguration);
 
         // Simulate required services
-        $dummyDefinition = (new Definition('stdClass'))->setPublic(true);
-        $container->setDefinition('handlebars.template_resolver', $dummyDefinition->addArgument([]));
-        $container->setDefinition('handlebars.partial_resolver', $dummyDefinition->addArgument([]));
-        $container->setDefinition(RendererInterface::class, $dummyDefinition);
+        $dummyTemplatePathsDefinition = new Definition(TemplatePaths::class);
+        $dummyTemplatePathsDefinition->addArgument(new DummyConfigurationManager());
+        $dummyTemplatePathsDefinition->addMethodCall('setContainer', [$container]);
+        $dummyTemplateResolverDefinition = (new Definition('stdClass'))->setPublic(true);
+        $dummyTemplateResolverDefinition->addArgument(new Reference(TemplatePaths::class));
+
+        $container->setDefinition(TemplatePaths::class, $dummyTemplatePathsDefinition);
+        $container->setDefinition('handlebars.template_resolver', $dummyTemplateResolverDefinition);
+        $container->setDefinition('handlebars.partial_resolver', $dummyTemplateResolverDefinition);
+        $container->setDefinition(RendererInterface::class, $dummyTemplateResolverDefinition);
+
+        $container->setParameter(HandlebarsExtension::PARAMETER_TEMPLATE_ROOT_PATHS, []);
+        $container->setParameter(HandlebarsExtension::PARAMETER_PARTIAL_ROOT_PATHS, []);
 
         $container->addCompilerPass(new FeatureRegistrationPass());
         $container->addCompilerPass(new PublicServicePass('handlebars.helper'));
