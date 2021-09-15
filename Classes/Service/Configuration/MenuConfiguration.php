@@ -110,6 +110,9 @@ class MenuConfiguration
 
         return new self([
             'languages' => [] !== $languages ? implode(',', $languages) : 'auto',
+            'languages.' => [
+                'wrap' => '|',
+            ],
             'addQueryString.' => [
                 'exclude' => implode(',', $excludedParameters),
             ],
