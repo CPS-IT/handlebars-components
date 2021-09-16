@@ -69,6 +69,12 @@ class Menu
         return $this;
     }
 
+    public function addItem(MenuItem $item): self
+    {
+        $this->items[] = $item;
+        return $this;
+    }
+
     public function getType(): string
     {
         return $this->type;
