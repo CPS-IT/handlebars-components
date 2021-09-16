@@ -69,6 +69,16 @@ class PagePresenter extends AbstractPagePresenter
     {
         // TODO: Provide additional data that is passed to the renderer (optional)
     }
+
+    protected function renderHeaderAssets(PageProviderResponse $data): string
+    {
+        // TODO: Render optional header assets, e.g. stylesheets or meta tags (optional)
+    }
+
+    protected function renderFooterAssets(PageProviderResponse $data): string
+    {
+        // TODO: Render optional footer assets, e.g. scripts (optional)
+    }
 }
 ```
 
