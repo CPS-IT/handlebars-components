@@ -26,7 +26,9 @@ namespace Fr\Typo3HandlebarsComponents\Presenter;
 use Fr\Typo3Handlebars\Data\Response\ProviderResponseInterface;
 use Fr\Typo3Handlebars\Exception\UnableToPresentException;
 use Fr\Typo3Handlebars\Presenter\AbstractPresenter;
+use Fr\Typo3Handlebars\Renderer\RendererInterface;
 use Fr\Typo3HandlebarsComponents\Data\Response\PageProviderResponse;
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 
 /**
@@ -42,11 +44,27 @@ abstract class AbstractPagePresenter extends AbstractPresenter
      */
     protected $templateName = '@cms';
 
+    /**
+     * @var PageRenderer
+     */
+    protected $pageRenderer;
+
+    public function __construct(RendererInterface $renderer, PageRenderer $pageRenderer)
+    {
+        parent::__construct($renderer);
+        $this->pageRenderer = $pageRenderer;
+    }
+
     public function present(ProviderResponseInterface $data): string
     {
         if (!($data instanceof PageProviderResponse)) {
             throw new UnableToPresentException('Received unexpected response from provider.', 1616155696);
         }
+
+        $headerAssets = $this->renderHeaderAssets($data);
+        $this->pageRenderer->addHeaderData($headerAssets);
+        $footerAssets = $this->renderFooterAssets($data);
+        $this->pageRenderer->addFooterData($footerAssets);
 
         $renderData = [
             'templateName' => $this->determineTemplateName($data),
@@ -73,5 +91,15 @@ abstract class AbstractPagePresenter extends AbstractPresenter
     protected function getAdditionalRenderData(PageProviderResponse $data): array
     {
         return [];
+    }
+
+    protected function renderHeaderAssets(PageProviderResponse $data): string
+    {
+        return '';
+    }
+
+    protected function renderFooterAssets(PageProviderResponse $data): string
+    {
+        return '';
     }
 }
