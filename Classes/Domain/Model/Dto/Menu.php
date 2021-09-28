@@ -69,6 +69,11 @@ class Menu
         return $this;
     }
 
+    public function hasItems(): bool
+    {
+        return [] !== $this->items;
+    }
+
     public function addItem(MenuItem $item): self
     {
         $this->items[] = $item;
