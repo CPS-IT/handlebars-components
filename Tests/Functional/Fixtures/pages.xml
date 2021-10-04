@@ -10,6 +10,7 @@
         <title>Page 1</title>
         <backend_layout>pagets__1</backend_layout>
         <backend_layout_next_level>pagets__2</backend_layout_next_level>
+        <media>1</media>
     </pages>
     <pages>
         <uid>2</uid>

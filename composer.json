@@ -25,6 +25,7 @@
 		"ergebnis/composer-normalize": "^2.15",
 		"helmich/typo3-typoscript-lint": "^2.5",
 		"phpstan/phpstan": "^0.12",
+		"phpstan/phpstan-phpunit": "^0.12",
 		"phpunit/phpcov": "^8.2",
 		"phpunit/phpunit": "^9.3",
 		"saschaegerer/phpstan-typo3": "^0.13",
