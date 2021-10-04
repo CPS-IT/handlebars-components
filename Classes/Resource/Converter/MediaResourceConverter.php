@@ -29,7 +29,6 @@ use Fr\Typo3HandlebarsComponents\Domain\Model\Media\OnlineMedia;
 use Fr\Typo3HandlebarsComponents\Exception\UnsupportedResourceException;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileInterface;
-use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 
 /**
@@ -68,7 +67,7 @@ class MediaResourceConverter implements ResourceConverterInterface
     {
         $originalFile = $file;
 
-        if ($file instanceof FileReference) {
+        if (method_exists($file, 'getOriginalFile')) {
             $file = $file->getOriginalFile();
         }
         if (!($file instanceof File)) {
