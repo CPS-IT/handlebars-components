@@ -34,6 +34,10 @@
 	},
 	"config": {
 		"bin-dir": ".Build/bin",
+		"preferred-install": {
+			"cpsit/typo3-handlebars": "source",
+			"*": "dist"
+		},
 		"sort-packages": true,
 		"vendor-dir": ".Build/vendor"
 	},
@@ -51,7 +55,8 @@
 	"autoload-dev": {
 		"psr-4": {
 			"Fr\\Typo3HandlebarsComponents\\Tests\\": "Tests/",
-			"Fr\\Typo3HandlebarsComponentsTestExtension\\": "Tests/Functional/Fixtures/test_extension/Classes/"
+			"Fr\\Typo3HandlebarsComponentsTestExtension\\": "Tests/Functional/Fixtures/test_extension/Classes/",
+			"Fr\\Typo3Handlebars\\Tests\\": ".Build/web/typo3conf/ext/handlebars/Tests"
 		}
 	},
 	"scripts": {

@@ -26,6 +26,7 @@ namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Renderer\Helper;
 use Fr\Typo3Handlebars\Cache\NullCache;
 use Fr\Typo3Handlebars\Renderer\HandlebarsRenderer;
 use Fr\Typo3Handlebars\Renderer\Template\HandlebarsTemplateResolver;
+use Fr\Typo3Handlebars\Tests\Unit\HandlebarsTemplateResolverTrait;
 use Fr\Typo3HandlebarsComponents\Renderer\Helper\RenderHelper;
 use Fr\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -39,6 +40,8 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  */
 class RenderHelperTest extends FunctionalTestCase
 {
+    use HandlebarsTemplateResolverTrait;
+
     protected $testExtensionsToLoad = [
         'typo3conf/ext/handlebars_components/Tests/Functional/Fixtures/test_extension',
     ];
@@ -62,8 +65,7 @@ class RenderHelperTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $templateRootPath = 'EXT:test_extension/Resources/Templates/';
-        $this->templateResolver = new FlatTemplateResolver([$templateRootPath]);
+        $this->templateResolver = new FlatTemplateResolver($this->getTemplatePaths());
         $this->renderer = new HandlebarsRenderer(new NullCache(), new EventDispatcher(), $this->templateResolver);
         $this->subject = new RenderHelper($this->renderer);
         $this->renderer->registerHelper('render', [$this->subject, 'evaluate']);
@@ -112,5 +114,10 @@ class RenderHelperTest extends FunctionalTestCase
         ]);
 
         self::assertSame('Lorem ipsum', trim($actual));
+    }
+
+    public function getTemplateRootPath(): string
+    {
+        return 'EXT:test_extension/Resources/Templates/';
     }
 }
