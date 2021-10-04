@@ -24,6 +24,8 @@ declare(strict_types=1);
 namespace Fr\Typo3HandlebarsComponents\Resource\Processing;
 
 use Fr\Typo3HandlebarsComponents\Domain\Model\Media\MediaInterface;
+use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
+use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
 use TYPO3\CMS\Core\Utility\MathUtility;
 
 /**
@@ -144,14 +146,34 @@ class ImageProcessingInstruction
     }
 
     /**
-     * @return array{width: string, height: string}
+     * @return array{width: string, height: string, crop: Area|null}
      */
     public function parse(): array
     {
         return [
             'width' => $this->width,
             'height' => $this->height,
+            'crop' => $this->getCropArea(),
         ];
+    }
+
+    protected function getCropArea(): ?Area
+    {
+        $file = $this->media->getOriginalFile();
+
+        if (!$file->hasProperty('crop')) {
+            return null;
+        }
+
+        $cropString = $file->getProperty('crop');
+        $cropVariantCollection = CropVariantCollection::create((string)$cropString);
+        $cropArea = $cropVariantCollection->getCropArea($this->cropVariant);
+
+        if ($cropArea->isEmpty()) {
+            return null;
+        }
+
+        return $cropArea->makeAbsoluteBasedOnFile($file);
     }
 
     /**

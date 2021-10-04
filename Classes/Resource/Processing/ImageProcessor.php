@@ -25,8 +25,6 @@ namespace Fr\Typo3HandlebarsComponents\Resource\Processing;
 
 use Fr\Typo3HandlebarsComponents\Domain\Model\Media\MediaInterface;
 use Fr\Typo3HandlebarsComponents\Exception\UnsupportedResourceException;
-use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
-use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\ProcessedFile;
@@ -44,27 +42,7 @@ class ImageProcessor
         $file = $media->getOriginalFile();
         $originalFile = $this->resolveOriginalFile($file);
 
-        $convertedProcessingInstructions = $processingInstruction->parse();
-        $convertedProcessingInstructions['crop'] = $this->getCropArea($file, $processingInstruction->getCropVariant());
-
-        return $originalFile->process(ProcessedFile::CONTEXT_IMAGECROPSCALEMASK, $convertedProcessingInstructions);
-    }
-
-    protected function getCropArea(FileInterface $file, string $cropVariant = 'default'): ?Area
-    {
-        if (!$file->hasProperty('crop')) {
-            return null;
-        }
-
-        $cropString = $file->getProperty('crop');
-        $cropVariantCollection = CropVariantCollection::create((string)$cropString);
-        $cropArea = $cropVariantCollection->getCropArea($cropVariant);
-
-        if ($cropArea->isEmpty()) {
-            return null;
-        }
-
-        return $cropArea->makeAbsoluteBasedOnFile($file);
+        return $originalFile->process(ProcessedFile::CONTEXT_IMAGECROPSCALEMASK, $processingInstruction->parse());
     }
 
     protected function resolveOriginalFile(FileInterface $file): File
