@@ -39,7 +39,7 @@ use TYPO3\CMS\Core\Resource\ProcessedFile;
  */
 class ImageProcessor
 {
-    public function process(MediaInterface $media, ImageProcessingInstruction $processingInstruction = null): ProcessedFile
+    public function process(MediaInterface $media, ImageProcessingInstruction $processingInstruction): ProcessedFile
     {
         $file = $media->getOriginalFile();
         $originalFile = $this->resolveOriginalFile($file);
