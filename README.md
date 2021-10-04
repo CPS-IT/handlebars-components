@@ -46,6 +46,7 @@ composer require fr/typo3-handlebars-components
 ### Services
 
 * [Configuration service](Documentation/Services/ConfigurationService.md)
+* [Media service](Documentation/Services/MediaService.md)
 * [Menu service](Documentation/Services/MenuService.md)
 
 ## Configuration
