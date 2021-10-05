@@ -42,18 +42,17 @@ class ContentHelper implements HelperInterface, LoggerAwareInterface
 
     /**
      * @param string $name
-     * @param array<string, mixed> $context
+     * @param array<string, mixed> $options
      * @return string|bool
      */
-    public function evaluate(string $name, array $context)
+    public function evaluate(string $name, array $options)
     {
-        $data = $context['_this'];
-        $mode = $context['hash']['mode'] ?? HandlebarsLayoutAction::REPLACE;
-        /** @var HandlebarsLayout[] $layoutStack */
-        $layoutStack = $data['_layoutStack'] ?? null;
+        $data = $options['_this'];
+        $mode = $options['hash']['mode'] ?? HandlebarsLayoutAction::REPLACE;
+        $layoutStack = $this->getLayoutStack($options);
 
         // Early return if "content" helper is requested outside of an "extend" helper block
-        if (empty($data['_layoutStack'])) {
+        if (empty($layoutStack)) {
             $this->logger->error('Handlebars layout helper "content" can only be used within an "extend" helper block!', ['name' => $name]);
             return '';
         }
@@ -62,7 +61,7 @@ class ContentHelper implements HelperInterface, LoggerAwareInterface
         $layout = end($layoutStack);
 
         // Usage in conditional context: Test whether given required block is registered
-        if (!is_callable($context['fn'] ?? '')) {
+        if (!is_callable($options['fn'] ?? '')) {
             if (!$layout->isParsed()) {
                 $layout->parse();
             }
@@ -71,10 +70,37 @@ class ContentHelper implements HelperInterface, LoggerAwareInterface
         }
 
         // Add concrete action for the requested block
-        $action = new HandlebarsLayoutAction($data, $context['fn'], $mode);
+        $action = new HandlebarsLayoutAction($data, $options['fn'], $mode);
         $layout->addAction($name, $action);
 
         // This helper does not return any content, it's just here to register layout actions
         return '';
+    }
+
+    /**
+     * @param array<string, mixed> $options
+     * @return HandlebarsLayout[]
+     */
+    protected function getLayoutStack(array $options): array
+    {
+        // Fetch layout stack from current context
+        if (isset($options['_this']['_layoutStack'])) {
+            return $options['_this']['_layoutStack'];
+        }
+
+        // Early return if only context is currently processed
+        if (!isset($options['contexts'])) {
+            return [];
+        }
+
+        // Fetch layout stack from previous contexts
+        while (!empty($options['contexts'])) {
+            $context = array_pop($options['contexts']);
+            if (isset($context['_layoutStack'])) {
+                return $context['_layoutStack'];
+            }
+        }
+
+        return [];
     }
 }
