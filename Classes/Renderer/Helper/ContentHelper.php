@@ -63,6 +63,10 @@ class ContentHelper implements HelperInterface, LoggerAwareInterface
 
         // Usage in conditional context: Test whether given required block is registered
         if (!is_callable($context['fn'] ?? '')) {
+            if (!$layout->isParsed()) {
+                $layout->parse();
+            }
+
             return $layout->hasAction($name);
         }
 
