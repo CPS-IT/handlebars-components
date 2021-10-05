@@ -26,18 +26,19 @@ namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Renderer\Helper;
 use Fr\Typo3Handlebars\Cache\NullCache;
 use Fr\Typo3Handlebars\Renderer\HandlebarsRenderer;
 use Fr\Typo3Handlebars\Tests\Unit\HandlebarsTemplateResolverTrait;
-use Fr\Typo3HandlebarsComponents\Renderer\Helper\RenderHelper;
+use Fr\Typo3HandlebarsComponents\Renderer\Helper\ExtendHelper;
 use Fr\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver;
+use Fr\Typo3HandlebarsComponentsTestExtension\JsonHelper;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
- * RenderHelperTest
+ * ExtendHelperTest
  *
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class RenderHelperTest extends FunctionalTestCase
+class ExtendHelperTest extends FunctionalTestCase
 {
     use HandlebarsTemplateResolverTrait;
 
@@ -50,33 +51,30 @@ class RenderHelperTest extends FunctionalTestCase
      */
     protected $renderer;
 
-    /**
-     * @var RenderHelper
-     */
-    protected $subject;
-
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->templateResolver = new FlatTemplateResolver($this->getTemplatePaths());
         $this->renderer = new HandlebarsRenderer(new NullCache(), new EventDispatcher(), $this->templateResolver);
-        $this->subject = new RenderHelper($this->renderer);
-        $this->renderer->registerHelper('render', [$this->subject, 'evaluate']);
+        $this->renderer->registerHelper('extend', [new ExtendHelper($this->renderer), 'evaluate']);
+        $this->renderer->registerHelper('jsonEncode', [new JsonHelper(), 'encode']);
     }
 
     /**
      * @test
      */
-    public function helperCanBeCalledWithDefaultContext(): void
+    public function helperCanBeCalledWithoutCustomContext(): void
     {
-        $actual = $this->renderer->render('@render-default-context', [
-            '@foo' => [
-                'renderedContent' => 'Hello world!',
-            ],
-        ]);
+        $actual = trim($this->renderer->render('@simple-layout-extended'));
+        $expected = [];
 
-        self::assertSame('Hello world!', trim($actual));
+        self::assertJson($actual);
+
+        $json = json_decode($actual, true);
+        unset($json['_layoutStack']);
+
+        self::assertSame($expected, $json);
     }
 
     /**
@@ -84,30 +82,24 @@ class RenderHelperTest extends FunctionalTestCase
      */
     public function helperCanBeCalledWithCustomContext(): void
     {
-        $actual = $this->renderer->render('@render-custom-context', [
-            'renderData' => [
-                'renderedContent' => 'Hello world!',
+        $actual = trim($this->renderer->render('@simple-layout-extended-with-context', [
+            'customContext' => [
+                'foo' => 'baz',
             ],
-        ]);
-
-        self::assertSame('Hello world!', trim($actual));
-    }
-
-    /**
-     * @test
-     */
-    public function helperCanBeCalledWithMergedContext(): void
-    {
-        $actual = $this->renderer->render('@render-merged-context', [
-            '@foo' => [
-                'renderedContent' => 'Hello world!',
+        ]));
+        $expected = [
+            'customContext' => [
+                'foo' => 'baz',
             ],
-            'renderData' => [
-                'renderedContent' => 'Lorem ipsum',
-            ],
-        ]);
+            'foo' => 'baz',
+        ];
 
-        self::assertSame('Lorem ipsum', trim($actual));
+        self::assertJson($actual);
+
+        $json = json_decode($actual, true);
+        unset($json['_layoutStack']);
+
+        self::assertSame($expected, $json);
     }
 
     public function getTemplateRootPath(): string

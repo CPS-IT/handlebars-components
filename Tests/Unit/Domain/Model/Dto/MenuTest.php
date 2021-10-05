@@ -78,6 +78,29 @@ class MenuTest extends UnitTestCase
     /**
      * @test
      */
+    public function hasItemsTestsWhetherMenuHasItems(): void
+    {
+        self::assertTrue($this->subject->hasItems());
+        self::assertFalse($this->subject->setItems([])->hasItems());
+    }
+
+    /**
+     * @test
+     */
+    public function addItemAddsGivenItemToMenu(): void
+    {
+        $additionalItem = new MenuItem(new Link('https://example.com', 'menu item #2'));
+        $expected = [
+            $this->items[0],
+            $additionalItem,
+        ];
+
+        self::assertSame($expected, $this->subject->addItem($additionalItem)->getItems());
+    }
+
+    /**
+     * @test
+     */
     public function getTypeReturnsType(): void
     {
         self::assertSame('foo', $this->subject->getType());
