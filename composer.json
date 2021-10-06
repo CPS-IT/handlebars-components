@@ -13,25 +13,32 @@
 	],
 	"require": {
 		"php": "^7.1 || 8.0.*",
-		"cpsit/typo3-handlebars": "^0.6",
+		"cpsit/typo3-handlebars": "^0.7",
 		"psr/http-message": "^1.0",
 		"psr/log": "^1.0",
 		"symfony/finder": "^4.4 || ^5.0",
-		"typo3/cms-core": "^10.4 || 11.*.*@dev",
-		"typo3/cms-extbase": "^10.4 || 11.*.*@dev",
-		"typo3/cms-frontend": "^10.4 || 11.*.*@dev"
+		"symfony/polyfill-php80": "^1.23",
+		"typo3/cms-core": "^10.4 || ^11.5",
+		"typo3/cms-extbase": "^10.4 || ^11.5",
+		"typo3/cms-frontend": "^10.4 || ^11.5"
 	},
 	"require-dev": {
 		"ergebnis/composer-normalize": "^2.15",
 		"helmich/typo3-typoscript-lint": "^2.5",
 		"phpstan/phpstan": "^0.12",
+		"phpstan/phpstan-phpunit": "^0.12",
+		"phpunit/phpcov": "^8.2",
 		"phpunit/phpunit": "^9.3",
 		"saschaegerer/phpstan-typo3": "^0.13",
 		"typo3/coding-standards": "^0.3.0",
-		"typo3/testing-framework": "^6.8"
+		"typo3/testing-framework": "^6.11.2"
 	},
 	"config": {
 		"bin-dir": ".Build/bin",
+		"preferred-install": {
+			"cpsit/typo3-handlebars": "source",
+			"*": "dist"
+		},
 		"sort-packages": true,
 		"vendor-dir": ".Build/vendor"
 	},
@@ -48,7 +55,9 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Fr\\Typo3HandlebarsComponents\\Tests\\": "Tests/"
+			"Fr\\Typo3HandlebarsComponents\\Tests\\": "Tests/",
+			"Fr\\Typo3HandlebarsComponentsTestExtension\\": "Tests/Functional/Fixtures/test_extension/Classes/",
+			"Fr\\Typo3Handlebars\\Tests\\": ".Build/web/typo3conf/ext/handlebars/Tests"
 		}
 	},
 	"scripts": {
@@ -66,7 +75,18 @@
 			"@sca:php"
 		],
 		"sca:php": "phpstan analyse -c phpstan.neon",
-		"test": "phpunit -c phpunit.xml",
-		"test:ci": "phpunit -c phpunit.ci.xml"
+		"test": [
+			"@test:functional",
+			"@test:unit"
+		],
+		"test:ci": [
+			"@test:ci:functional",
+			"@test:ci:unit"
+		],
+		"test:ci:functional": "phpunit -c phpunit.ci.functional.xml",
+		"test:ci:merge": "phpcov merge --html .Build/log/coverage/html/_merged --text php://stdout .Build/log/coverage/php",
+		"test:ci:unit": "phpunit -c phpunit.ci.unit.xml",
+		"test:functional": "phpunit -c phpunit.functional.xml",
+		"test:unit": "phpunit -c phpunit.unit.xml"
 	}
 }

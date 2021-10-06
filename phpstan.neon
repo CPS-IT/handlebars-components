@@ -1,12 +1,20 @@
 includes:
+    - .Build/vendor/phpstan/phpstan-phpunit/extension.neon
     - .Build/vendor/saschaegerer/phpstan-typo3/extension.neon
-
 parameters:
     bootstrapFiles:
         - .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTestsBootstrap.php
-
     level: 6
     paths:
         - Classes
         - Configuration
         - Tests
+    ignoreErrors:
+        - message: '#^Cannot cast Fr\\Typo3HandlebarsComponents\\Domain\\Model\\Page\\Page(Header|Footer)Interface|null to string\.$#'
+          path: Tests/Functional/Data/PageProviderTest.php
+          count: 2
+        - message: '#^Variable \$_EXTKEY might not be defined\.$#'
+          path: Tests/Functional/Fixtures/test_extension/ext_emconf.php
+        - message: '#^Call to an undefined method TYPO3\\CMS\\Core\\Resource\\FileInterface::getUid\(\)\.$#'
+          path: Tests/Functional/Service/MediaServiceTest.php
+          count: 3

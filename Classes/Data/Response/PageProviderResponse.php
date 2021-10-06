@@ -71,7 +71,7 @@ class PageProviderResponse implements ProviderResponseInterface
         return $this->content;
     }
 
-    public function setContent(string $content): PageProviderResponse
+    public function setContent(string $content): self
     {
         $this->content = $content;
         return $this;
@@ -82,7 +82,7 @@ class PageProviderResponse implements ProviderResponseInterface
         return $this->pageHeader;
     }
 
-    public function setPageHeader(?PageHeaderInterface $pageHeader): PageProviderResponse
+    public function setPageHeader(?PageHeaderInterface $pageHeader): self
     {
         $this->pageHeader = $pageHeader;
         return $this;
@@ -93,7 +93,7 @@ class PageProviderResponse implements ProviderResponseInterface
         return $this->pageFooter;
     }
 
-    public function setPageFooter(?PageFooterInterface $pageFooter): PageProviderResponse
+    public function setPageFooter(?PageFooterInterface $pageFooter): self
     {
         $this->pageFooter = $pageFooter;
         return $this;

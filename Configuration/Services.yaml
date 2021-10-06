@@ -6,36 +6,5 @@ services:
 
   Fr\Typo3HandlebarsComponents\:
     resource: '../Classes/*'
-
-  # Handlebars helpers
-  Fr\Typo3HandlebarsComponents\Renderer\Helper\BlockHelper:
-    tags:
-      - name: handlebars.helper
-        identifier: block
-        method: evaluate
-  Fr\Typo3HandlebarsComponents\Renderer\Helper\ContentHelper:
-    tags:
-      - name: handlebars.helper
-        identifier: content
-        method: evaluate
-  Fr\Typo3HandlebarsComponents\Renderer\Helper\ExtendHelper:
-    tags:
-      - name: handlebars.helper
-        identifier: extend
-        method: evaluate
-  Fr\Typo3HandlebarsComponents\Renderer\Helper\RenderHelper:
-    tags:
-      - name: handlebars.helper
-        identifier: render
-        method: evaluate
-
-  # Template
-  handlebars.template_resolver:
-    class: 'Fr\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver'
-    arguments:
-      $templateRootPaths: '%handlebars.template_root_paths%'
-
-  handlebars.partial_resolver:
-    class: 'Fr\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver'
-    arguments:
-      $templateRootPaths: '%handlebars.partial_root_paths%'
+    exclude:
+      - '../Classes/DependencyInjection/*'

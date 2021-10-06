@@ -129,7 +129,7 @@ class MenuConfigurationTest extends UnitTestCase
         self::assertSame([
             'special' => 'rootline',
             'special.' => [
-                'range' => '1|-1',
+                'range' => '0|-1',
             ],
         ], MenuConfiguration::rootline()->getTypoScriptConfiguration());
 
@@ -155,6 +155,9 @@ class MenuConfigurationTest extends UnitTestCase
     {
         self::assertSame([
             'languages' => 'auto',
+            'languages.' => [
+                'wrap' => '|',
+            ],
             'addQueryString.' => [
                 'exclude' => '',
             ],
@@ -162,6 +165,9 @@ class MenuConfigurationTest extends UnitTestCase
 
         self::assertSame([
             'languages' => '1,2',
+            'languages.' => [
+                'wrap' => '|',
+            ],
             'addQueryString.' => [
                 'exclude' => '',
             ],
@@ -169,6 +175,9 @@ class MenuConfigurationTest extends UnitTestCase
 
         self::assertSame([
             'languages' => '1',
+            'languages.' => [
+                'wrap' => '|',
+            ],
             'addQueryString.' => [
                 'exclude' => '',
             ],
@@ -176,6 +185,9 @@ class MenuConfigurationTest extends UnitTestCase
 
         self::assertSame([
             'languages' => '1,2',
+            'languages.' => [
+                'wrap' => '|',
+            ],
             'addQueryString.' => [
                 'exclude' => 'foo,baz',
             ],
@@ -183,6 +195,9 @@ class MenuConfigurationTest extends UnitTestCase
 
         self::assertSame([
             'languages' => '1,2',
+            'languages.' => [
+                'wrap' => '|',
+            ],
             'addQueryString.' => [
                 'exclude' => 'foo',
             ],

@@ -23,6 +23,8 @@ declare(strict_types=1);
 
 namespace Fr\Typo3HandlebarsComponents\Renderer\Component\Layout;
 
+use Fr\Typo3HandlebarsComponents\Exception\UnsupportedTypeException;
+
 /**
  * HandlebarsLayoutAction
  *
@@ -60,6 +62,7 @@ class HandlebarsLayoutAction
         $this->data = $data;
         $this->renderFunction = $renderFunction;
         $this->mode = strtolower($mode);
+        $this->validate();
     }
 
     public function render(string $value): string
@@ -74,7 +77,26 @@ class HandlebarsLayoutAction
             case self::REPLACE:
                 return $renderResult;
             default:
-                return $value;
+                throw UnsupportedTypeException::create($this->mode);
+        }
+    }
+
+    /**
+     * @return string[]
+     */
+    protected function getSupportedModes(): array
+    {
+        return [
+            self::REPLACE,
+            self::APPEND,
+            self::PREPEND,
+        ];
+    }
+
+    protected function validate(): void
+    {
+        if (!in_array($this->mode, $this->getSupportedModes(), true)) {
+            throw UnsupportedTypeException::create($this->mode);
         }
     }
 }

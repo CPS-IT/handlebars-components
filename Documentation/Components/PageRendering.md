@@ -1,11 +1,11 @@
-# Component: Page rendering
+# Page rendering
 
 ## Description
 
 This component provides an abstract page rendering that can
 be used to output various page layouts. It includes data
 providing as well as an abstract
-[`PagePresenter`](../Classes/Presenter/AbstractPagePresenter.php)
+[`PagePresenter`](../../Classes/Presenter/AbstractPagePresenter.php)
 with which basic page rendering is possible.
 
 In addition, interfaces for different data models and
@@ -36,7 +36,7 @@ the `AbstractPagePresenter`.
 
 ### Custom `PagePresenter`
 
-Create your specific [`PagePresenter`](../Classes/Presenter/AbstractPagePresenter.php)
+Create your specific [`PagePresenter`](../../Classes/Presenter/AbstractPagePresenter.php)
 first:
 
 ```php
@@ -69,13 +69,23 @@ class PagePresenter extends AbstractPagePresenter
     {
         // TODO: Provide additional data that is passed to the renderer (optional)
     }
+
+    protected function renderHeaderAssets(PageProviderResponse $data): string
+    {
+        // TODO: Render optional header assets, e.g. stylesheets or meta tags (optional)
+    }
+
+    protected function renderFooterAssets(PageProviderResponse $data): string
+    {
+        // TODO: Render optional footer assets, e.g. scripts (optional)
+    }
 }
 ```
 
 ### Register data processor
 
 Now register the
-[`PageProcessor`](../Classes/DataProcessing/PageProcessor.php)
+[`PageProcessor`](../../Classes/DataProcessing/PageProcessor.php)
 in order to make it available, e.g. within TypoScript:
 
 ```yaml
@@ -92,8 +102,8 @@ services:
 
 If your templates use a page header or page footer, you need to
 implement appropriate models and factories that create concrete
-[`PageHeader`](../Classes/Domain/Model/Page/PageHeaderInterface.php)
-and [`PageFooter`](../Classes/Domain/Model/Page/PageFooterInterface.php)
+[`PageHeader`](../../Classes/Domain/Model/Page/PageHeaderInterface.php)
+and [`PageFooter`](../../Classes/Domain/Model/Page/PageFooterInterface.php)
 objects.
 
 #### Create models
@@ -178,7 +188,7 @@ class PageFooterFactory implements PageFooterFactoryInterface
 
 Last but not least you need to register the factories in the
 `Services.yaml` for the
-[`PageProvider`](../Classes/Data/PageProvider.php):
+[`PageProvider`](../../Classes/Data/PageProvider.php):
 
 ```yaml
 # Configuration/Services.yaml
@@ -195,7 +205,7 @@ services:
 
 Since the rendering of page content varies from system to system,
 a specific implementation is also needed for this. The
-[`PageContentRendererInterface`](../Classes/Renderer/Component/Page/PageContentRendererInterface.php)
+[`PageContentRendererInterface`](../../Classes/Renderer/Component/Page/PageContentRendererInterface.php)
 interface must be implemented for this purpose.
 
 Note: The raw TypoScript configuration is passed to the `render`

@@ -1,6 +1,6 @@
-# Service: Configuration
+# [Configuration service](../../Classes/Service/ConfigurationService.php)
 
-With the help of [`ConfigurationService`](../Classes/Service/ConfigurationService.php)
+With the help of [`ConfigurationService`](../../Classes/Service/ConfigurationService.php)
 it is possible to read TypoScript configuration. All you have to do is
 specify the TypoScript configuration path.
 

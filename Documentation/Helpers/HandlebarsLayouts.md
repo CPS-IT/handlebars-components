@@ -1,4 +1,4 @@
-# Component: Handlebars Layouts
+# `block`, `content` and `extend` helpers
 
 ## Reference
 
@@ -13,9 +13,9 @@ The following Handlebars helpers currently exist:
 
 | Helper    | Declaring class                                                 | Reference      |
 | --------- | --------------------------------------------------------------- | -------------- |
-| `extend`  | [`ExtendHelper`](../Classes/Renderer/Helper/ExtendHelper.php)   | [Reference][1] |
-| `block`   | [`BlockHelper`](../Classes/Renderer/Helper/BlockHelper.php)     | [Reference][2] |
-| `content` | [`ContentHelper`](../Classes/Renderer/Helper/ContentHelper.php) | [Reference][3] |
+| `extend`  | [`ExtendHelper`](../../Classes/Renderer/Helper/ExtendHelper.php)   | [Reference][1] |
+| `block`   | [`BlockHelper`](../../Classes/Renderer/Helper/BlockHelper.php)     | [Reference][2] |
+| `content` | [`ContentHelper`](../../Classes/Renderer/Helper/ContentHelper.php) | [Reference][3] |
 
 [1]: https://github.com/shannonmoeller/handlebars-layouts#extend-partial-context-keyvalue-
 [2]: https://github.com/shannonmoeller/handlebars-layouts#block-name

@@ -24,7 +24,6 @@ declare(strict_types=1);
 namespace Fr\Typo3HandlebarsComponents\Utility;
 
 use Fr\Typo3HandlebarsComponents\Exception\InvalidConfigurationException;
-use TYPO3\CMS\Core\Utility\StringUtility;
 
 /**
  * TypoScriptUtility
@@ -72,7 +71,7 @@ class TypoScriptUtility
     public static function validateTypoScriptArray(array $typoScriptArray, string $path = ''): void
     {
         foreach ($typoScriptArray as $key => $value) {
-            $keyHasTrailingDot = StringUtility::endsWith($key, '.');
+            $keyHasTrailingDot = str_ends_with((string)$key, '.');
             if (!is_array($value)) {
                 $path .= $key;
                 if ($keyHasTrailingDot) {

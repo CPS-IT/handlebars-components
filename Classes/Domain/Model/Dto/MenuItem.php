@@ -32,7 +32,7 @@ namespace Fr\Typo3HandlebarsComponents\Domain\Model\Dto;
 class MenuItem
 {
     /**
-    * @var MenuItem[]
+    * @var self[]
     */
     protected $subItems = [];
 
@@ -70,28 +70,21 @@ class MenuItem
     }
 
     /**
-     * @param MenuItem[] $subItems
-     * @return MenuItem
+     * @param self[] $subItems
+     * @return self
      */
-    public function setSubItems(array $subItems): MenuItem
+    public function setSubItems(array $subItems): self
     {
         $this->subItems = $subItems;
         return $this;
     }
 
-    /**
-     * @return Link
-     */
     public function getLink(): Link
     {
         return $this->link;
     }
 
-    /**
-     * @param Link $link
-     * @return MenuItem
-     */
-    public function setLink(Link $link): MenuItem
+    public function setLink(Link $link): self
     {
         $this->link = $link;
         return $this;

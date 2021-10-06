@@ -61,26 +61,30 @@ class Menu
 
     /**
      * @param MenuItem[] $items
-     * @return Menu
+     * @return self
      */
-    public function setItems(array $items): Menu
+    public function setItems(array $items): self
     {
         $this->items = $items;
         return $this;
     }
 
-    /**
-     * @return string
-     */
+    public function hasItems(): bool
+    {
+        return [] !== $this->items;
+    }
+
+    public function addItem(MenuItem $item): self
+    {
+        $this->items[] = $item;
+        return $this;
+    }
+
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @param string $type
-     * @return Menu
-     */
     public function setType(string $type): self
     {
         $this->type = $type;
