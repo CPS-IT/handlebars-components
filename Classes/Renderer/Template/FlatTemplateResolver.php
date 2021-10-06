@@ -28,7 +28,6 @@ use Fr\Typo3Handlebars\Renderer\Template\HandlebarsTemplateResolver;
 use Fr\Typo3Handlebars\Renderer\Template\TemplatePaths;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
-use TYPO3\CMS\Core\Utility\StringUtility;
 
 /**
  * FlatTemplateResolver
@@ -58,7 +57,7 @@ class FlatTemplateResolver extends HandlebarsTemplateResolver
     public function resolveTemplatePath(string $templatePath): string
     {
         // Use default path resolving if path is not prefixed by "@"
-        if (!StringUtility::beginsWith($templatePath, '@')) {
+        if (!str_starts_with($templatePath, '@')) {
             return parent::resolveTemplatePath($templatePath);
         }
 

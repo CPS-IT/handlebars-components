@@ -71,6 +71,11 @@ class PageType
         return $this->type === $type;
     }
 
+    public function getType(): int
+    {
+        return $this->type;
+    }
+
     public function __toString(): string
     {
         return (string)$this->type;

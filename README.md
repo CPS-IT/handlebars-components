@@ -56,6 +56,68 @@ This includes, for example, helpers and template resolvers.
 
 Please note that all available features are enabled by default!
 
+## Contributing
+
+Thank you for considering contributing to this extension! The following quality
+assurance measures are in place and should be performed before each contribution.
+
+### Preparation
+
+Since some tests need to be executed with a full TYPO3 setup, make sure you
+start the underlying DDEV project:
+
+```bash
+ddev start
+ddev composer install
+```
+
+It is recommended to exclude the `.Build` directory in your IDE from indexing.
+
+### Linting
+
+```bash
+ddev composer lint
+# or
+ddev composer lint:php
+# or
+ddev composer lint:typoscript
+```
+
+### Static code analysis
+
+```bash
+ddev composer sca
+# or
+ddev composer sca:php
+```
+
+Note: Sometimes it's necessary to increase the PHP memory limit. This can be done
+by appending `-- --memory-limit=2G`, for example.
+
+### Tests
+
+Without coverage:
+
+```bash
+ddev composer test
+# or
+ddev composer test:functional
+# or
+ddev composer test:unit
+```
+
+With coverage report:
+
+```bash
+ddev composer test:ci
+# or
+ddev composer test:ci:functional
+# or
+ddev composer test:ci:unit
+```
+
+To merge coverage reports, run `ddev composer test:ci:merge`.
+
 ## License
 
 This project is licensed under [GNU General Public License 2.0 (or later)](LICENSE.md).

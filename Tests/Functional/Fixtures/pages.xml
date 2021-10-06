@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <pages>
+        <uid>1</uid>
+        <pid>0</pid>
+        <deleted>0</deleted>
+        <hidden>0</hidden>
+        <doktype>1</doktype>
+        <slug>/page-1</slug>
+        <title>Page 1</title>
+        <backend_layout>pagets__1</backend_layout>
+        <backend_layout_next_level>pagets__2</backend_layout_next_level>
+        <media>1</media>
+    </pages>
+    <pages>
+        <uid>2</uid>
+        <pid>1</pid>
+        <deleted>0</deleted>
+        <hidden>0</hidden>
+        <doktype>1</doktype>
+        <slug>/page-1/page-2</slug>
+        <title>Page 2</title>
+    </pages>
+    <pages>
+        <uid>3</uid>
+        <pid>1</pid>
+        <deleted>0</deleted>
+        <hidden>0</hidden>
+        <doktype>1</doktype>
+        <slug>/page-1/page-3</slug>
+        <title>Page 3</title>
+    </pages>
+    <pages>
+        <uid>4</uid>
+        <pid>0</pid>
+        <deleted>0</deleted>
+        <hidden>0</hidden>
+        <doktype>1</doktype>
+        <slug>/page-1</slug>
+        <title>Page 1 (DE)</title>
+        <l10n_parent>1</l10n_parent>
+        <sys_language_uid>1</sys_language_uid>
+    </pages>
+</dataset>

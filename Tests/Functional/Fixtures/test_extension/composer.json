@@ -1,0 +1,19 @@
+{
+	"name": "fr/typo3-handlebars-components-test-extension",
+	"type": "typo3-cms-extension",
+	"description": "Test extension for EXT:handlebars_components",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"typo3/cms-core": "*"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "test_extension"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"Fr\\Typo3HandlebarsComponentsTestExtension\\": "Classes/"
+		}
+	}
+}

@@ -6,3 +6,5 @@ services:
 
   Fr\Typo3HandlebarsComponents\:
     resource: '../Classes/*'
+    exclude:
+      - '../Classes/DependencyInjection/*'
