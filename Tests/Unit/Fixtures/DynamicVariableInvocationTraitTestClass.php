@@ -52,8 +52,12 @@ final class DynamicVariableInvocationTraitTestClass
         $this->type = $type;
     }
 
-    public function is(string $type): bool
+    /**
+     * @param string $type
+     * @return bool
+     */
+    public function is($type): bool
     {
-        return $type === $this->type;
+        return (string)$type === $this->type;
     }
 }

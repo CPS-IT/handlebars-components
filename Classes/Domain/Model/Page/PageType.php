@@ -66,9 +66,13 @@ class PageType
         $this->type = $type;
     }
 
-    public function is(int $type): bool
+    /**
+     * @param int $type
+     * @return bool
+     */
+    public function is($type): bool
     {
-        return $this->type === $type;
+        return $this->type === (int)$type;
     }
 
     public function getType(): int
