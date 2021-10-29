@@ -5,7 +5,7 @@ variables:
   COMPOSER_VERSION: "2"
 
 default:
-  image: webdevops/php-dev:7.4
+  image: webdevops/php:8.0
 
 stages:
   - build
@@ -81,6 +81,7 @@ sca:php:
 
 test:
   stage: test
+  image: webdevops/php-dev:8.0
   services:
     - mariadb:10
   needs:
