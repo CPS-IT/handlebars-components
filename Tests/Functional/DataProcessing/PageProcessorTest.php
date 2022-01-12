@@ -23,6 +23,7 @@ declare(strict_types=1);
 
 namespace Fr\Typo3HandlebarsComponents\Tests\Functional\DataProcessing;
 
+use Doctrine\DBAL\Result;
 use Fr\Typo3HandlebarsComponents\Data\PageProvider;
 use Fr\Typo3HandlebarsComponents\DataProcessing\PageProcessor;
 use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageFactory;
@@ -55,11 +56,13 @@ class PageProcessorTest extends FunctionalTestCase
         $this->importDataSet(dirname(__DIR__) . '/Fixtures/pages.xml');
 
         $queryBuilder = $this->getConnectionPool()->getQueryBuilderForTable('pages');
-        $pageRecord = $queryBuilder->select('*')
+        $result = $queryBuilder->select('*')
             ->from('pages')
             ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter(1, Connection::PARAM_INT)))
-            ->execute()
-            ->fetch();
+            ->execute();
+        \assert($result instanceof Result);
+        $pageRecord = $result->fetchAssociative();
+
         $contentObjectRenderer = new ContentObjectRenderer();
         $contentObjectRenderer->start($pageRecord, 'pages');
 
