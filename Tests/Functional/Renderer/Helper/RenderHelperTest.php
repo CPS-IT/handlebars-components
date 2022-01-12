@@ -29,6 +29,8 @@ use Fr\Typo3Handlebars\Tests\Unit\HandlebarsTemplateResolverTrait;
 use Fr\Typo3HandlebarsComponents\Renderer\Helper\RenderHelper;
 use Fr\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -61,7 +63,7 @@ class RenderHelperTest extends FunctionalTestCase
 
         $this->templateResolver = new FlatTemplateResolver($this->getTemplatePaths());
         $this->renderer = new HandlebarsRenderer(new NullCache(), new EventDispatcher(), $this->templateResolver);
-        $this->subject = new RenderHelper($this->renderer);
+        $this->subject = new RenderHelper($this->renderer, new TypoScriptService(), new ContentObjectRenderer());
         $this->renderer->registerHelper('render', [$this->subject, 'evaluate']);
     }
 
