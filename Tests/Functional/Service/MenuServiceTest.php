@@ -54,7 +54,7 @@ class MenuServiceTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $this->subject = new MenuService(new ContentObjectRenderer(), new ContentDataProcessor());
+        $this->subject = new MenuService(new ContentObjectRenderer(), new ContentDataProcessor(GeneralUtility::getContainer()));
 
         $this->importDataSet(dirname(__DIR__) . '/Fixtures/pages.xml');
         $this->importDataSet(dirname(__DIR__) . '/Fixtures/sys_template.xml');
