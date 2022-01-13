@@ -42,6 +42,8 @@ use Symfony\Component\DependencyInjection\Reference;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\DependencyInjection\PublicServicePass;
 use TYPO3\CMS\Core\Exception;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -150,6 +152,10 @@ class FeatureRegistrationPassTest extends UnitTestCase
         $packagePath = dirname(__DIR__, 3);
         $yamlFileLoader = new YamlFileLoader($container, new FileLocator($packagePath . '/Configuration'));
         $yamlFileLoader->load('Services.yaml');
+
+        // Constructor arguments of RenderHelper
+        $container->register(TypoScriptService::class);
+        $container->register(ContentObjectRenderer::class);
 
         // Provide dummy extension configuration class
         $dummyExtensionConfiguration = new class($this->activatedFeatures) {

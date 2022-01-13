@@ -37,7 +37,7 @@ interface PageContentRendererInterface
      * Render page content for given page.
      *
      * @param Page $page Resolved page model
-     * @param array<string, mixed> $configuration Rendering configuration
+     * @param array<string|int, mixed> $configuration Rendering configuration
      * @return string Rendered page content
      */
     public function render(Page $page, array $configuration): string;

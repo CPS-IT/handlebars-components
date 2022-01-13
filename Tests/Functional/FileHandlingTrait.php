@@ -27,6 +27,7 @@ use TYPO3\CMS\Core\Resource\DuplicationBehavior;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference as ExtbaseFileReference;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
@@ -50,7 +51,7 @@ trait FileHandlingTrait
     protected $persistenceManager;
 
     /**
-     * @var File
+     * @var File|null
      */
     protected $file;
 
@@ -58,6 +59,8 @@ trait FileHandlingTrait
     {
         $storage = $this->getResourceFactory()->getDefaultStorage();
         $testFile = __DIR__ . '/Fixtures/dummy.png';
+
+        self::assertInstanceOf(ResourceStorage::class, $storage);
 
         /** @var File $file */
         $file = $storage->addFile(
@@ -96,6 +99,8 @@ trait FileHandlingTrait
         $extbaseFileReference->setOriginalResource($fileReference);
         $this->getPersistenceManager()->add($extbaseFileReference);
         $this->getPersistenceManager()->persistAll();
+
+        self::assertIsInt($extbaseFileReference->getUid());
 
         return $this->getResourceFactory()->getFileReferenceObject($extbaseFileReference->getUid());
     }

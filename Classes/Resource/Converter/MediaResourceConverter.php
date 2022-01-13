@@ -29,6 +29,7 @@ use Fr\Typo3HandlebarsComponents\Domain\Model\Media\OnlineMedia;
 use Fr\Typo3HandlebarsComponents\Exception\UnsupportedResourceException;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileInterface;
+use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperInterface;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 
 /**
@@ -76,10 +77,11 @@ class MediaResourceConverter implements ResourceConverterInterface
 
         // Initialize online media
         $onlineMediaHelper = $this->onlineMediaHelperRegistry->getOnlineMediaHelper($file);
+        \assert($onlineMediaHelper instanceof OnlineMediaHelperInterface);
         $onlineMedia = new OnlineMedia(
             $originalFile,
             $onlineMediaHelper->getOnlineMediaId($file),
-            $onlineMediaHelper->getPublicUrl($file)
+            $onlineMediaHelper->getPublicUrl($file) ?? ''
         );
 
         // Set preview image

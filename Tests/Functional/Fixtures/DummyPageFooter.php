@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the TYPO3 CMS extension "handlebars_components".
  *
- * Copyright (C) 2021 Elias Häußler <e.haeussler@familie-redlich.de>
+ * Copyright (C) 2022 Elias Häußler <e.haeussler@familie-redlich.de>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,21 +23,30 @@ declare(strict_types=1);
 
 namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures;
 
-use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageHeaderFactoryInterface;
 use Fr\Typo3HandlebarsComponents\Domain\Model\Page;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageHeaderInterface;
+use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageFooterInterface;
 
 /**
- * DummyPageHeaderFactory
+ * DummyPageFooter
  *
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  * @internal
  */
-final class DummyPageHeaderFactory implements PageHeaderFactoryInterface
+final class DummyPageFooter implements PageFooterInterface
 {
-    public function get(Page $page): PageHeaderInterface
+    /**
+     * @var Page
+     */
+    private $page;
+
+    public function __construct(Page $page)
     {
-        return new DummyPageHeader($page);
+        $this->page = $page;
+    }
+
+    public function __toString(): string
+    {
+        return (string)$this->page->getId();
     }
 }

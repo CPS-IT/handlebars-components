@@ -140,7 +140,7 @@ class ContentHelperTest extends FunctionalTestCase
     }
 
     /**
-     * @return \Generator<string, array>
+     * @return \Generator<string, array{bool, string}>
      */
     public function helperCanBeCalledToConditionallyRenderBlocksDataProvider(): \Generator
     {

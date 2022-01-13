@@ -64,7 +64,7 @@ class TypoScriptUtility
     }
 
     /**
-     * @param array<string, mixed> $typoScriptArray
+     * @param array<string|int, mixed> $typoScriptArray
      * @param string $path
      * @throws InvalidConfigurationException
      */

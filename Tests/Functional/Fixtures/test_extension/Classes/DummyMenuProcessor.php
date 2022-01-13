@@ -28,6 +28,7 @@ use Fr\Typo3HandlebarsComponents\Domain\Model\Dto\Menu;
 use Fr\Typo3HandlebarsComponents\Domain\Model\Dto\MenuItem;
 use Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
 use Fr\Typo3HandlebarsComponents\Service\MenuService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentDataProcessor;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
@@ -71,7 +72,7 @@ final class DummyMenuProcessor implements DataProcessorInterface
      */
     public function preProcess(string $content, array $configuration): string
     {
-        $menuService = new MenuService($this->cObj, new ContentDataProcessor());
+        $menuService = new MenuService($this->cObj, new ContentDataProcessor(GeneralUtility::getContainer()));
         $configuration = new MenuConfiguration(
             json_decode($configuration['userFunc.']['menuConfiguration'], true) ?: [],
             $configuration['userFunc.']['menuType'] ?: MenuConfiguration::DEFAULT
@@ -80,12 +81,12 @@ final class DummyMenuProcessor implements DataProcessorInterface
 
         $jsonArray = $this->convertMenuItemsToJsonArray($menu->getItems());
 
-        return json_encode($jsonArray);
+        return json_encode($jsonArray, JSON_THROW_ON_ERROR);
     }
 
     /**
      * @param MenuItem[] $menuItems
-     * @return array[]
+     * @return array<int, array<string, mixed>>
      */
     protected function convertMenuItemsToJsonArray(array $menuItems): array
     {

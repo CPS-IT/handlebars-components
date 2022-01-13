@@ -80,7 +80,7 @@ class MenuService
 
     /**
      * @param MenuConfiguration $configuration
-     * @return array[]|Menu
+     * @return array<int, array<string, mixed>>|Menu
      */
     protected function processMenu(MenuConfiguration $configuration)
     {
@@ -115,7 +115,7 @@ class MenuService
 
     /**
      * @param MenuConfiguration $configuration
-     * @param array[] $processedMenu
+     * @param array<int, array<string, mixed>> $processedMenu
      * @return MenuItem[]
      */
     protected function transformProcessedMenu(MenuConfiguration $configuration, array $processedMenu): array

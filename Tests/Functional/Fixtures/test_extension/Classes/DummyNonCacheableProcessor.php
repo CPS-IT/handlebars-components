@@ -21,23 +21,28 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures;
+namespace Fr\Typo3HandlebarsComponentsTestExtension;
 
-use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageHeaderFactoryInterface;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageHeaderInterface;
+use Fr\Typo3Handlebars\DataProcessing\AbstractDataProcessor;
+use Fr\Typo3HandlebarsComponents\DataProcessing\DefaultContextAwareConfigurationTrait;
+use Fr\Typo3HandlebarsComponents\DataProcessing\TemplatePathAwareConfigurationTrait;
 
 /**
- * DummyPageHeaderFactory
+ * DummyNonCacheableProcessor
  *
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
- * @internal
  */
-final class DummyPageHeaderFactory implements PageHeaderFactoryInterface
+final class DummyNonCacheableProcessor extends AbstractDataProcessor
 {
-    public function get(Page $page): PageHeaderInterface
+    use DefaultContextAwareConfigurationTrait;
+    use TemplatePathAwareConfigurationTrait;
+
+    protected function render(): string
     {
-        return new DummyPageHeader($page);
+        return json_encode([
+            'templatePath' => $this->getTemplatePathFromConfiguration(),
+            'context' => $this->getDefaultContextFromConfiguration(),
+        ], JSON_THROW_ON_ERROR);
     }
 }

@@ -62,5 +62,9 @@ trait DynamicVariableInvocationTrait
         return $this->is(constant($constant));
     }
 
-    abstract public function is(string $type): bool;
+    /**
+     * @param mixed $type
+     * @return bool
+     */
+    abstract public function is($type): bool;
 }
