@@ -101,7 +101,7 @@ class MediaService
     public function getFromFiles(array $fileIds): array
     {
         $processorConfiguration = [
-            'files' => implode(',', array_filter($fileIds, 'is_int'))
+            'files' => implode(',', array_filter($fileIds, 'is_int')),
         ];
 
         return $this->getFromProcessor($processorConfiguration);
@@ -114,7 +114,7 @@ class MediaService
     public function getFromFileCollections(array $fileCollectionIds): array
     {
         $processorConfiguration = [
-            'collections' => implode(',', array_filter($fileCollectionIds, 'is_int'))
+            'collections' => implode(',', array_filter($fileCollectionIds, 'is_int')),
         ];
 
         return $this->getFromProcessor($processorConfiguration);
@@ -127,7 +127,7 @@ class MediaService
     public function getFromFolders(array $folders): array
     {
         $processorConfiguration = [
-            'folders' => implode(',', array_filter($folders, 'is_string'))
+            'folders' => implode(',', array_filter($folders, 'is_string')),
         ];
 
         return $this->getFromProcessor($processorConfiguration);

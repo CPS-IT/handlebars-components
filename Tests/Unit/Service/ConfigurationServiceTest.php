@@ -71,7 +71,7 @@ class ConfigurationServiceTest extends UnitTestCase
     }
 
     /**
-     * @return \Generator<string, array>
+     * @return \Generator<string, array{string, string|array<string, string>|null}>
      */
     public function getReturnsConfigurationAtGivenPathDataProvider(): \Generator
     {

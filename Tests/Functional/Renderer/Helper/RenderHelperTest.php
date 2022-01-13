@@ -28,7 +28,18 @@ use Fr\Typo3Handlebars\Renderer\HandlebarsRenderer;
 use Fr\Typo3Handlebars\Tests\Unit\HandlebarsTemplateResolverTrait;
 use Fr\Typo3HandlebarsComponents\Renderer\Helper\RenderHelper;
 use Fr\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver;
+use Fr\Typo3HandlebarsComponentsTestExtension\DummyNonCacheableProcessor;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\Http\Uri;
+use TYPO3\CMS\Core\Routing\PageArguments;
+use TYPO3\CMS\Core\Site\Entity\Site;
+use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
+use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -42,6 +53,7 @@ class RenderHelperTest extends FunctionalTestCase
     use HandlebarsTemplateResolverTrait;
 
     protected $testExtensionsToLoad = [
+        'typo3conf/ext/handlebars',
         'typo3conf/ext/handlebars_components/Tests/Functional/Fixtures/test_extension',
     ];
 
@@ -49,6 +61,11 @@ class RenderHelperTest extends FunctionalTestCase
      * @var HandlebarsRenderer
      */
     protected $renderer;
+
+    /**
+     * @var ContentObjectRenderer
+     */
+    protected $contentObjectRenderer;
 
     /**
      * @var RenderHelper
@@ -61,7 +78,9 @@ class RenderHelperTest extends FunctionalTestCase
 
         $this->templateResolver = new FlatTemplateResolver($this->getTemplatePaths());
         $this->renderer = new HandlebarsRenderer(new NullCache(), new EventDispatcher(), $this->templateResolver);
-        $this->subject = new RenderHelper($this->renderer);
+        $this->contentObjectRenderer = new ContentObjectRenderer();
+        $this->contentObjectRenderer->start([], '', new ServerRequest());
+        $this->subject = new RenderHelper($this->renderer, new TypoScriptService(), $this->contentObjectRenderer);
         $this->renderer->registerHelper('render', [$this->subject, 'evaluate']);
     }
 
@@ -108,6 +127,43 @@ class RenderHelperTest extends FunctionalTestCase
         ]);
 
         self::assertSame('Lorem ipsum', trim($actual));
+    }
+
+    /**
+     * @test
+     */
+    public function helperCanBeCalledToRenderANonCacheableTemplate(): void
+    {
+        $GLOBALS['TSFE'] = new TypoScriptFrontendController(
+            new Context(),
+            new Site('foo', 1, []),
+            new SiteLanguage(1, 'en', new Uri(), []),
+            new PageArguments(1, 'foo', []),
+            new FrontendUserAuthentication(),
+        );
+        $GLOBALS['TSFE']->cObj = $this->contentObjectRenderer;
+
+        $actual = $GLOBALS['TSFE']->content = $this->renderer->render('@render-uncached', [
+            'renderData' => [
+                '_processor' => DummyNonCacheableProcessor::class,
+                'foo' => 'baz',
+            ],
+        ]);
+
+        self::assertMatchesRegularExpression('#^<!--INT_SCRIPT.[^-]+-->$#', trim($actual));
+
+        $GLOBALS['TSFE']->INTincScript(new ServerRequest());
+        $content = $GLOBALS['TSFE']->content;
+
+        $expected = [
+            'templatePath' => '@foo',
+            'context' => [
+                'foo' => 'baz',
+            ],
+        ];
+
+        self::assertJson($content);
+        self::assertSame($expected, json_decode($content, true));
     }
 
     public function getTemplateRootPath(): string

@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the TYPO3 CMS extension "handlebars_components".
  *
- * Copyright (C) 2021 Elias Häußler <e.haeussler@familie-redlich.de>
+ * Copyright (C) 2022 Elias Häußler <e.haeussler@familie-redlich.de>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,23 +21,27 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures;
+namespace Fr\Typo3HandlebarsComponents\DataProcessing;
 
-use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageHeaderFactoryInterface;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageHeaderInterface;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 
 /**
- * DummyPageHeaderFactory
+ * DefaultContextAwareConfigurationTrait
  *
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
- * @internal
  */
-final class DummyPageHeaderFactory implements PageHeaderFactoryInterface
+trait DefaultContextAwareConfigurationTrait
 {
-    public function get(Page $page): PageHeaderInterface
+    /**
+     * @return array<string, mixed>
+     */
+    protected function getDefaultContextFromConfiguration(): array
     {
-        return new DummyPageHeader($page);
+        if (!isset($this->configuration['userFunc.']['context.'])) {
+            return [];
+        }
+
+        return (new TypoScriptService())->convertTypoScriptArrayToPlainArray($this->configuration['userFunc.']['context.']);
     }
 }

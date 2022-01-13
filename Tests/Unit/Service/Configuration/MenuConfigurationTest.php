@@ -37,7 +37,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 class MenuConfigurationTest extends UnitTestCase
 {
     /**
-     * @var array<string|int, string|array>
+     * @var array<string|int, string|array<string, mixed>>
      */
     protected $configuration = [
         '10' => 'USER',
@@ -265,7 +265,7 @@ class MenuConfigurationTest extends UnitTestCase
     }
 
     /**
-     * @return \Generator<string, array>
+     * @return \Generator<string, array{string, string|array<string, string>, array<int|string, string|array<string, mixed>>}>
      */
     public function addTypoScriptConfigurationAddsTypoScriptConfigurationAtGivenPathDataProvider(): \Generator
     {

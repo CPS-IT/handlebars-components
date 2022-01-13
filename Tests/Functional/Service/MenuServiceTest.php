@@ -54,7 +54,7 @@ class MenuServiceTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $this->subject = new MenuService(new ContentObjectRenderer(), new ContentDataProcessor());
+        $this->subject = new MenuService(new ContentObjectRenderer(), new ContentDataProcessor(GeneralUtility::getContainer()));
 
         $this->importDataSet(dirname(__DIR__) . '/Fixtures/pages.xml');
         $this->importDataSet(dirname(__DIR__) . '/Fixtures/sys_template.xml');
@@ -90,7 +90,7 @@ class MenuServiceTest extends FunctionalTestCase
     }
 
     /**
-     * @return \Generator<string, array>
+     * @return \Generator<string, array{MenuConfiguration, int, array<int, array<string, mixed>>}>
      */
     public function buildMenuReturnsProcessedMenuDataProvider(): \Generator
     {
@@ -98,7 +98,7 @@ class MenuServiceTest extends FunctionalTestCase
             1 => '/page-1',
             2 => '/page-1/page-2',
             3 => '/page-1/page-3',
-            4 => '/de/page-1'
+            4 => '/de/page-1',
         ];
         $page = function (int $pageId, bool $active = false, bool $current = false, array $subItems = []) use ($slugs): array {
             return [
