@@ -23,10 +23,14 @@ declare(strict_types=1);
 
 namespace Fr\Typo3HandlebarsComponents\Renderer\Helper;
 
+use Fr\Typo3Handlebars\DataProcessing\DataProcessorInterface;
 use Fr\Typo3Handlebars\Renderer\Helper\HelperInterface;
 use Fr\Typo3Handlebars\Renderer\RendererInterface;
+use Fr\Typo3HandlebarsComponents\Exception\InvalidConfigurationException;
 use LightnCandy\SafeString;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * RenderHelper
@@ -42,9 +46,24 @@ class RenderHelper implements HelperInterface
      */
     protected $renderer;
 
-    public function __construct(RendererInterface $renderer)
-    {
+    /**
+     * @var TypoScriptService
+     */
+    protected $typoScriptService;
+
+    /**
+     * @var ContentObjectRenderer
+     */
+    protected ContentObjectRenderer $contentObjectRenderer;
+
+    public function __construct(
+        RendererInterface $renderer,
+        TypoScriptService $typoScriptService,
+        ContentObjectRenderer $contentObjectRenderer
+    ) {
         $this->renderer = $renderer;
+        $this->typoScriptService = $typoScriptService;
+        $this->contentObjectRenderer = $contentObjectRenderer;
     }
 
     public function evaluate(string $name): SafeString
@@ -57,6 +76,7 @@ class RenderHelper implements HelperInterface
         // Resolve data
         $rootData = $options['data']['root'];
         $merge = (bool)($options['hash']['merge'] ?? false);
+        $renderUncached = (bool)($options['hash']['uncached'] ?? false);
 
         // Fetch custom context
         // ====================
@@ -85,6 +105,38 @@ class RenderHelper implements HelperInterface
             $context = $defaultContext;
         }
 
-        return new SafeString($this->renderer->render($name, $context));
+        if ($renderUncached) {
+            $content = $this->registerUncachedTemplateBlock($name, $context);
+        } else {
+            $content = $this->renderer->render($name, $context);
+        }
+
+        return new SafeString($content);
+    }
+
+    /**
+     * @param string $templateName
+     * @param array<string, mixed> $context
+     * @return string
+     */
+    protected function registerUncachedTemplateBlock(string $templateName, array $context): string
+    {
+        $processorClass = $context['_processor'] ?? null;
+
+        // Check whether the required data processor is valid
+        if (!is_string($processorClass) || !in_array(DataProcessorInterface::class, class_implements($processorClass))) {
+            throw InvalidConfigurationException::create('_processor');
+        }
+
+        // Do not pass data processor reference as context to requested data processor
+        unset($context['_processor']);
+
+        return $this->contentObjectRenderer->cObjGetSingle('USER_INT', [
+            'userFunc' => $processorClass . '->process',
+            'userFunc.' => [
+                'templatePath' => $templateName,
+                'context.' => $this->typoScriptService->convertPlainArrayToTypoScriptArray($context),
+            ],
+        ]);
     }
 }
