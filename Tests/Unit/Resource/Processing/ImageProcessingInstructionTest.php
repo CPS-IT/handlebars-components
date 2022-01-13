@@ -170,7 +170,7 @@ class ImageProcessingInstructionTest extends UnitTestCase
     }
 
     /**
-     * @return \Generator<string, array>
+     * @return \Generator<string, array{string, bool}>
      */
     public function isSourceTestsWhetherTypeIsDefaultDataProvider(): \Generator
     {

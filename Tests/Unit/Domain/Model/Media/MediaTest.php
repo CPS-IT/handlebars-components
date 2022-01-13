@@ -122,7 +122,7 @@ class MediaTest extends UnitTestCase
     }
 
     /**
-     * @return \Generator<string, array>
+     * @return \Generator<string, array{array<string, string>, string}>
      */
     public function getAlternativeReturnsAlternativeTextDataProvider(): \Generator
     {

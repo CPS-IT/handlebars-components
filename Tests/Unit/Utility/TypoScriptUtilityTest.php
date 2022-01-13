@@ -82,7 +82,7 @@ class TypoScriptUtilityTest extends UnitTestCase
     }
 
     /**
-     * @return \Generator<string, array>
+     * @return \Generator<string, array{string, array<string>}>
      */
     public function transformArrayPathToTypoScriptArrayPathSplitsGivenPathIntoTypoScriptArrayPathSegmentsDataProvider(): \Generator
     {
@@ -94,7 +94,7 @@ class TypoScriptUtilityTest extends UnitTestCase
     }
 
     /**
-     * @return \Generator<string, array>
+     * @return \Generator<string, array{0: array<int|string, string|array<string, string>>, 1?: string}>
      */
     public function validateTypoScriptArrayValidatesGivenTypoScriptArrayDataProvider(): \Generator
     {

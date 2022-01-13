@@ -90,7 +90,7 @@ class MenuServiceTest extends FunctionalTestCase
     }
 
     /**
-     * @return \Generator<string, array>
+     * @return \Generator<string, array{MenuConfiguration, int, array<int, array<string, mixed>>}>
      */
     public function buildMenuReturnsProcessedMenuDataProvider(): \Generator
     {

@@ -90,7 +90,7 @@ class PageTypeTest extends UnitTestCase
     }
 
     /**
-     * @return \Generator<string, array>
+     * @return \Generator<string, array{int, string}>
      */
     public function dynamicMethodsCanBeCalledDataProvider(): \Generator
     {

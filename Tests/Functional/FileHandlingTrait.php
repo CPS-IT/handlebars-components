@@ -50,7 +50,7 @@ trait FileHandlingTrait
     protected $persistenceManager;
 
     /**
-     * @var File
+     * @var File|null
      */
     protected $file;
 

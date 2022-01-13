@@ -86,7 +86,7 @@ final class DummyMenuProcessor implements DataProcessorInterface
 
     /**
      * @param MenuItem[] $menuItems
-     * @return array[]
+     * @return array<int, array<string, mixed>>
      */
     protected function convertMenuItemsToJsonArray(array $menuItems): array
     {
