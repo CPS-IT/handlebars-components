@@ -81,7 +81,7 @@ class MediaResourceConverter implements ResourceConverterInterface
         $onlineMedia = new OnlineMedia(
             $originalFile,
             $onlineMediaHelper->getOnlineMediaId($file),
-            $onlineMediaHelper->getPublicUrl($file)
+            $onlineMediaHelper->getPublicUrl($file) ?? ''
         );
 
         // Set preview image

@@ -29,7 +29,9 @@ use Fr\Typo3HandlebarsComponents\Exception\UnsupportedResourceException;
 use Fr\Typo3HandlebarsComponents\Resource\Converter\MediaResourceConverter;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\FileHandlingTrait;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyFile;
+use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
+use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -92,10 +94,16 @@ class MediaResourceConverterTest extends FunctionalTestCase
     public function convertConvertsGivenFileToOnlineMediaObject(): void
     {
         $videoUrl = 'https://www.youtube.com/watch?v=IkdmOVejUlI';
-        $targetFolder = $this->getResourceFactory()->getDefaultStorage()->getDefaultFolder();
+        $storage = $this->getResourceFactory()->getDefaultStorage();
+
+        self::assertInstanceOf(ResourceStorage::class, $storage);
+
+        $targetFolder = $storage->getDefaultFolder();
         $this->file = $this->onlineMediaHelperRegistry->transformUrlToFile($videoUrl, $targetFolder);
 
         foreach ([$this->file, $this->createDummyFileReference()] as $file) {
+            self::assertInstanceOf(FileInterface::class, $file);
+
             $actual = $this->subject->convert($file);
 
             self::assertInstanceOf(OnlineMedia::class, $actual);

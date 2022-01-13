@@ -77,6 +77,7 @@ class MediaServiceTest extends FunctionalTestCase
 
         $actual = $this->subject->getFromFileReferences([$fileReference]);
 
+        self::assertInstanceOf(File::class, $this->file);
         self::assertCount(1, $actual);
         self::assertInstanceOf(Media::class, $actual[0]);
         self::assertInstanceOf(FileReference::class, $actual[0]->getOriginalFile());

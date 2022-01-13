@@ -32,6 +32,7 @@ use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageFactory;
 use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageFooterFactoryInterface;
 use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageHeaderFactoryInterface;
 use Fr\Typo3HandlebarsComponents\Renderer\Component\Page\PageContentRendererInterface;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * PageProvider
@@ -83,6 +84,7 @@ class PageProvider implements DataProviderInterface, ContentObjectRendererAwareI
     public function get(array $data, array $configuration = []): ProviderResponseInterface
     {
         $this->assertContentObjectRendererIsAvailable();
+        \assert($this->contentObjectRenderer instanceof ContentObjectRenderer);
 
         // Build page
         $page = $this->pageFactory->get($data);

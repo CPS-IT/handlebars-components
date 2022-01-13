@@ -28,6 +28,7 @@ use Fr\Typo3HandlebarsComponents\Renderer\Component\Layout\HandlebarsLayout;
 use Fr\Typo3HandlebarsComponents\Renderer\Component\Layout\HandlebarsLayoutAction;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 
 /**
  * ContentHelper
@@ -47,6 +48,8 @@ class ContentHelper implements HelperInterface, LoggerAwareInterface
      */
     public function evaluate(string $name, array $options)
     {
+        \assert($this->logger instanceof LoggerInterface);
+
         $data = $options['_this'];
         $mode = $options['hash']['mode'] ?? HandlebarsLayoutAction::REPLACE;
         $layoutStack = $this->getLayoutStack($options);
