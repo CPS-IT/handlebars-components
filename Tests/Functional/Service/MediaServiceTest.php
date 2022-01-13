@@ -27,6 +27,8 @@ use Fr\Typo3HandlebarsComponents\Domain\Model\Media\Media;
 use Fr\Typo3HandlebarsComponents\Resource\Converter\MediaResourceConverter;
 use Fr\Typo3HandlebarsComponents\Service\MediaService;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\FileHandlingTrait;
+use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\Folder;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -77,6 +79,7 @@ class MediaServiceTest extends FunctionalTestCase
 
         self::assertCount(1, $actual);
         self::assertInstanceOf(Media::class, $actual[0]);
+        self::assertInstanceOf(FileReference::class, $actual[0]->getOriginalFile());
         self::assertSame($this->file->getUid(), $actual[0]->getOriginalFile()->getUid());
     }
 
@@ -91,6 +94,7 @@ class MediaServiceTest extends FunctionalTestCase
 
         self::assertCount(1, $actual);
         self::assertInstanceOf(Media::class, $actual[0]);
+        self::assertInstanceOf(File::class, $actual[0]->getOriginalFile());
         self::assertSame($this->file->getUid(), $actual[0]->getOriginalFile()->getUid());
     }
 
@@ -107,6 +111,7 @@ class MediaServiceTest extends FunctionalTestCase
 
         self::assertCount(1, $actual);
         self::assertInstanceOf(Media::class, $actual[0]);
+        self::assertInstanceOf(File::class, $actual[0]->getOriginalFile());
         self::assertSame($this->file->getUid(), $actual[0]->getOriginalFile()->getUid());
     }
 }
