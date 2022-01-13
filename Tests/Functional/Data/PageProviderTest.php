@@ -26,10 +26,10 @@ namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Data;
 use Fr\Typo3HandlebarsComponents\Data\PageProvider;
 use Fr\Typo3HandlebarsComponents\Data\Response\PageProviderResponse;
 use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageFactory;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageFooterInterface;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageHeaderInterface;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageContentRenderer;
+use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageFooter;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageFooterFactory;
+use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageHeader;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageHeaderFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -86,9 +86,9 @@ class PageProviderTest extends FunctionalTestCase
         self::assertSame('baz', $actual->getPage()->getSubtitle());
         self::assertSame('pagets__2', $actual->getPage()->getLayout());
         self::assertSame('Hello world!', $actual->getContent());
-        self::assertInstanceOf(PageHeaderInterface::class, $actual->getPageHeader());
+        self::assertInstanceOf(DummyPageHeader::class, $actual->getPageHeader());
         self::assertEquals($actual->getPage()->getId(), (string)$actual->getPageHeader());
-        self::assertInstanceOf(PageFooterInterface::class, $actual->getPageFooter());
+        self::assertInstanceOf(DummyPageFooter::class, $actual->getPageFooter());
         self::assertEquals($actual->getPage()->getId(), (string)$actual->getPageFooter());
     }
 }

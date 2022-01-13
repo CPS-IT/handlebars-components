@@ -41,7 +41,7 @@ class MenuConfiguration
     public const CUSTOM = 'custom';
 
     /**
-     * @var array<string, mixed>
+     * @var array<string|int, mixed>
      */
     protected $typoScriptConfiguration;
 
@@ -51,7 +51,7 @@ class MenuConfiguration
     protected $type;
 
     /**
-     * @param array<string, mixed> $typoScriptConfiguration
+     * @param array<string|int, mixed> $typoScriptConfiguration
      * @param string $type
      */
     public function __construct(array $typoScriptConfiguration, string $type = self::DEFAULT)
@@ -135,7 +135,7 @@ class MenuConfiguration
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<string|int, mixed>
      */
     public function getTypoScriptConfiguration(): array
     {

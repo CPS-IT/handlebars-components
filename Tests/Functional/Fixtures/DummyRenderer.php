@@ -39,6 +39,6 @@ final class DummyRenderer implements RendererInterface
         return json_encode([
             'templatePath' => $templatePath,
             'data' => $data,
-        ]);
+        ], JSON_THROW_ON_ERROR);
     }
 }
