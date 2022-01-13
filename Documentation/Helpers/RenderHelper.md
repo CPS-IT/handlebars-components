@@ -13,6 +13,16 @@ context can be passed, additionally both contexts can also be merged.
 To define a default context, the renderer must be passed an array whose key matches
 the name of the template to be rendered.
 
+### Rendering uncached templates
+
+Version 0.4.0 introduced the ability to render templates uncached when using the
+`render` helper. This can be useful if only single page components need to be
+uncached whereas everything else is cached, for example to show active frontend
+sessions. In such cases, only the generic parts of the page are cacheable, whereas
+dynamic parts must be rendered on request.
+
+See example 4 for further instructions.
+
 ## Examples
 
 ### Example 1: Default context only
@@ -204,4 +214,70 @@ This produces the following output:
         <p>Hello world, you are in danger!</p>
     </div>
 </div>
+```
+
+### Example 4: Render template uncached
+
+In order to render templates uncached, add `uncached=true`:
+
+```handlebars
+{{! modules/menu/menu.hbs}}
+
+<ul class="menu">
+    {{render '@menu-items' menuItemsData uncached=true}}
+</ul>
+```
+
+This registers the rendering of this specific template as non-cacheable
+resulting in a **marker** such as `<!--INT_SCRIPT.47ther64-->`. The marker is
+then resolved on request delivering the final (uncached) template content.
+
+For this, an appropriate **data processor** needs to be **written and referenced**.
+The data processor is then responsible to deliver the uncached template content
+and is requested after final template rendering by TSFE (see
+`TypoScriptFrontendController::INTincScript()`). You need to reference the data
+processor in your template context:
+
+```php
+# MenuPresenter.php
+
+$this->renderer->render('@menu', [
+    'menuItemsData' => [
+        '_processor' => MenuProcessor::class,
+    ],
+]);
+```
+
+In the referenced data processor you can then resolve the template variables and
+render the final template:
+
+```php
+# MenuProcessor.php
+
+use Fr\Typo3Handlebars\DataProcessing\AbstractDataProcessor;
+use Fr\Typo3HandlebarsComponents\DataProcessing\DefaultContextAwareConfigurationTrait;
+use Fr\Typo3HandlebarsComponents\DataProcessing\TemplatePathAwareConfigurationTrait;
+
+/**
+ * @property MenuProvider $provider;
+ * @property MenuPresenter $presenter;
+ */
+class MenuProcessor extends AbstractDataProcessor
+{
+    use TemplatePathAwareConfigurationTrait;
+    use DefaultContextAwareConfigurationTrait;
+
+    protected function render(): string
+    {
+        $templatePath = $this->getTemplatePathFromConfiguration();
+        $context = $this->getDefaultContextFromConfiguration();
+
+        // Use the provider to resolve the menu items or do similar things that
+        // require the template to be rendered uncached.
+        $data = $this->provider->get($context);
+        $data->setTemplatePath($templatePath);
+
+        return $this->presenter->present($data);
+    }
+}
 ```
