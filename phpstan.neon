@@ -10,6 +10,3 @@ parameters:
         - Classes
         - Configuration
         - Tests
-    ignoreErrors:
-        - message: '#^Variable \$_EXTKEY might not be defined\.$#'
-          path: Tests/Functional/Fixtures/test_extension/ext_emconf.php

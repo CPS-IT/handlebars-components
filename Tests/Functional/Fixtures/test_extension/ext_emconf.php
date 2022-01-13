@@ -20,6 +20,7 @@
  */
 
 /** @noinspection PhpUndefinedVariableInspection */
+/* @phpstan-ignore-next-line */
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Handlebars Components Test Extension',
     'description' => 'Test extension for EXT:handlebars_components',
