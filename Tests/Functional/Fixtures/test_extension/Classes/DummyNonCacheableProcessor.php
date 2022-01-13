@@ -43,6 +43,6 @@ final class DummyNonCacheableProcessor extends AbstractDataProcessor
         return json_encode([
             'templatePath' => $this->getTemplatePathFromConfiguration(),
             'context' => $this->getDefaultContextFromConfiguration(),
-        ]);
+        ], JSON_THROW_ON_ERROR);
     }
 }

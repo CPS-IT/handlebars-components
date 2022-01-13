@@ -81,7 +81,7 @@ final class DummyMenuProcessor implements DataProcessorInterface
 
         $jsonArray = $this->convertMenuItemsToJsonArray($menu->getItems());
 
-        return json_encode($jsonArray);
+        return json_encode($jsonArray, JSON_THROW_ON_ERROR);
     }
 
     /**

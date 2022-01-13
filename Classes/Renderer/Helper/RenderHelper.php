@@ -124,7 +124,7 @@ class RenderHelper implements HelperInterface
         $processorClass = $context['_processor'] ?? null;
 
         // Check whether the required data processor is valid
-        if (!is_string($processorClass) || !in_array(DataProcessorInterface::class, class_implements($processorClass))) {
+        if (!is_string($processorClass) || !in_array(DataProcessorInterface::class, class_implements($processorClass) ?: [])) {
             throw InvalidConfigurationException::create('_processor');
         }
 

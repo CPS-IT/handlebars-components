@@ -77,7 +77,7 @@ class PageProvider implements DataProviderInterface, ContentObjectRendererAwareI
 
     /**
      * @inheritDoc
-     * @param array<string, mixed> $configuration
+     * @param array<string|int, mixed> $configuration
      * @return PageProviderResponse
      */
     public function get(array $data, array $configuration = []): ProviderResponseInterface

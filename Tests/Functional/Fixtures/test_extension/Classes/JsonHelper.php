@@ -40,6 +40,6 @@ class JsonHelper implements HelperInterface
      */
     public function encode(array $context): SafeString
     {
-        return new SafeString(json_encode($context['_this']));
+        return new SafeString(json_encode($context['_this'], JSON_THROW_ON_ERROR));
     }
 }

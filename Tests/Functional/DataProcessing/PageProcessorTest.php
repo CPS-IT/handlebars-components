@@ -63,6 +63,8 @@ class PageProcessorTest extends FunctionalTestCase
         \assert($result instanceof Result);
         $pageRecord = $result->fetchAssociative();
 
+        self::assertIsArray($pageRecord);
+
         $contentObjectRenderer = new ContentObjectRenderer();
         $contentObjectRenderer->start($pageRecord, 'pages');
 

@@ -57,6 +57,7 @@ final class FeatureRegistrationPass implements CompilerPassInterface
     public function process(ContainerBuilder $container): void
     {
         $this->container = $container;
+        /* @phpstan-ignore-next-line */
         $this->extensionConfiguration = $this->container->get(ExtensionConfiguration::class);
 
         if ($this->isFeatureEnabled('blockHelper')) {
