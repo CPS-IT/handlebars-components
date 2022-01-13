@@ -98,7 +98,7 @@ class MenuServiceTest extends FunctionalTestCase
             1 => '/page-1',
             2 => '/page-1/page-2',
             3 => '/page-1/page-3',
-            4 => '/de/page-1'
+            4 => '/de/page-1',
         ];
         $page = function (int $pageId, bool $active = false, bool $current = false, array $subItems = []) use ($slugs): array {
             return [

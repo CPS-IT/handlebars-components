@@ -30,7 +30,7 @@
 		"phpunit/phpcov": "^8.2",
 		"phpunit/phpunit": "^9.3",
 		"saschaegerer/phpstan-typo3": "^0.13",
-		"typo3/coding-standards": "^0.3.0",
+		"typo3/coding-standards": "^0.5.0",
 		"typo3/testing-framework": "^6.11.2"
 	},
 	"autoload": {
