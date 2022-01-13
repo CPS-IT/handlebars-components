@@ -38,21 +38,6 @@ final class DummyPageFooterFactory implements PageFooterFactoryInterface
 {
     public function get(Page $page): PageFooterInterface
     {
-        return new class($page) implements PageFooterInterface {
-            /**
-             * @var Page
-             */
-            private $page;
-
-            public function __construct(Page $page)
-            {
-                $this->page = $page;
-            }
-
-            public function __toString(): string
-            {
-                return (string)$this->page->getId();
-            }
-        };
+        return new DummyPageFooter($page);
     }
 }
