@@ -56,7 +56,7 @@ class ExtendHelper implements HelperInterface
         // Custom context is optional
         $customContext = [];
         if ([] !== $arguments) {
-            $customContext = array_pop($arguments);
+            $customContext = (array)array_pop($arguments);
         }
 
         // Create new handlebars layout item
