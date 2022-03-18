@@ -40,13 +40,13 @@ $mediaService->getFromRelation(
 );
 ```
 
-### Fetch files or folders by given identifiers
+### Fetch files or folders by identifiers or objects
 
 ```php
-$mediaService->getFromFileReferences($fileReferenceIds);
-$mediaService->getFromFiles($fileIds);
-$mediaService->getFromFileCollections($fileCollectionIds);
-$mediaService->getFromFolders($folderIdentifiers);
+$mediaService->getFromFileReferences($fileReferences);
+$mediaService->getFromFiles($files);
+$mediaService->getFromFileCollections($fileCollections);
+$mediaService->getFromFolders($folders);
 ```
 
 ### Process images

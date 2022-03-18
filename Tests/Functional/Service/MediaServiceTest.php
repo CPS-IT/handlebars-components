@@ -46,6 +46,9 @@ class MediaServiceTest extends FunctionalTestCase
 {
     use FileHandlingTrait;
 
+    private const TEST_MODE_OBJECT = 0;
+    private const TEST_MODE_IDENTIFIER = 1;
+
     /**
      * @var ContentObjectRenderer
      */
@@ -70,10 +73,23 @@ class MediaServiceTest extends FunctionalTestCase
 
     /**
      * @test
+     * @dataProvider getFromFileReferencesReturnsMediaFromGivenFileReferencesDataProvider
      */
-    public function getFromFileReferencesReturnsMediaFromGivenFileReferenceIds(): void
+    public function getFromFileReferencesReturnsMediaFromGivenFileReferences(int $testMode): void
     {
-        $fileReference = $this->createDummyFileReference(false, true)->getUid();
+        $fileReference = $this->createDummyFileReference(false, true);
+
+        switch ($testMode) {
+            case self::TEST_MODE_OBJECT:
+                break;
+
+            case self::TEST_MODE_IDENTIFIER:
+                $fileReference = $fileReference->getUid();
+                break;
+
+            default:
+                throw new \UnexpectedValueException(sprintf('The given test mode "%d" is invalid.', $testMode), 1647612628);
+        }
 
         $actual = $this->subject->getFromFileReferences([$fileReference]);
 
@@ -86,12 +102,26 @@ class MediaServiceTest extends FunctionalTestCase
 
     /**
      * @test
+     * @dataProvider getFromFilesReturnsMediaFromGivenFilesDataProvider
      */
-    public function getFromFilesReturnsMediaFromGivenFileIds(): void
+    public function getFromFilesReturnsMediaFromGivenFiles(int $testMode): void
     {
         $this->file = $this->createDummyFile();
 
-        $actual = $this->subject->getFromFiles([$this->file->getUid()]);
+        switch ($testMode) {
+            case self::TEST_MODE_OBJECT:
+                $file = $this->file;
+                break;
+
+            case self::TEST_MODE_IDENTIFIER:
+                $file = $this->file->getUid();
+                break;
+
+            default:
+                throw new \UnexpectedValueException(sprintf('The given test mode "%d" is invalid.', $testMode), 1647612806);
+        }
+
+        $actual = $this->subject->getFromFiles([$file]);
 
         self::assertCount(1, $actual);
         self::assertInstanceOf(Media::class, $actual[0]);
@@ -101,18 +131,58 @@ class MediaServiceTest extends FunctionalTestCase
 
     /**
      * @test
+     * @dataProvider getFromFoldersReturnsMediaFromGivenFoldersDataProvider
      */
-    public function getFromFoldersReturnsMediaFromGivenFolders(): void
+    public function getFromFoldersReturnsMediaFromGivenFolders(int $testMode): void
     {
         $this->file = $this->createDummyFile();
         /** @var Folder $folder */
         $folder = $this->file->getParentFolder();
 
-        $actual = $this->subject->getFromFolders([$folder->getCombinedIdentifier()]);
+        switch ($testMode) {
+            case self::TEST_MODE_OBJECT:
+                break;
+
+            case self::TEST_MODE_IDENTIFIER:
+                $folder = $folder->getCombinedIdentifier();
+                break;
+
+            default:
+                throw new \UnexpectedValueException(sprintf('The given test mode "%d" is invalid.', $testMode), 1647613011);
+        }
+
+        $actual = $this->subject->getFromFolders([$folder]);
 
         self::assertCount(1, $actual);
         self::assertInstanceOf(Media::class, $actual[0]);
         self::assertInstanceOf(File::class, $actual[0]->getOriginalFile());
         self::assertSame($this->file->getUid(), $actual[0]->getOriginalFile()->getUid());
+    }
+
+    /**
+     * @return \Generator<string, array{int}>
+     */
+    public function getFromFileReferencesReturnsMediaFromGivenFileReferencesDataProvider(): \Generator
+    {
+        yield 'file reference object' => [self::TEST_MODE_OBJECT];
+        yield 'file reference identifier' => [self::TEST_MODE_IDENTIFIER];
+    }
+
+    /**
+     * @return \Generator<string, array{int}>
+     */
+    public function getFromFilesReturnsMediaFromGivenFilesDataProvider(): \Generator
+    {
+        yield 'file object' => [self::TEST_MODE_OBJECT];
+        yield 'file identifier' => [self::TEST_MODE_IDENTIFIER];
+    }
+
+    /**
+     * @return \Generator<string, array{int}>
+     */
+    public function getFromFoldersReturnsMediaFromGivenFoldersDataProvider(): \Generator
+    {
+        yield 'folder object' => [self::TEST_MODE_OBJECT];
+        yield 'folder identifier' => [self::TEST_MODE_IDENTIFIER];
     }
 }
