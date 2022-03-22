@@ -32,6 +32,7 @@ composer require fr/typo3-handlebars-components
 ### Handlebars components
 
 * [Page rendering](Documentation/Components/PageRendering.md)
+* [Pagination](Documentation/Components/Pagination.md)
 
 ### Handlebars helpers
 

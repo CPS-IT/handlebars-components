@@ -1,0 +1,8 @@
+plugin.tx_handlebarscomponents {
+  settings {
+    pagination {
+      itemsPerPage = {$plugin.tx_handlebarscomponents.settings.pagination.itemsPerPage}
+      maximumNumberOfLinks = {$plugin.tx_handlebarscomponents.settings.pagination.maximumNumberOfLinks}
+    }
+  }
+}

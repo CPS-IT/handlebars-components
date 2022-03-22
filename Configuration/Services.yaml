@@ -8,3 +8,6 @@ services:
     resource: '../Classes/*'
     exclude:
       - '../Classes/DependencyInjection/*'
+
+  Fr\Typo3HandlebarsComponents\Pagination\Linker\PaginationLinkerInterface:
+    alias: 'Fr\Typo3HandlebarsComponents\Pagination\Linker\DefaultPaginationLinker'
