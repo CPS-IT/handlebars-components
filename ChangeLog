@@ -1,3 +1,7 @@
+2022-03-29         [RELEASE] Release of handlebars_components 0.4.2 (Elias Häußler)
+2022-03-29 574757f [BUGFIX] Pass query parameters to default pagination links (Elias Häußler)
+2022-03-22 3f36464 [FEATURE] Introduce pagination component (Elias Häußler)
+
 2022-02-10         [RELEASE] Release of handlebars_components 0.4.1 (Elias Häußler)
 2022-02-10 ab43ea9 [BUGFIX] Assure custom context is always an array (Elias Häußler)
 2022-02-10 a501ac0 [TASK] Remove ignored error resolved with latest TYPO3 releases (Elias Häußler)
