@@ -48,6 +48,7 @@ final class DefaultPaginationLinker implements PaginationLinkerInterface
     {
         return $this->uriBuilder
             ->setArguments(['page' => $page])
+            ->setAddQueryString(true)
             ->buildFrontendUri()
         ;
     }
