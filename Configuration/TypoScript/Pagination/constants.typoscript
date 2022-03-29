@@ -1,0 +1,13 @@
+# customcategory=handlebars_components=Handlebars Components
+# customsubcategory=pagination=Pagination
+
+plugin.tx_handlebarscomponents {
+  settings {
+    pagination {
+      # cat=handlebars_components/pagination/10; type=int+; label=Number of items per page
+      itemsPerPage = 10
+      # cat=handlebars_components/pagination/20; type=int+; label=Maximum number of links to be rendered in pagination
+      maximumNumberOfLinks = 5
+    }
+  }
+}
