@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the TYPO3 CMS extension "wj22_sitepackage".
+ * This file is part of the TYPO3 CMS extension "handlebars_components".
  *
  * Copyright (C) 2021 Elias Häußler <e.haeussler@familie-redlich.de>
  *
