@@ -25,6 +25,12 @@ namespace Fr\Typo3HandlebarsComponents\Service;
 
 use Fr\Typo3HandlebarsComponents\Domain\Model\Media\MediaInterface;
 use Fr\Typo3HandlebarsComponents\Resource\Converter\ResourceConverterInterface;
+use TYPO3\CMS\Core\Resource\Collection\AbstractFileCollection;
+use TYPO3\CMS\Core\Resource\File as CoreFile;
+use TYPO3\CMS\Core\Resource\FileReference as CoreFileReference;
+use TYPO3\CMS\Core\Resource\Folder;
+use TYPO3\CMS\Extbase\Domain\Model\File as ExtbaseFile;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference as ExtbaseFileReference;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\DataProcessing\FilesProcessor;
 
@@ -82,52 +88,52 @@ class MediaService
     }
 
     /**
-     * @param int[] $fileReferenceIds
-     * @return MediaInterface[]
+     * @param list<int|CoreFileReference|ExtbaseFileReference> $fileReferences
+     * @return list<MediaInterface>
      */
-    public function getFromFileReferences(array $fileReferenceIds): array
+    public function getFromFileReferences(array $fileReferences): array
     {
         $processorConfiguration = [
-            'references' => implode(',', array_filter($fileReferenceIds, 'is_int')),
+            'references' => implode(',', array_filter(array_map([$this, 'resolveFileReference'], $fileReferences))),
         ];
 
         return $this->getFromProcessor($processorConfiguration);
     }
 
     /**
-     * @param int[] $fileIds
-     * @return MediaInterface[]
+     * @param list<int|CoreFile|ExtbaseFile> $files
+     * @return list<MediaInterface>
      */
-    public function getFromFiles(array $fileIds): array
+    public function getFromFiles(array $files): array
     {
         $processorConfiguration = [
-            'files' => implode(',', array_filter($fileIds, 'is_int')),
+            'files' => implode(',', array_filter(array_map([$this, 'resolveFile'], $files))),
         ];
 
         return $this->getFromProcessor($processorConfiguration);
     }
 
     /**
-     * @param int[] $fileCollectionIds
-     * @return MediaInterface[]
+     * @param list<int|AbstractFileCollection> $fileCollections
+     * @return list<MediaInterface>
      */
-    public function getFromFileCollections(array $fileCollectionIds): array
+    public function getFromFileCollections(array $fileCollections): array
     {
         $processorConfiguration = [
-            'collections' => implode(',', array_filter($fileCollectionIds, 'is_int')),
+            'collections' => implode(',', array_filter(array_map([$this, 'resolveFileCollection'], $fileCollections))),
         ];
 
         return $this->getFromProcessor($processorConfiguration);
     }
 
     /**
-     * @param string[] $folders
-     * @return MediaInterface[]
+     * @param list<string|Folder> $folders
+     * @return list<MediaInterface>
      */
     public function getFromFolders(array $folders): array
     {
         $processorConfiguration = [
-            'folders' => implode(',', array_filter($folders, 'is_string')),
+            'folders' => implode(',', array_filter(array_map([$this, 'resolveFolder'], $folders))),
         ];
 
         return $this->getFromProcessor($processorConfiguration);
@@ -150,5 +156,83 @@ class MediaService
         }
 
         return $media;
+    }
+
+    /**
+     * @param int|CoreFileReference|ExtbaseFileReference $fileReference
+     * @return int|null
+     */
+    protected function resolveFileReference($fileReference): ?int
+    {
+        if ($fileReference instanceof ExtbaseFileReference) {
+            $fileReference = $fileReference->getOriginalResource();
+        }
+        if ($fileReference instanceof CoreFileReference) {
+            $fileReference = $fileReference->getUid();
+        }
+
+        if (is_int($fileReference)) {
+            return $fileReference;
+        }
+
+        /* @phpstan-ignore-next-line */
+        return null;
+    }
+
+    /**
+     * @param int|CoreFile|ExtbaseFile $file
+     * @return int|null
+     */
+    protected function resolveFile($file): ?int
+    {
+        if ($file instanceof ExtbaseFile) {
+            $file = $file->getOriginalResource();
+        }
+        if ($file instanceof CoreFile) {
+            $file = $file->getUid();
+        }
+
+        if (is_int($file)) {
+            return $file;
+        }
+
+        /* @phpstan-ignore-next-line */
+        return null;
+    }
+
+    /**
+     * @param int|AbstractFileCollection $fileCollection
+     * @return int|null
+     */
+    protected function resolveFileCollection($fileCollection): ?int
+    {
+        if ($fileCollection instanceof AbstractFileCollection) {
+            $fileCollection = $fileCollection->getUid();
+        }
+
+        if (is_int($fileCollection)) {
+            return $fileCollection;
+        }
+
+        /* @phpstan-ignore-next-line */
+        return null;
+    }
+
+    /**
+     * @param string|Folder $folder
+     * @return string|null
+     */
+    protected function resolveFolder($folder): ?string
+    {
+        if ($folder instanceof Folder) {
+            $folder = $folder->getCombinedIdentifier();
+        }
+
+        if (is_string($folder)) {
+            return $folder;
+        }
+
+        /* @phpstan-ignore-next-line */
+        return null;
     }
 }
