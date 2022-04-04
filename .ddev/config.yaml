@@ -13,7 +13,7 @@ mysql_version: ""
 nfs_mount_enabled: false
 mutagen_enabled: false
 omit_containers: [dba]
-webimage_extra_packages: [graphicsmagick]
+webimage_extra_packages: [php8.0-pcov, graphicsmagick]
 use_dns_when_possible: true
 composer_version: ""
 web_environment:
@@ -21,7 +21,6 @@ web_environment:
 - typo3DatabaseUsername=root
 - typo3DatabasePassword=root
 - typo3DatabaseName=db
-- XDEBUG_MODE=coverage
 
 # Key features of ddev's config.yaml:
 
