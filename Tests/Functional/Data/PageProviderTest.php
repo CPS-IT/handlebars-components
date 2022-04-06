@@ -53,7 +53,7 @@ class PageProviderTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $this->importDataSet(dirname(__DIR__) . '/Fixtures/pages.xml');
+        $this->importDataSet(\dirname(__DIR__) . '/Fixtures/pages.xml');
 
         $this->subject = new PageProvider(
             new PageFactory(GeneralUtility::makeInstance(PageLayoutResolver::class)),

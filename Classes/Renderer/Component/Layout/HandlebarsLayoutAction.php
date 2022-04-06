@@ -95,7 +95,7 @@ class HandlebarsLayoutAction
 
     protected function validate(): void
     {
-        if (!in_array($this->mode, $this->getSupportedModes(), true)) {
+        if (!\in_array($this->mode, $this->getSupportedModes(), true)) {
             throw UnsupportedTypeException::create($this->mode);
         }
     }

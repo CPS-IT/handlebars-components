@@ -130,12 +130,12 @@ class ImageDimensions
             return null;
         }
 
-        if (is_int($size)) {
+        if (\is_int($size)) {
             return $size;
         }
 
         // Validate given size
-        if (!is_string($size)) {
+        if (!\is_string($size)) {
             throw InvalidImageDimensionException::create($size);
         }
 

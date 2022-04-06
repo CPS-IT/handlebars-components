@@ -69,7 +69,7 @@ class RenderHelper implements HelperInterface
     public function evaluate(string $name): SafeString
     {
         // Get helper options
-        $arguments = func_get_args();
+        $arguments = \func_get_args();
         array_shift($arguments);
         $options = array_pop($arguments);
 
@@ -83,7 +83,7 @@ class RenderHelper implements HelperInterface
         // Custom contexts can be defined as helper argument, e.g.
         // {{render '@foo' customContext}}
         $context = reset($arguments);
-        if (!is_array($context)) {
+        if (!\is_array($context)) {
             $context = [];
         }
 
@@ -124,7 +124,7 @@ class RenderHelper implements HelperInterface
         $processorClass = $context['_processor'] ?? null;
 
         // Check whether the required data processor is valid
-        if (!is_string($processorClass) || !in_array(DataProcessorInterface::class, class_implements($processorClass) ?: [])) {
+        if (!\is_string($processorClass) || !\in_array(DataProcessorInterface::class, class_implements($processorClass) ?: [])) {
             throw InvalidConfigurationException::create('_processor');
         }
 

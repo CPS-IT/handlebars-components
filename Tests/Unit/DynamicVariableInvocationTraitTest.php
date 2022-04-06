@@ -54,7 +54,7 @@ class DynamicVariableInvocationTraitTest extends UnitTestCase
     {
         $this->expectException(UnsupportedMethodException::class);
         $this->expectExceptionCode(1630334335);
-        $this->expectExceptionMessage(sprintf('The method "foo" is not supported by the class "%s".', get_class($this->subject)));
+        $this->expectExceptionMessage(sprintf('The method "foo" is not supported by the class "%s".', \get_class($this->subject)));
 
         /** @noinspection PhpUndefinedMethodInspection */
         /* @phpstan-ignore-next-line */
@@ -66,7 +66,7 @@ class DynamicVariableInvocationTraitTest extends UnitTestCase
      */
     public function staticCallThrowsExceptionIfGivenTypeIsNotSupported(): void
     {
-        $constant = sprintf('%s::DUMMY', get_class($this->subject));
+        $constant = sprintf('%s::DUMMY', \get_class($this->subject));
 
         $this->expectException(UnsupportedTypeException::class);
         $this->expectExceptionCode(1630333499);

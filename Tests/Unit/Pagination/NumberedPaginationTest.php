@@ -181,11 +181,11 @@ class NumberedPaginationTest extends UnitTestCase
      */
     public function getPaginatedItemsReturnsPaginatedItems(): void
     {
-        self::assertSame([1], \iterator_to_array($this->subject->getPaginatedItems()));
+        self::assertSame([1], iterator_to_array($this->subject->getPaginatedItems()));
 
         $subject = $this->buildPagination(2, 2);
 
-        self::assertSame([3, 4], \iterator_to_array($subject->getPaginatedItems()));
+        self::assertSame([3, 4], iterator_to_array($subject->getPaginatedItems()));
     }
 
     /**

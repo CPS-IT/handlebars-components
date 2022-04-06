@@ -171,7 +171,7 @@ class MediaService
             $fileReference = $fileReference->getUid();
         }
 
-        if (is_int($fileReference)) {
+        if (\is_int($fileReference)) {
             return $fileReference;
         }
 
@@ -192,7 +192,7 @@ class MediaService
             $file = $file->getUid();
         }
 
-        if (is_int($file)) {
+        if (\is_int($file)) {
             return $file;
         }
 
@@ -210,7 +210,7 @@ class MediaService
             $fileCollection = $fileCollection->getUid();
         }
 
-        if (is_int($fileCollection)) {
+        if (\is_int($fileCollection)) {
             return $fileCollection;
         }
 
@@ -228,7 +228,7 @@ class MediaService
             $folder = $folder->getCombinedIdentifier();
         }
 
-        if (is_string($folder)) {
+        if (\is_string($folder)) {
             return $folder;
         }
 

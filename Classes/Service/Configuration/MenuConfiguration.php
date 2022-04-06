@@ -150,7 +150,7 @@ class MenuConfiguration
     public function addTypoScriptConfiguration(string $path, $value): self
     {
         // TypoScript paths always contain a trailing dot for array values
-        if (is_array($value)) {
+        if (\is_array($value)) {
             $path = rtrim($path, '.') . '.';
         }
 

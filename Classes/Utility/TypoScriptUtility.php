@@ -72,7 +72,7 @@ class TypoScriptUtility
     {
         foreach ($typoScriptArray as $key => $value) {
             $keyHasTrailingDot = str_ends_with((string)$key, '.');
-            if (!is_array($value)) {
+            if (!\is_array($value)) {
                 $path .= $key;
                 if ($keyHasTrailingDot) {
                     throw InvalidConfigurationException::create($path);

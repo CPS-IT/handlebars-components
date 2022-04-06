@@ -2,7 +2,13 @@
 
 declare(strict_types=1);
 
-$config = \TYPO3\CodingStandards\CsFixerConfig::create();
-$config->getFinder()->in(__DIR__);
+$config = \TYPO3\CodingStandards\CsFixerConfig::create()
+    ->addRules([
+        'native_function_invocation' => true,
+    ]);
+
+$config->getFinder()
+    ->in(__DIR__)
+    ->ignoreVCSignored(true);
 
 return $config;

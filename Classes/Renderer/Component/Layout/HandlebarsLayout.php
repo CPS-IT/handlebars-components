@@ -85,7 +85,7 @@ class HandlebarsLayout
 
     public function hasAction(string $name): bool
     {
-        return array_key_exists($name, $this->actions);
+        return \array_key_exists($name, $this->actions);
     }
 
     public function isParsed(): bool

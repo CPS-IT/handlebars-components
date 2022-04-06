@@ -108,7 +108,7 @@ class PaginationFactory
             return new ResultsPaginator($items, $currentPageNumber, $itemsPerPage);
         }
 
-        if (\is_iterable($items)) {
+        if (is_iterable($items)) {
             return $this->resolveIterablePaginator($items, $currentPageNumber, $itemsPerPage);
         }
 
@@ -127,7 +127,7 @@ class PaginationFactory
     {
         $queryParams = self::getServerRequest()->getQueryParams();
 
-        if (\is_numeric($queryParams['page'] ?? null)) {
+        if (is_numeric($queryParams['page'] ?? null)) {
             return (int)$queryParams['page'];
         }
 

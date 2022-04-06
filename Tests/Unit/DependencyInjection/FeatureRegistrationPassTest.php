@@ -149,7 +149,7 @@ class FeatureRegistrationPassTest extends UnitTestCase
     {
         $container = new ContainerBuilder();
 
-        $packagePath = dirname(__DIR__, 3);
+        $packagePath = \dirname(__DIR__, 3);
         $yamlFileLoader = new YamlFileLoader($container, new FileLocator($packagePath . '/Configuration'));
         $yamlFileLoader->load('Services.yaml');
 

@@ -95,7 +95,7 @@ class ImageProcessingInstruction
 
     public function getNormalizedWidth(): ?int
     {
-        if (!is_string($width = $this->dimensions->getWidth())) {
+        if (!\is_string($width = $this->dimensions->getWidth())) {
             return $width;
         }
 
@@ -112,7 +112,7 @@ class ImageProcessingInstruction
 
     public function getNormalizedHeight(): ?int
     {
-        if (!is_string($height = $this->dimensions->getHeight())) {
+        if (!\is_string($height = $this->dimensions->getHeight())) {
             return $height;
         }
 
