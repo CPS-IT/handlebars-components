@@ -9,6 +9,7 @@ default:
 
 stages:
   - build
+  - validate
   - lint
   - sca
   - test
@@ -30,6 +31,14 @@ build:
     expire_in: 1 day
     paths:
       - .Build/
+
+validate:composer:
+  stage: validate
+  needs:
+    - build
+  script:
+    - composer validate --no-check-lock
+
 
 lint:composer:
   stage: lint
