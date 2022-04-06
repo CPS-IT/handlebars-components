@@ -37,10 +37,6 @@ lint:composer:
     - build
   script:
     - composer lint:composer -- --dry-run
-  rules:
-    - if: '$RENDER_DOCS'
-      when: never
-    - when: on_success
 
 lint:editorconfig:
   stage: lint
@@ -48,10 +44,6 @@ lint:editorconfig:
     - build
   script:
     - .Build/bin/ec --git-only
-  rules:
-    - if: '$RENDER_DOCS'
-      when: never
-    - when: on_success
 
 lint:php:
   stage: lint
@@ -59,10 +51,6 @@ lint:php:
     - build
   script:
     - composer lint:php -- --dry-run
-  rules:
-    - if: '$RENDER_DOCS'
-      when: never
-    - when: on_success
 
 lint:typoscript:
   stage: lint
@@ -70,10 +58,6 @@ lint:typoscript:
     - build
   script:
     - composer lint:typoscript -- --fail-on-warnings
-  rules:
-    - if: '$RENDER_DOCS'
-      when: never
-    - when: on_success
 
 sca:php:
   stage: sca
@@ -85,10 +69,6 @@ sca:php:
   artifacts:
     reports:
       codequality: .Build/log/phpstan.json
-  rules:
-    - if: '$RENDER_DOCS'
-      when: never
-    - when: on_success
 
 test:
   stage: test
@@ -112,7 +92,3 @@ test:
       junit:
         - .Build/log/coverage/junit/functional.xml
         - .Build/log/coverage/junit/unit.xml
-  rules:
-    - if: '$RENDER_DOCS'
-      when: never
-    - when: on_success
