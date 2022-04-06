@@ -52,17 +52,25 @@ $mediaService->getFromFolders($folders);
 ### Process images
 
 ```php
-use \Fr\Typo3HandlebarsComponents\Resource\Processing\ImageProcessingInstruction;
+use Fr\Typo3HandlebarsComponents\Resource\ImageDimensions;
+use Fr\Typo3HandlebarsComponents\Resource\Processing\ImageProcessingInstruction;
+use Fr\Typo3HandlebarsComponents\Service\MediaService;
 
 $processedImages = [];
+
+$mediaService = new MediaService(/* ... */);
 $media = $mediaService->getFromRelation(
     'assets',
     'tt_content',
     $record
 );
 
+$dimensions = ImageDimensions::create()
+    ->setWidth('320c')
+    ->setHeight(180);
+
 foreach ($media as $currentMedia) {
-    $processingInstruction = new ImageProcessingInstruction($currentMedia, '320c', 180);
+    $processingInstruction = new ImageProcessingInstruction($currentMedia, $dimensions);
     $processedImages[] = $imageProcessor->process($currentMedia, $processingInstruction);
 }
 ```
