@@ -37,6 +37,9 @@
 		"typo3/coding-standards": "^0.5.0",
 		"typo3/testing-framework": "^6.11.2"
 	},
+	"suggest": {
+		"apache-solr-for-typo3/solr": "This extension provides a pagination component for EXT:solr (^11.5)"
+	},
 	"autoload": {
 		"psr-4": {
 			"Fr\\Typo3HandlebarsComponents\\": "Classes/"
