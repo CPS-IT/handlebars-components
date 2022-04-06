@@ -75,10 +75,12 @@
 			"[ -L .Build/web/typo3conf/ext/handlebars_components ] || ln -snvf ../../../../. .Build/web/typo3conf/ext/handlebars_components"
 		],
 		"lint": [
+			"@lint:composer",
 			"@lint:editorconfig",
 			"@lint:php",
 			"@lint:typoscript"
 		],
+		"lint:composer": "@composer normalize --no-check-lock --no-update-lock",
 		"lint:editorconfig": "ec --fix --git-only",
 		"lint:php": "php-cs-fixer fix",
 		"lint:typoscript": "typoscript-lint -c typoscript-lint.yml",
