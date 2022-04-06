@@ -68,20 +68,35 @@ class ImageProcessorTest extends FunctionalTestCase
 
     /**
      * @test
+     * @dataProvider processUsesOriginalFileForImageProcessingDataProvider
      */
-    public function processUsesOriginalFileForImageProcessing(): void
-    {
+    public function processUsesOriginalFileForImageProcessing(
+        ?int $width,
+        ?int $height,
+        int $expectedWidth,
+        int $expectedHeight
+    ): void {
         $this->file = $this->createDummyFile();
 
-        foreach ([$this->file, $this->createDummyFileReference()] as $file) {
+        foreach ([$this->file, $this->createDummyFileReference(true)] as $file) {
             $media = new Media($file);
-            $processingInstruction = new ImageProcessingInstruction($media, 100, 200);
+            $processingInstruction = new ImageProcessingInstruction($media, $width, $height);
 
             $actual = $this->subject->process($media, $processingInstruction);
 
             self::assertSame($this->file, $actual->getOriginalFile());
-            self::assertSame(100, $actual->getProperty('width'));
-            self::assertSame(200, $actual->getProperty('height'));
+            self::assertSame($expectedWidth, $actual->getProperty('width'));
+            self::assertSame($expectedHeight, $actual->getProperty('height'));
         }
+    }
+
+    /**
+     * @return \Generator<string, array{int|null, int|null, int, int}>
+     */
+    public function processUsesOriginalFileForImageProcessingDataProvider(): \Generator
+    {
+        yield 'width and height' => [100, 200, 100, 200];
+        yield 'no width' => [null, 200, 200, 200];
+        yield 'no height' => [100, null, 100, 100];
     }
 }

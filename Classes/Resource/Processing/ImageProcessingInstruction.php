@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace Fr\Typo3HandlebarsComponents\Resource\Processing;
 
 use Fr\Typo3HandlebarsComponents\Domain\Model\Media\MediaInterface;
+use Fr\Typo3HandlebarsComponents\Exception\InvalidImageDimensionException;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
 use TYPO3\CMS\Core\Utility\MathUtility;
@@ -45,12 +46,12 @@ class ImageProcessingInstruction
     protected $media;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $width;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $height;
 
@@ -71,16 +72,19 @@ class ImageProcessingInstruction
 
     /**
      * @param MediaInterface $media
-     * @param string|int $width
-     * @param string|int $height
+     * @param string|int|null $width
+     * @param string|int|null $height
      * @param string $type
+     * @throws InvalidImageDimensionException
      */
-    public function __construct(MediaInterface $media, $width, $height, string $type = self::DEFAULT)
+    public function __construct(MediaInterface $media, $width = null, $height = null, string $type = self::DEFAULT)
     {
         $this->media = $media;
         $this->width = $this->parseSize($width);
         $this->height = $this->parseSize($height);
         $this->type = $type;
+
+        $this->validate();
     }
 
     public function getMedia(): MediaInterface
@@ -88,23 +92,31 @@ class ImageProcessingInstruction
         return $this->media;
     }
 
-    public function getWidth(): string
+    public function getWidth(): ?string
     {
         return $this->width;
     }
 
-    public function getNormalizedWidth(): int
+    public function getNormalizedWidth(): ?int
     {
+        if (null === $this->width) {
+            return null;
+        }
+
         return $this->normalizeSize($this->width);
     }
 
-    public function getHeight(): string
+    public function getHeight(): ?string
     {
         return $this->height;
     }
 
-    public function getNormalizedHeight(): int
+    public function getNormalizedHeight(): ?int
     {
+        if (null === $this->height) {
+            return null;
+        }
+
         return $this->normalizeSize($this->height);
     }
 
@@ -146,7 +158,7 @@ class ImageProcessingInstruction
     }
 
     /**
-     * @return array{width: string, height: string, crop: Area|null}
+     * @return array{width: string|null, height: string|null, crop: Area|null}
      */
     public function parse(): array
     {
@@ -177,11 +189,15 @@ class ImageProcessingInstruction
     }
 
     /**
-     * @param string|int $size
-     * @return string
+     * @param string|int|null $size
+     * @return string|null
      */
-    protected function parseSize($size): string
+    protected function parseSize($size): ?string
     {
+        if (null === $size) {
+            return null;
+        }
+
         if (is_int($size)) {
             return (string)$size;
         }
@@ -203,5 +219,15 @@ class ImageProcessingInstruction
     protected function normalizeSize(string $size): int
     {
         return (int)rtrim($size, 'cm');
+    }
+
+    /**
+     * @throws InvalidImageDimensionException
+     */
+    protected function validate(): void
+    {
+        if (null === $this->width && null === $this->height) {
+            throw InvalidImageDimensionException::forMissingDimensions();
+        }
     }
 }

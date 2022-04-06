@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace Fr\Typo3HandlebarsComponents\Tests\Unit\Resource\Processing;
 
 use Fr\Typo3HandlebarsComponents\Domain\Model\Media\Media;
+use Fr\Typo3HandlebarsComponents\Exception\InvalidImageDimensionException;
 use Fr\Typo3HandlebarsComponents\Resource\Processing\ImageProcessingInstruction;
 use Fr\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyResourceStorage;
 use TYPO3\CMS\Core\Resource\File;
@@ -58,13 +59,25 @@ class ImageProcessingInstructionTest extends UnitTestCase
     /**
      * @test
      */
+    public function constructorThrowsExceptionIfNoImageDimensionsAreGiven(): void
+    {
+        $this->expectException(InvalidImageDimensionException::class);
+        $this->expectExceptionCode(1649237990);
+        $this->expectExceptionMessage('No image dimensions defined. You must define at least one image dimension, e.g. width or height.');
+
+        new ImageProcessingInstruction($this->media);
+    }
+
+    /**
+     * @test
+     */
     public function constructorThrowsExceptionIfTypeOfGivenSizeIsInvalid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionCode(1631807380);
 
         /* @phpstan-ignore-next-line */
-        new ImageProcessingInstruction($this->media, null, 200);
+        new ImageProcessingInstruction($this->media, false, 200);
     }
 
     /**
@@ -97,9 +110,29 @@ class ImageProcessingInstructionTest extends UnitTestCase
     /**
      * @test
      */
+    public function getWidthReturnsNullIfWidthIsNull(): void
+    {
+        $subject = new ImageProcessingInstruction($this->media, null, 100);
+
+        self::assertNull($subject->getWidth());
+    }
+
+    /**
+     * @test
+     */
     public function getNormalizedWidthReturnsParsedWidth(): void
     {
         self::assertSame(100, $this->subject->getNormalizedWidth());
+    }
+
+    /**
+     * @test
+     */
+    public function getNormalizedWidthReturnsNullIfWidthIsNull(): void
+    {
+        $subject = new ImageProcessingInstruction($this->media, null, 100);
+
+        self::assertNull($subject->getNormalizedWidth());
     }
 
     /**
@@ -113,9 +146,29 @@ class ImageProcessingInstructionTest extends UnitTestCase
     /**
      * @test
      */
+    public function getHeightReturnsNullIfHeightIsNull(): void
+    {
+        $subject = new ImageProcessingInstruction($this->media, 100);
+
+        self::assertNull($subject->getHeight());
+    }
+
+    /**
+     * @test
+     */
     public function getNormalizedHeightReturnsParsedHeight(): void
     {
         self::assertSame(200, $this->subject->getNormalizedHeight());
+    }
+
+    /**
+     * @test
+     */
+    public function getNormalizedHeightReturnsNullIfHeightIsNull(): void
+    {
+        $subject = new ImageProcessingInstruction($this->media, 100);
+
+        self::assertNull($subject->getNormalizedHeight());
     }
 
     /**
