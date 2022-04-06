@@ -25,6 +25,7 @@ namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Resource\Processing;
 
 use Fr\Typo3HandlebarsComponents\Domain\Model\Media\Media;
 use Fr\Typo3HandlebarsComponents\Exception\UnsupportedResourceException;
+use Fr\Typo3HandlebarsComponents\Resource\ImageDimensions;
 use Fr\Typo3HandlebarsComponents\Resource\Processing\ImageProcessingInstruction;
 use Fr\Typo3HandlebarsComponents\Resource\Processing\ImageProcessor;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\FileHandlingTrait;
@@ -58,7 +59,10 @@ class ImageProcessorTest extends FunctionalTestCase
     public function processThrowsExceptionIfFileOfGivenMediaCannotBeResolved(): void
     {
         $media = new Media(new DummyFile());
-        $processingInstruction = new ImageProcessingInstruction($media, 100, 200);
+        $dimensions = ImageDimensions::create()
+            ->setWidth(100)
+            ->setHeight(200);
+        $processingInstruction = new ImageProcessingInstruction($media, $dimensions);
 
         $this->expectException(UnsupportedResourceException::class);
         $this->expectExceptionCode(1633012917);
@@ -71,8 +75,7 @@ class ImageProcessorTest extends FunctionalTestCase
      * @dataProvider processUsesOriginalFileForImageProcessingDataProvider
      */
     public function processUsesOriginalFileForImageProcessing(
-        ?int $width,
-        ?int $height,
+        ImageDimensions $dimensions,
         int $expectedWidth,
         int $expectedHeight
     ): void {
@@ -80,7 +83,7 @@ class ImageProcessorTest extends FunctionalTestCase
 
         foreach ([$this->file, $this->createDummyFileReference(true)] as $file) {
             $media = new Media($file);
-            $processingInstruction = new ImageProcessingInstruction($media, $width, $height);
+            $processingInstruction = new ImageProcessingInstruction($media, $dimensions);
 
             $actual = $this->subject->process($media, $processingInstruction);
 
@@ -91,12 +94,53 @@ class ImageProcessorTest extends FunctionalTestCase
     }
 
     /**
-     * @return \Generator<string, array{int|null, int|null, int, int}>
+     * @return \Generator<string, array{ImageDimensions, int, int}>
      */
     public function processUsesOriginalFileForImageProcessingDataProvider(): \Generator
     {
-        yield 'width and height' => [100, 200, 100, 200];
-        yield 'no width' => [null, 200, 200, 200];
-        yield 'no height' => [100, null, 100, 100];
+        yield 'width and height' => [
+            ImageDimensions::create()
+                ->setWidth(100)
+                ->setHeight(200)
+            ,
+            100,
+            200,
+        ];
+        yield 'no width' => [
+            ImageDimensions::create()
+                ->setHeight(200)
+            ,
+            200,
+            200,
+        ];
+        yield 'no height' => [
+            ImageDimensions::create()
+                ->setWidth(100)
+            ,
+            100,
+            100,
+        ];
+        yield 'max width only' => [
+            ImageDimensions::create()
+                ->setMaxWidth(100)
+            ,
+            100,
+            100,
+        ];
+        yield 'max height only' => [
+            ImageDimensions::create()
+                ->setMaxHeight(200)
+            ,
+            200,
+            200,
+        ];
+        yield 'max width and max height' => [
+            ImageDimensions::create()
+                ->setMaxWidth(100)
+                ->setMaxHeight(200)
+            ,
+            100,
+            100,
+        ];
     }
 }

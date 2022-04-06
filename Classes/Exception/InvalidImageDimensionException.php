@@ -31,11 +31,31 @@ namespace Fr\Typo3HandlebarsComponents\Exception;
  */
 final class InvalidImageDimensionException extends \Exception
 {
+    /**
+     * @param mixed $dimension
+     * @return self
+     */
+    public static function create($dimension): self
+    {
+        return new self(
+            sprintf('Image dimensions must be of type integer or string, %s given.', get_debug_type($dimension)),
+            1631807380
+        );
+    }
+
     public static function forMissingDimensions(): self
     {
         return new self(
             'No image dimensions defined. You must define at least one image dimension, e.g. width or height.',
             1649237990
+        );
+    }
+
+    public static function forUnresolvableDimension(string $dimension): self
+    {
+        return new self(
+            sprintf('Image sizes must be integers, optionally followed by "c" or "m", "%s" given.', $dimension),
+            1631807435
         );
     }
 }
