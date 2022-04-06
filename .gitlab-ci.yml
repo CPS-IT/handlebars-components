@@ -42,6 +42,17 @@ lint:composer:
       when: never
     - when: on_success
 
+lint:editorconfig:
+  stage: lint
+  needs:
+    - build
+  script:
+    - .Build/bin/ec --git-only
+  rules:
+    - if: '$RENDER_DOCS'
+      when: never
+    - when: on_success
+
 lint:php:
   stage: lint
   needs:
