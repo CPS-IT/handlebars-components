@@ -42,7 +42,6 @@ class Menu
     protected $type;
 
     /**
-     * @param string $type
      * @param MenuItem[] $items
      */
     public function __construct(string $type, array $items)
@@ -61,7 +60,6 @@ class Menu
 
     /**
      * @param MenuItem[] $items
-     * @return self
      */
     public function setItems(array $items): self
     {

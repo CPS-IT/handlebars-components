@@ -78,9 +78,7 @@ final class FeatureRegistrationPass implements CompilerPassInterface
     }
 
     /**
-     * @param string $name
      * @param class-string<HelperInterface> $className
-     * @param string $methodName
      */
     private function activateHelper(string $name, string $className, string $methodName = 'evaluate'): void
     {

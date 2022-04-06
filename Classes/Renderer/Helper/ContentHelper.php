@@ -42,7 +42,6 @@ class ContentHelper implements HelperInterface, LoggerAwareInterface
     use LoggerAwareTrait;
 
     /**
-     * @param string $name
      * @param array<string, mixed> $options
      * @return string|bool
      */

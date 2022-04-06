@@ -47,7 +47,6 @@ class HandlebarsLayout
     protected $parsed = false;
 
     /**
-     * @param callable $parseFunction
      * @param array<string, HandlebarsLayoutAction[]> $actions
      */
     public function __construct(callable $parseFunction, array $actions = [])
@@ -71,7 +70,6 @@ class HandlebarsLayout
     }
 
     /**
-     * @param string|null $name
      * @return array<string, HandlebarsLayoutAction[]>|HandlebarsLayoutAction[]
      */
     public function getActions(string $name = null): array

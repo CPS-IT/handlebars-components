@@ -129,9 +129,7 @@ class FeatureRegistrationPassTest extends UnitTestCase
     }
 
     /**
-     * @param ContainerBuilder $container
      * @param class-string<HelperInterface> $className
-     * @param string $name
      */
     private static function assertHelperIsTagged(ContainerBuilder $container, string $className, string $name): void
     {

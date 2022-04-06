@@ -36,9 +36,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 trait DynamicVariableInvocationTrait
 {
     /**
-     * @param string $name
      * @param mixed[] $arguments
-     * @return bool
      */
     public function __call(string $name, array $arguments): bool
     {
@@ -64,7 +62,6 @@ trait DynamicVariableInvocationTrait
 
     /**
      * @param mixed $type
-     * @return bool
      */
     abstract public function is($type): bool;
 }

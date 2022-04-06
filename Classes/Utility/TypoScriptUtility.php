@@ -34,7 +34,6 @@ use Fr\Typo3HandlebarsComponents\Exception\InvalidConfigurationException;
 class TypoScriptUtility
 {
     /**
-     * @param string $path
      * @return string[]
      */
     public static function transformArrayPathToTypoScriptArrayPath(string $path): array
@@ -43,7 +42,6 @@ class TypoScriptUtility
     }
 
     /**
-     * @param string $path
      * @param mixed $value
      * @return array<string, mixed>
      */
@@ -65,7 +63,6 @@ class TypoScriptUtility
 
     /**
      * @param array<string|int, mixed> $typoScriptArray
-     * @param string $path
      * @throws InvalidConfigurationException
      */
     public static function validateTypoScriptArray(array $typoScriptArray, string $path = ''): void

@@ -55,7 +55,6 @@ class NumberedPaginationTest extends UnitTestCase
      * @dataProvider constructorCalculatesDisplayedPagesCorrectlyDependingOnCurrentPageNumberDataProvider
      *
      * @param array<int> $items
-     * @param int $currentPageNumber
      * @param array<int|null> $expected
      */
     public function constructorCalculatesDisplayedPagesCorrectlyDependingOnCurrentPageNumber(
@@ -71,8 +70,6 @@ class NumberedPaginationTest extends UnitTestCase
     /**
      * @test
      * @dataProvider constructorIgnoresInvalidMaximumNumberOfLinksDuringCalculationOfDisplayedPagesDataProvider
-     *
-     * @param int $maximumNumberOfLinks,
      */
     public function constructorIgnoresInvalidMaximumNumberOfLinksDuringCalculationOfDisplayedPages(
         int $maximumNumberOfLinks

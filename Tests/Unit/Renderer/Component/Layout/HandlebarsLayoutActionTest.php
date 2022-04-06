@@ -50,8 +50,6 @@ class HandlebarsLayoutActionTest extends UnitTestCase
     /**
      * @test
      * @dataProvider renderReturnsRenderedAndProcessedValueDataProvider
-     * @param string $mode
-     * @param string $expected
      */
     public function renderReturnsRenderedAndProcessedValue(string $mode, string $expected): void
     {

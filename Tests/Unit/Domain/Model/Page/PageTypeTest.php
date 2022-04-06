@@ -79,8 +79,6 @@ class PageTypeTest extends UnitTestCase
     /**
      * @test
      * @dataProvider dynamicMethodsCanBeCalledDataProvider
-     * @param int $type
-     * @param string $expectedMethod
      */
     public function dynamicMethodsCanBeCalled(int $type, string $expectedMethod): void
     {

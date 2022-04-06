@@ -36,7 +36,6 @@ class JsonHelper implements HelperInterface
 {
     /**
      * @param array<string, mixed> $context
-     * @return SafeString
      */
     public function encode(array $context): SafeString
     {

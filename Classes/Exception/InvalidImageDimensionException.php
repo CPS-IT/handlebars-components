@@ -33,7 +33,6 @@ final class InvalidImageDimensionException extends \Exception
 {
     /**
      * @param mixed $dimension
-     * @return self
      */
     public static function create($dimension): self
     {

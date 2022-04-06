@@ -66,8 +66,6 @@ class MenuServiceTest extends FunctionalTestCase
     /**
      * @test
      * @dataProvider buildMenuReturnsProcessedMenuDataProvider
-     * @param MenuConfiguration $configuration
-     * @param int $pageId
      * @param string[] $expectedMenuItemLinks
      */
     public function buildMenuReturnsProcessedMenu(MenuConfiguration $configuration, int $pageId, array $expectedMenuItemLinks): void

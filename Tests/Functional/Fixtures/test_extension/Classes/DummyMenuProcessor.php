@@ -48,7 +48,6 @@ final class DummyMenuProcessor implements DataProcessorInterface
     public $cObj;
 
     /**
-     * @param ContentObjectRenderer $cObj
      * @param array<string, mixed> $contentObjectConfiguration
      * @param array<string, mixed> $processorConfiguration
      * @param array<string, mixed> $processedData
@@ -66,9 +65,7 @@ final class DummyMenuProcessor implements DataProcessorInterface
     }
 
     /**
-     * @param string $content
      * @param array<string, mixed> $configuration
-     * @return string
      */
     public function preProcess(string $content, array $configuration): string
     {

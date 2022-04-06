@@ -84,7 +84,6 @@ abstract class AbstractPagePresenter extends AbstractPresenter
     }
 
     /**
-     * @param PageProviderResponse $data
      * @return array<string, mixed>
      * @noinspection PhpUnusedParameterInspection
      */

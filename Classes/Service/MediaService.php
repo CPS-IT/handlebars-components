@@ -68,8 +68,6 @@ class MediaService
     }
 
     /**
-     * @param string $relationFieldName
-     * @param string $tableName
      * @param array<string, mixed> $record
      * @return MediaInterface[]
      */
@@ -160,7 +158,6 @@ class MediaService
 
     /**
      * @param int|CoreFileReference|ExtbaseFileReference $fileReference
-     * @return int|null
      */
     protected function resolveFileReference($fileReference): ?int
     {
@@ -181,7 +178,6 @@ class MediaService
 
     /**
      * @param int|CoreFile|ExtbaseFile $file
-     * @return int|null
      */
     protected function resolveFile($file): ?int
     {
@@ -202,7 +198,6 @@ class MediaService
 
     /**
      * @param int|AbstractFileCollection $fileCollection
-     * @return int|null
      */
     protected function resolveFileCollection($fileCollection): ?int
     {
@@ -220,7 +215,6 @@ class MediaService
 
     /**
      * @param string|Folder $folder
-     * @return string|null
      */
     protected function resolveFolder($folder): ?string
     {

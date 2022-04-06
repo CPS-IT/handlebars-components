@@ -69,7 +69,6 @@ class ImageDimensions
 
     /**
      * @param int|string|null $width
-     * @return self
      * @throws InvalidImageDimensionException
      */
     public function setWidth($width): self
@@ -88,7 +87,6 @@ class ImageDimensions
 
     /**
      * @param int|string|null $height
-     * @return self
      * @throws InvalidImageDimensionException
      */
     public function setHeight($height): self

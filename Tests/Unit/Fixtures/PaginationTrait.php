@@ -35,11 +35,7 @@ use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 trait PaginationTrait
 {
     /**
-     * @param int $currentPageNumber
-     * @param int $itemsPerPage
-     * @param int $maximumNumberOfLinks
      * @param list<int>|null $items
-     * @return NumberedPagination
      */
     protected function buildPagination(
         int $currentPageNumber = 1,

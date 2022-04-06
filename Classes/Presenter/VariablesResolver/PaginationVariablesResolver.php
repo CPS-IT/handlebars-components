@@ -35,9 +35,6 @@ use Fr\Typo3HandlebarsComponents\Pagination\NumberedPagination;
 class PaginationVariablesResolver
 {
     /**
-     * @param NumberedPagination $pagination
-     * @param PaginationLinkerInterface $linker
-     * @param string $placeholder
      * @return array<string, mixed>
      */
     public function resolve(

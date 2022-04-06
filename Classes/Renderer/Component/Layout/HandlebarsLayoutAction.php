@@ -54,8 +54,6 @@ class HandlebarsLayoutAction
 
     /**
      * @param array<string, mixed> $data
-     * @param callable $renderFunction
-     * @param string $mode
      */
     public function __construct(array $data, callable $renderFunction, string $mode = self::REPLACE)
     {

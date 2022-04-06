@@ -62,7 +62,6 @@ class ConfigurationServiceTest extends UnitTestCase
     /**
      * @test
      * @dataProvider getReturnsConfigurationAtGivenPathDataProvider
-     * @param string $path
      * @param mixed $expected
      */
     public function getReturnsConfigurationAtGivenPath(string $path, $expected): void

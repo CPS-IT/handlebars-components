@@ -72,10 +72,6 @@ class PaginationFactory
 
     /**
      * @param iterable<mixed>|QueryResultInterface<AbstractEntity>|SearchResultSet $items
-     * @param int|null $itemsPerPage
-     * @param int|null $maximumNumberOfLinks
-     * @param int|null $currentPageNumber
-     * @return NumberedPagination
      */
     public function get(
         $items,
@@ -94,9 +90,6 @@ class PaginationFactory
 
     /**
      * @param iterable<mixed>|QueryResultInterface<AbstractEntity>|SearchResultSet $items
-     * @param int $currentPageNumber
-     * @param int $itemsPerPage
-     * @return PaginatorInterface
      */
     protected function buildPaginator($items, int $currentPageNumber, int $itemsPerPage): PaginatorInterface
     {
@@ -136,9 +129,6 @@ class PaginationFactory
 
     /**
      * @param iterable<mixed> $items
-     * @param int $currentPageNumber
-     * @param int $itemsPerPage
-     * @return ArrayPaginator
      */
     protected function resolveIterablePaginator($items, int $currentPageNumber, int $itemsPerPage): ArrayPaginator
     {

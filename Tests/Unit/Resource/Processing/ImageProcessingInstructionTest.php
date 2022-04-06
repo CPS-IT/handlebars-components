@@ -212,8 +212,6 @@ class ImageProcessingInstructionTest extends UnitTestCase
     /**
      * @test
      * @dataProvider isSourceTestsWhetherTypeIsDefaultDataProvider
-     * @param string $source
-     * @param bool $expected
      */
     public function isSourceTestsWhetherTypeIsDefault(string $source, bool $expected): void
     {

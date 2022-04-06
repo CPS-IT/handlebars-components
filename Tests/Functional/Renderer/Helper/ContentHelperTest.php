@@ -126,8 +126,6 @@ class ContentHelperTest extends FunctionalTestCase
     /**
      * @test
      * @dataProvider helperCanBeCalledToConditionallyRenderBlocksDataProvider
-     * @param bool $renderSecondBlock
-     * @param string $expected
      */
     public function helperCanBeCalledToConditionallyRenderBlocks(bool $renderSecondBlock, string $expected): void
     {

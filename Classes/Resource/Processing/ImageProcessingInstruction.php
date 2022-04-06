@@ -66,9 +66,6 @@ class ImageProcessingInstruction
     protected $cropVariant = 'default';
 
     /**
-     * @param MediaInterface $media
-     * @param ImageDimensions $dimensions
-     * @param string $type
      * @throws InvalidImageDimensionException
      */
     public function __construct(MediaInterface $media, ImageDimensions $dimensions, string $type = self::DEFAULT)

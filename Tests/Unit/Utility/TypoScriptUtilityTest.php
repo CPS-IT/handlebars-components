@@ -38,7 +38,6 @@ class TypoScriptUtilityTest extends UnitTestCase
     /**
      * @test
      * @dataProvider transformArrayPathToTypoScriptArrayPathSplitsGivenPathIntoTypoScriptArrayPathSegmentsDataProvider
-     * @param string $path
      * @param string[] $expected
      */
     public function transformArrayPathToTypoScriptArrayPathSplitsGivenPathIntoTypoScriptArrayPathSegments(
@@ -68,7 +67,6 @@ class TypoScriptUtilityTest extends UnitTestCase
      * @test
      * @dataProvider validateTypoScriptArrayValidatesGivenTypoScriptArrayDataProvider
      * @param array<string, mixed> $typoScriptArray
-     * @param string|null $expectedExceptionPath
      */
     public function validateTypoScriptArrayValidatesGivenTypoScriptArray(array $typoScriptArray, string $expectedExceptionPath = null): void
     {

@@ -124,7 +124,6 @@ class NumberedPagination implements PaginationInterface
     }
 
     /**
-     * @return PaginatorInterface
      * @internal Only to be used in testing context. Do not access from anywhere else!
      * @codeCoverageIgnore
      */

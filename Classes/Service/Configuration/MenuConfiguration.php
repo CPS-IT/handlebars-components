@@ -52,7 +52,6 @@ class MenuConfiguration
 
     /**
      * @param array<string|int, mixed> $typoScriptConfiguration
-     * @param string $type
      */
     public function __construct(array $typoScriptConfiguration, string $type = self::DEFAULT)
     {
@@ -74,7 +73,6 @@ class MenuConfiguration
 
     /**
      * @param int[] $pageIds
-     * @return self
      */
     public static function list(array $pageIds): self
     {
@@ -101,7 +99,6 @@ class MenuConfiguration
     /**
      * @param int[] $languages
      * @param string[] $excludedParameters
-     * @return self
      */
     public static function language(array $languages = [], array $excludedParameters = []): self
     {
@@ -122,7 +119,6 @@ class MenuConfiguration
     /**
      * @param class-string<DataProcessorInterface> $dataProcessor
      * @param array<string, mixed> $configuration
-     * @return self
      */
     public static function custom(string $dataProcessor, array $configuration = []): self
     {
@@ -143,9 +139,7 @@ class MenuConfiguration
     }
 
     /**
-     * @param string $path
      * @param mixed $value
-     * @return self
      */
     public function addTypoScriptConfiguration(string $path, $value): self
     {

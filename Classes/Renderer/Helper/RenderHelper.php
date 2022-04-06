@@ -51,9 +51,6 @@ class RenderHelper implements HelperInterface
      */
     protected $typoScriptService;
 
-    /**
-     * @var ContentObjectRenderer
-     */
     protected ContentObjectRenderer $contentObjectRenderer;
 
     public function __construct(
@@ -115,9 +112,7 @@ class RenderHelper implements HelperInterface
     }
 
     /**
-     * @param string $templateName
      * @param array<string, mixed> $context
-     * @return string
      */
     protected function registerUncachedTemplateBlock(string $templateName, array $context): string
     {

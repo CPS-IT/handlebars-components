@@ -71,7 +71,6 @@ class MenuItem
 
     /**
      * @param self[] $subItems
-     * @return self
      */
     public function setSubItems(array $subItems): self
     {
