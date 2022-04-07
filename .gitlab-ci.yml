@@ -37,6 +37,7 @@ build:
   needs:
     - build
   before_script:
+    # @todo remove once https://gitlab.321.works/x-it-docker/docker-php/-/merge_requests/7 is merged
     - composer global config bin-dir /usr/local/bin
 
 validate:composer:
