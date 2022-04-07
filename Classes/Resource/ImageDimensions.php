@@ -54,6 +54,17 @@ class ImageDimensions
      */
     protected $maxHeight;
 
+    /**
+     * @param int|string|null $width
+     * @param int|string|null $height
+     * @throws InvalidImageDimensionException
+     */
+    public function __construct($width = null, $height = null)
+    {
+        $this->setWidth($width);
+        $this->setHeight($height);
+    }
+
     public static function create(): self
     {
         return new self();

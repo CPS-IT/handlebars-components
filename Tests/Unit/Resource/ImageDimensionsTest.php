@@ -52,6 +52,17 @@ class ImageDimensionsTest extends UnitTestCase
     /**
      * @test
      */
+    public function constructorSetsWidthAndHeight(): void
+    {
+        $actual = new ImageDimensions(100, 200);
+
+        self::assertSame(100, $actual->getWidth());
+        self::assertSame(200, $actual->getHeight());
+    }
+
+    /**
+     * @test
+     */
     public function getWidthReturnsWidth(): void
     {
         self::assertSame(100, $this->subject->getWidth());
