@@ -51,6 +51,13 @@ validate:required-dependencies:
     - composer require --no-progress --no-plugins apache-solr-for-typo3/solr:"^11.5@RC"
     - composer-require-checker check --config-file dependency-checker.json
 
+validate:unused-dependencies:
+  extends: .validate-template
+  script:
+    - composer global require icanhazstring/composer-unused
+    - composer install --no-progress --no-plugins
+    - composer-unused
+
 lint:composer:
   stage: lint
   needs:
