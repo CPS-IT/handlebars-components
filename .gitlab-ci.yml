@@ -32,30 +32,30 @@ build:
     paths:
       - .Build/
 
-.validate-template:
+validate:composer:
   stage: validate
   needs:
     - build
-  before_script:
-    # @todo remove once https://gitlab.321.works/x-it-docker/docker-php/-/merge_requests/7 is merged
-    - composer global config bin-dir /usr/local/bin
-
-validate:composer:
-  extends: .validate-template
   script:
     - composer validate --no-check-lock
 
 validate:required-dependencies:
-  extends: .validate-template
-  script:
+  stage: validate
+  needs:
+    - build
+  before_script:
     - composer global require maglnet/composer-require-checker
+  script:
     - composer require --no-progress --no-plugins apache-solr-for-typo3/solr:"^11.5@RC"
     - composer-require-checker check --config-file dependency-checker.json
 
 validate:unused-dependencies:
-  extends: .validate-template
-  script:
+  stage: validate
+  needs:
+    - build
+  before_script:
     - composer global require icanhazstring/composer-unused
+  script:
     - composer install --no-progress --no-plugins
     - composer-unused
 
