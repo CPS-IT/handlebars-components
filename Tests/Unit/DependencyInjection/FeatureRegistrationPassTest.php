@@ -129,9 +129,7 @@ class FeatureRegistrationPassTest extends UnitTestCase
     }
 
     /**
-     * @param ContainerBuilder $container
      * @param class-string<HelperInterface> $className
-     * @param string $name
      */
     private static function assertHelperIsTagged(ContainerBuilder $container, string $className, string $name): void
     {
@@ -149,7 +147,7 @@ class FeatureRegistrationPassTest extends UnitTestCase
     {
         $container = new ContainerBuilder();
 
-        $packagePath = dirname(__DIR__, 3);
+        $packagePath = \dirname(__DIR__, 3);
         $yamlFileLoader = new YamlFileLoader($container, new FileLocator($packagePath . '/Configuration'));
         $yamlFileLoader->load('Services.yaml');
 

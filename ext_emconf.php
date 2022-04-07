@@ -24,16 +24,19 @@ $EM_CONF[$_EXTKEY] = [
     'title' => 'Handlebars Components',
     'description' => 'Additional components for EXT:handlebars',
     'category' => 'fe',
-    'version' => '0.4.3',
-    'state' => 'alpha',
+    'version' => '0.5.0',
+    'state' => 'beta',
     'clearCacheOnLoad' => true,
     'author' => 'Elias Häußler',
     'author_email' => 'e.haeussler@familie-redlich.de',
-    'author_company' => 'familie redlich digital GmbH',
+    'author_company' => 'coding. powerful. systems. CPS GmbH',
     'constraints' => [
         'depends' => [
             'typo3' => '10.4.0-11.5.99',
             'handlebars' => '0.7.0-0.7.99',
+        ],
+        'suggests' => [
+            'solr' => '11.5.0-11.99.99',
         ],
     ],
 ];

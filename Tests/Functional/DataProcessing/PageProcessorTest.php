@@ -53,7 +53,7 @@ class PageProcessorTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $this->importDataSet(dirname(__DIR__) . '/Fixtures/pages.xml');
+        $this->importDataSet(\dirname(__DIR__) . '/Fixtures/pages.xml');
 
         $queryBuilder = $this->getConnectionPool()->getQueryBuilderForTable('pages');
         $result = $queryBuilder->select('*')

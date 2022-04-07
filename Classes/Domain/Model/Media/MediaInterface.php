@@ -33,35 +33,18 @@ use TYPO3\CMS\Core\Resource\FileInterface;
  */
 interface MediaInterface
 {
-    /**
-     * @return FileInterface
-     */
     public function getOriginalFile(): FileInterface;
 
-    /**
-     * @return string
-     */
     public function getName(): string;
 
-    /**
-     * @return string
-     */
     public function getExtension(): string;
 
-    /**
-     * @return string
-     */
     public function getAlternative(): string;
 
     /**
-     * @param string $propertyName
      * @return mixed
      */
     public function getProperty(string $propertyName);
 
-    /**
-     * @param string $propertyName
-     * @return bool
-     */
     public function hasProperty(string $propertyName): bool;
 }

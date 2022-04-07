@@ -54,7 +54,6 @@ final class DynamicVariableInvocationTraitTestClass
 
     /**
      * @param string $type
-     * @return bool
      */
     public function is($type): bool
     {

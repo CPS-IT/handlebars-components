@@ -49,7 +49,7 @@ class ExtendHelper implements HelperInterface
     public function evaluate(string $name): string
     {
         // Get helper options
-        $arguments = func_get_args();
+        $arguments = \func_get_args();
         array_shift($arguments);
         $options = array_pop($arguments);
 
@@ -60,7 +60,7 @@ class ExtendHelper implements HelperInterface
         }
 
         // Create new handlebars layout item
-        $fn = is_callable($options['fn'] ?? '') ? $options['fn'] : function (): string {
+        $fn = \is_callable($options['fn'] ?? '') ? $options['fn'] : function (): string {
             return '';
         };
         $handlebarsLayout = new HandlebarsLayout($fn);

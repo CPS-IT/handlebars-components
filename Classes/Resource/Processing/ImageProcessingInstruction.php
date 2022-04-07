@@ -24,9 +24,10 @@ declare(strict_types=1);
 namespace Fr\Typo3HandlebarsComponents\Resource\Processing;
 
 use Fr\Typo3HandlebarsComponents\Domain\Model\Media\MediaInterface;
+use Fr\Typo3HandlebarsComponents\Exception\InvalidImageDimensionException;
+use Fr\Typo3HandlebarsComponents\Resource\ImageDimensions;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
-use TYPO3\CMS\Core\Utility\MathUtility;
 
 /**
  * ImageProcessingInstructions
@@ -45,14 +46,9 @@ class ImageProcessingInstruction
     protected $media;
 
     /**
-     * @var string
+     * @var ImageDimensions
      */
-    protected $width;
-
-    /**
-     * @var string
-     */
-    protected $height;
+    protected $dimensions;
 
     /**
      * @var string
@@ -70,17 +66,15 @@ class ImageProcessingInstruction
     protected $cropVariant = 'default';
 
     /**
-     * @param MediaInterface $media
-     * @param string|int $width
-     * @param string|int $height
-     * @param string $type
+     * @throws InvalidImageDimensionException
      */
-    public function __construct(MediaInterface $media, $width, $height, string $type = self::DEFAULT)
+    public function __construct(MediaInterface $media, ImageDimensions $dimensions, string $type = self::DEFAULT)
     {
         $this->media = $media;
-        $this->width = $this->parseSize($width);
-        $this->height = $this->parseSize($height);
+        $this->dimensions = $dimensions;
         $this->type = $type;
+
+        $this->validate();
     }
 
     public function getMedia(): MediaInterface
@@ -88,24 +82,53 @@ class ImageProcessingInstruction
         return $this->media;
     }
 
-    public function getWidth(): string
+    /**
+     * @return int|string|null
+     */
+    public function getWidth()
     {
-        return $this->width;
+        return $this->dimensions->getWidth();
     }
 
-    public function getNormalizedWidth(): int
+    public function getNormalizedWidth(): ?int
     {
-        return $this->normalizeSize($this->width);
+        if (!\is_string($width = $this->dimensions->getWidth())) {
+            return $width;
+        }
+
+        return $this->normalizeSize($width);
     }
 
-    public function getHeight(): string
+    /**
+     * @return int|string|null
+     */
+    public function getHeight()
     {
-        return $this->height;
+        return $this->dimensions->getHeight();
     }
 
-    public function getNormalizedHeight(): int
+    public function getNormalizedHeight(): ?int
     {
-        return $this->normalizeSize($this->height);
+        if (!\is_string($height = $this->dimensions->getHeight())) {
+            return $height;
+        }
+
+        return $this->normalizeSize($height);
+    }
+
+    public function getMaxWidth(): ?int
+    {
+        return $this->dimensions->getMaxWidth();
+    }
+
+    public function getMaxHeight(): ?int
+    {
+        return $this->dimensions->getMaxHeight();
+    }
+
+    public function getDimensions(): ImageDimensions
+    {
+        return $this->dimensions;
     }
 
     public function getType(): string
@@ -146,13 +169,15 @@ class ImageProcessingInstruction
     }
 
     /**
-     * @return array{width: string, height: string, crop: Area|null}
+     * @return array{width: int|string|null, height: int|string|null, maxWidth: int|null, maxHeight: int|null, crop: Area|null}
      */
     public function parse(): array
     {
         return [
-            'width' => $this->width,
-            'height' => $this->height,
+            'width' => $this->getWidth(),
+            'height' => $this->getHeight(),
+            'maxWidth' => $this->getMaxWidth(),
+            'maxHeight' => $this->getMaxHeight(),
             'crop' => $this->getCropArea(),
         ];
     }
@@ -176,32 +201,23 @@ class ImageProcessingInstruction
         return $cropArea->makeAbsoluteBasedOnFile($file);
     }
 
-    /**
-     * @param string|int $size
-     * @return string
-     */
-    protected function parseSize($size): string
-    {
-        if (is_int($size)) {
-            return (string)$size;
-        }
-
-        // Validate given size
-        if (!is_string($size)) {
-            throw new \InvalidArgumentException(sprintf('Image sizes must be of type integer or string, %s given.', gettype($size)), 1631807380);
-        }
-
-        // Validate normalized size
-        $normalizedSize = rtrim($size, 'cm');
-        if (!MathUtility::canBeInterpretedAsInteger($normalizedSize)) {
-            throw new \InvalidArgumentException('Image sizes must be integers, optionally followed by "c" or "m".', 1631807435);
-        }
-
-        return $size;
-    }
-
     protected function normalizeSize(string $size): int
     {
         return (int)rtrim($size, 'cm');
+    }
+
+    /**
+     * @throws InvalidImageDimensionException
+     */
+    protected function validate(): void
+    {
+        if (
+            null === $this->getWidth()
+            && null === $this->getHeight()
+            && null === $this->getMaxWidth()
+            && null === $this->getMaxHeight()
+        ) {
+            throw InvalidImageDimensionException::forMissingDimensions();
+        }
     }
 }

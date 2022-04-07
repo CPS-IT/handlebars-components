@@ -68,7 +68,6 @@ class PageType
 
     /**
      * @param int $type
-     * @return bool
      */
     public function is($type): bool
     {

@@ -24,6 +24,8 @@ declare(strict_types=1);
 namespace Fr\Typo3HandlebarsComponents\Tests\Unit\Resource\Processing;
 
 use Fr\Typo3HandlebarsComponents\Domain\Model\Media\Media;
+use Fr\Typo3HandlebarsComponents\Exception\InvalidImageDimensionException;
+use Fr\Typo3HandlebarsComponents\Resource\ImageDimensions;
 use Fr\Typo3HandlebarsComponents\Resource\Processing\ImageProcessingInstruction;
 use Fr\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyResourceStorage;
 use TYPO3\CMS\Core\Resource\File;
@@ -43,6 +45,11 @@ class ImageProcessingInstructionTest extends UnitTestCase
     protected $media;
 
     /**
+     * @var ImageDimensions
+     */
+    protected $dimensions;
+
+    /**
      * @var ImageProcessingInstruction
      */
     protected $subject;
@@ -52,30 +59,22 @@ class ImageProcessingInstructionTest extends UnitTestCase
         parent::setUp();
 
         $this->media = new Media(new File([], new DummyResourceStorage()));
-        $this->subject = new ImageProcessingInstruction($this->media, '100c', '200m');
+        $this->dimensions = ImageDimensions::create()
+            ->setWidth('100c')
+            ->setHeight('200m');
+        $this->subject = new ImageProcessingInstruction($this->media, $this->dimensions);
     }
 
     /**
      * @test
      */
-    public function constructorThrowsExceptionIfTypeOfGivenSizeIsInvalid(): void
+    public function constructorThrowsExceptionIfNoImageDimensionsAreGiven(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionCode(1631807380);
+        $this->expectException(InvalidImageDimensionException::class);
+        $this->expectExceptionCode(1649237990);
+        $this->expectExceptionMessage('No image dimensions defined. You must define at least one image dimension, e.g. width or height.');
 
-        /* @phpstan-ignore-next-line */
-        new ImageProcessingInstruction($this->media, null, 200);
-    }
-
-    /**
-     * @test
-     */
-    public function constructorThrowsExceptionIfGivenSizeContainsInvalidConfigurationValues(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionCode(1631807435);
-
-        new ImageProcessingInstruction($this->media, '100x', 200);
+        new ImageProcessingInstruction($this->media, ImageDimensions::create());
     }
 
     /**
@@ -97,9 +96,29 @@ class ImageProcessingInstructionTest extends UnitTestCase
     /**
      * @test
      */
+    public function getWidthReturnsNullIfWidthIsNull(): void
+    {
+        $this->dimensions->setWidth(null);
+
+        self::assertNull($this->subject->getWidth());
+    }
+
+    /**
+     * @test
+     */
     public function getNormalizedWidthReturnsParsedWidth(): void
     {
         self::assertSame(100, $this->subject->getNormalizedWidth());
+    }
+
+    /**
+     * @test
+     */
+    public function getNormalizedWidthReturnsNullIfWidthIsNull(): void
+    {
+        $this->dimensions->setWidth(null);
+
+        self::assertNull($this->subject->getNormalizedWidth());
     }
 
     /**
@@ -113,9 +132,61 @@ class ImageProcessingInstructionTest extends UnitTestCase
     /**
      * @test
      */
+    public function getHeightReturnsNullIfHeightIsNull(): void
+    {
+        $this->dimensions->setHeight(null);
+
+        self::assertNull($this->subject->getHeight());
+    }
+
+    /**
+     * @test
+     */
     public function getNormalizedHeightReturnsParsedHeight(): void
     {
         self::assertSame(200, $this->subject->getNormalizedHeight());
+    }
+
+    /**
+     * @test
+     */
+    public function getNormalizedHeightReturnsNullIfHeightIsNull(): void
+    {
+        $this->dimensions->setHeight(null);
+
+        self::assertNull($this->subject->getNormalizedHeight());
+    }
+
+    /**
+     * @test
+     */
+    public function getMaxWidthReturnsMaxWidth(): void
+    {
+        self::assertNull($this->subject->getMaxWidth());
+
+        $this->dimensions->setMaxWidth(100);
+
+        self::assertSame(100, $this->subject->getMaxWidth());
+    }
+
+    /**
+     * @test
+     */
+    public function getMaxHeightReturnsMaxHeight(): void
+    {
+        self::assertNull($this->subject->getMaxHeight());
+
+        $this->dimensions->setMaxHeight(100);
+
+        self::assertSame(100, $this->subject->getMaxHeight());
+    }
+
+    /**
+     * @test
+     */
+    public function getDimensionsReturnsImageDimensions(): void
+    {
+        self::assertSame($this->dimensions, $this->subject->getDimensions());
     }
 
     /**
@@ -133,7 +204,7 @@ class ImageProcessingInstructionTest extends UnitTestCase
     {
         self::assertTrue($this->subject->isDefault());
 
-        $subject = new ImageProcessingInstruction($this->media, 100, 200, ImageProcessingInstruction::SOURCE);
+        $subject = new ImageProcessingInstruction($this->media, $this->dimensions, ImageProcessingInstruction::SOURCE);
 
         self::assertFalse($subject->isDefault());
     }
@@ -141,12 +212,10 @@ class ImageProcessingInstructionTest extends UnitTestCase
     /**
      * @test
      * @dataProvider isSourceTestsWhetherTypeIsDefaultDataProvider
-     * @param string $source
-     * @param bool $expected
      */
     public function isSourceTestsWhetherTypeIsDefault(string $source, bool $expected): void
     {
-        $subject = new ImageProcessingInstruction($this->media, 100, 200, $source);
+        $subject = new ImageProcessingInstruction($this->media, $this->dimensions, $source);
 
         self::assertSame($expected, $subject->isSource());
     }

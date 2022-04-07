@@ -37,9 +37,7 @@ use Fr\Typo3HandlebarsComponents\Renderer\Component\Layout\HandlebarsLayoutActio
 class BlockHelper implements HelperInterface
 {
     /**
-     * @param string $name
      * @param array<string, mixed> $options
-     * @return string
      */
     public function evaluate(string $name, array $options): string
     {

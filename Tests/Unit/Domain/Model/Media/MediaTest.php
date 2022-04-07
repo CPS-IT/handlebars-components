@@ -86,7 +86,6 @@ class MediaTest extends UnitTestCase
      * @test
      * @dataProvider getAlternativeReturnsAlternativeTextDataProvider
      * @param array<string, string|null> $additionalProperties
-     * @param string $expected
      */
     public function getAlternativeReturnsAlternativeText(array $additionalProperties, string $expected): void
     {

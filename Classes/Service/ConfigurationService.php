@@ -82,7 +82,7 @@ class ConfigurationService implements SingletonInterface
      */
     public function get(string $path)
     {
-        if (!array_key_exists($path, $this->configurationCache)) {
+        if (!\array_key_exists($path, $this->configurationCache)) {
             try {
                 $configuration = $this->configurationManager->getConfiguration(
                     ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT

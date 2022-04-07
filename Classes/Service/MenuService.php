@@ -79,7 +79,6 @@ class MenuService
     }
 
     /**
-     * @param MenuConfiguration $configuration
      * @return array<int, array<string, mixed>>|Menu
      */
     protected function processMenu(MenuConfiguration $configuration)
@@ -114,7 +113,6 @@ class MenuService
     }
 
     /**
-     * @param MenuConfiguration $configuration
      * @param array<int, array<string, mixed>> $processedMenu
      * @return MenuItem[]
      */
@@ -141,9 +139,7 @@ class MenuService
     }
 
     /**
-     * @param string $menuType
      * @param array<string, mixed> $processedMenuItem
-     * @return MenuItem
      */
     protected function initializeMenuItem(string $menuType, array $processedMenuItem): MenuItem
     {

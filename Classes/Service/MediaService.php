@@ -68,8 +68,6 @@ class MediaService
     }
 
     /**
-     * @param string $relationFieldName
-     * @param string $tableName
      * @param array<string, mixed> $record
      * @return MediaInterface[]
      */
@@ -160,7 +158,6 @@ class MediaService
 
     /**
      * @param int|CoreFileReference|ExtbaseFileReference $fileReference
-     * @return int|null
      */
     protected function resolveFileReference($fileReference): ?int
     {
@@ -171,7 +168,7 @@ class MediaService
             $fileReference = $fileReference->getUid();
         }
 
-        if (is_int($fileReference)) {
+        if (\is_int($fileReference)) {
             return $fileReference;
         }
 
@@ -181,7 +178,6 @@ class MediaService
 
     /**
      * @param int|CoreFile|ExtbaseFile $file
-     * @return int|null
      */
     protected function resolveFile($file): ?int
     {
@@ -192,7 +188,7 @@ class MediaService
             $file = $file->getUid();
         }
 
-        if (is_int($file)) {
+        if (\is_int($file)) {
             return $file;
         }
 
@@ -202,7 +198,6 @@ class MediaService
 
     /**
      * @param int|AbstractFileCollection $fileCollection
-     * @return int|null
      */
     protected function resolveFileCollection($fileCollection): ?int
     {
@@ -210,7 +205,7 @@ class MediaService
             $fileCollection = $fileCollection->getUid();
         }
 
-        if (is_int($fileCollection)) {
+        if (\is_int($fileCollection)) {
             return $fileCollection;
         }
 
@@ -220,7 +215,6 @@ class MediaService
 
     /**
      * @param string|Folder $folder
-     * @return string|null
      */
     protected function resolveFolder($folder): ?string
     {
@@ -228,7 +222,7 @@ class MediaService
             $folder = $folder->getCombinedIdentifier();
         }
 
-        if (is_string($folder)) {
+        if (\is_string($folder)) {
             return $folder;
         }
 

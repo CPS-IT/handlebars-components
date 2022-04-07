@@ -56,8 +56,8 @@ class MenuServiceTest extends FunctionalTestCase
 
         $this->subject = new MenuService(new ContentObjectRenderer(), new ContentDataProcessor(GeneralUtility::getContainer()));
 
-        $this->importDataSet(dirname(__DIR__) . '/Fixtures/pages.xml');
-        $this->importDataSet(dirname(__DIR__) . '/Fixtures/sys_template.xml');
+        $this->importDataSet(\dirname(__DIR__) . '/Fixtures/pages.xml');
+        $this->importDataSet(\dirname(__DIR__) . '/Fixtures/sys_template.xml');
 
         $this->setUpFrontendRootPage(1);
         $this->setUpFrontendSite(1);
@@ -66,8 +66,6 @@ class MenuServiceTest extends FunctionalTestCase
     /**
      * @test
      * @dataProvider buildMenuReturnsProcessedMenuDataProvider
-     * @param MenuConfiguration $configuration
-     * @param int $pageId
      * @param string[] $expectedMenuItemLinks
      */
     public function buildMenuReturnsProcessedMenu(MenuConfiguration $configuration, int $pageId, array $expectedMenuItemLinks): void
@@ -82,9 +80,9 @@ class MenuServiceTest extends FunctionalTestCase
 
         $jsonArray = json_decode($body, true);
 
-        self::assertCount(count($expectedMenuItemLinks), $jsonArray);
+        self::assertCount(\count($expectedMenuItemLinks), $jsonArray);
 
-        for ($i = 0; $i < count($expectedMenuItemLinks); $i++) {
+        for ($i = 0; $i < \count($expectedMenuItemLinks); $i++) {
             self::assertSame($expectedMenuItemLinks[$i], $jsonArray[$i]);
         }
     }

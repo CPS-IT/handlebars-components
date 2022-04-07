@@ -49,7 +49,6 @@ class PageFactory
 
     /**
      * @param array<string, mixed> $data
-     * @return Page
      */
     public function get(array $data): Page
     {
@@ -65,7 +64,6 @@ class PageFactory
 
     /**
      * @param array<string, mixed> $data
-     * @return PageType
      */
     protected function determinePageType(array $data): PageType
     {
@@ -74,7 +72,6 @@ class PageFactory
 
     /**
      * @param array<string, mixed> $data
-     * @return string
      */
     protected function determineLayout(array $data): string
     {

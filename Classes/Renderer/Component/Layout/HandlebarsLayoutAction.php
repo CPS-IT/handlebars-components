@@ -54,8 +54,6 @@ class HandlebarsLayoutAction
 
     /**
      * @param array<string, mixed> $data
-     * @param callable $renderFunction
-     * @param string $mode
      */
     public function __construct(array $data, callable $renderFunction, string $mode = self::REPLACE)
     {
@@ -95,7 +93,7 @@ class HandlebarsLayoutAction
 
     protected function validate(): void
     {
-        if (!in_array($this->mode, $this->getSupportedModes(), true)) {
+        if (!\in_array($this->mode, $this->getSupportedModes(), true)) {
             throw UnsupportedTypeException::create($this->mode);
         }
     }

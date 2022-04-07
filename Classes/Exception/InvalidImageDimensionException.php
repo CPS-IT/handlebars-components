@@ -21,30 +21,40 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Unit\Fixtures;
-
-use Fr\Typo3HandlebarsComponents\Pagination\NumberedPagination;
-use TYPO3\CMS\Core\Pagination\ArrayPaginator;
+namespace Fr\Typo3HandlebarsComponents\Exception;
 
 /**
- * PaginationTrait
+ * InvalidImageDimensionException
  *
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-trait PaginationTrait
+final class InvalidImageDimensionException extends \Exception
 {
     /**
-     * @param list<int>|null $items
+     * @param mixed $dimension
      */
-    protected function buildPagination(
-        int $currentPageNumber = 1,
-        int $itemsPerPage = 1,
-        int $maximumNumberOfLinks = 5,
-        array $items = null
-    ): NumberedPagination {
-        $paginator = new ArrayPaginator($items ?? range(1, 10), $currentPageNumber, $itemsPerPage);
+    public static function create($dimension): self
+    {
+        return new self(
+            sprintf('Image dimensions must be of type integer or string, %s given.', get_debug_type($dimension)),
+            1631807380
+        );
+    }
 
-        return new NumberedPagination($paginator, $maximumNumberOfLinks);
+    public static function forMissingDimensions(): self
+    {
+        return new self(
+            'No image dimensions defined. You must define at least one image dimension, e.g. width or height.',
+            1649237990
+        );
+    }
+
+    public static function forUnresolvableDimension(string $dimension): self
+    {
+        return new self(
+            sprintf('Image sizes must be integers, optionally followed by "c" or "m", "%s" given.', $dimension),
+            1631807435
+        );
     }
 }

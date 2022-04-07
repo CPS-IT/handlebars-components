@@ -36,13 +36,11 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 trait DynamicVariableInvocationTrait
 {
     /**
-     * @param string $name
      * @param mixed[] $arguments
-     * @return bool
      */
     public function __call(string $name, array $arguments): bool
     {
-        $className = get_class($this);
+        $className = \get_class($this);
 
         // Only "is[...]" methods are supported by this class (see method annotations above)
         if ('is' !== substr($name, 0, 2)) {
@@ -55,16 +53,15 @@ trait DynamicVariableInvocationTrait
         $constant = sprintf('%s::%s', $className, $pageTypeUnderscored);
 
         // Throw exception if resolved constant is not available within this class
-        if (!defined($constant)) {
+        if (!\defined($constant)) {
             throw UnsupportedTypeException::create($constant);
         }
 
-        return $this->is(constant($constant));
+        return $this->is(\constant($constant));
     }
 
     /**
      * @param mixed $type
-     * @return bool
      */
     abstract public function is($type): bool;
 }

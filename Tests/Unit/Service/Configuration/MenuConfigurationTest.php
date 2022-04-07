@@ -242,7 +242,6 @@ class MenuConfigurationTest extends UnitTestCase
     /**
      * @test
      * @dataProvider addTypoScriptConfigurationAddsTypoScriptConfigurationAtGivenPathDataProvider
-     * @param string $path
      * @param mixed $value
      * @param array<string, mixed> $expected
      */

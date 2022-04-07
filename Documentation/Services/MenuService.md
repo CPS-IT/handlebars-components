@@ -22,11 +22,11 @@ implementation different menus can be created depending on their type
 
 ### Default menu
 
-[Documentation](https://docs.typo3.org/m/typo3/reference-typoscript/master/en-us/ContentObjects/Fluidtemplate/DataProcessing/MenuProcessor.html)
+[Documentation](https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/ContentObjects/Fluidtemplate/DataProcessing/MenuProcessor.html)
 
 #### Directory of pages
 
-[TypoScript reference](https://docs.typo3.org/m/typo3/reference-typoscript/master/en-us/ContentObjects/Hmenu/Index.html#special-directory)
+[TypoScript reference](https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/ContentObjects/Hmenu/Index.html#special-directory)
 
 ```php
 use \Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
@@ -40,7 +40,7 @@ $menu = $menuService->buildMenu($menuConfiguration);
 
 #### List of pages
 
-[TypoScript reference](https://docs.typo3.org/m/typo3/reference-typoscript/master/en-us/ContentObjects/Hmenu/Index.html#special-list)
+[TypoScript reference](https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/ContentObjects/Hmenu/Index.html#special-list)
 
 ```php
 use \Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
@@ -53,7 +53,7 @@ $menu = $menuService->buildMenu($menuConfiguration);
 
 #### Rootline menu
 
-[TypoScript reference](https://docs.typo3.org/m/typo3/reference-typoscript/master/en-us/ContentObjects/Hmenu/Index.html#special-rootline)
+[TypoScript reference](https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/ContentObjects/Hmenu/Index.html#special-rootline)
 
 ```php
 use \Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
@@ -67,7 +67,7 @@ $menu = $menuService->buildMenu($menuConfiguration);
 
 ### Language menu
 
-[Documentation](https://docs.typo3.org/m/typo3/reference-typoscript/master/en-us/ContentObjects/Fluidtemplate/DataProcessing/LanguageMenuProcessor.html)
+[Documentation](https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/ContentObjects/Fluidtemplate/DataProcessing/LanguageMenuProcessor.html)
 
 ```php
 use \Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;

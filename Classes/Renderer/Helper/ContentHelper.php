@@ -42,7 +42,6 @@ class ContentHelper implements HelperInterface, LoggerAwareInterface
     use LoggerAwareTrait;
 
     /**
-     * @param string $name
      * @param array<string, mixed> $options
      * @return string|bool
      */
@@ -64,7 +63,7 @@ class ContentHelper implements HelperInterface, LoggerAwareInterface
         $layout = end($layoutStack);
 
         // Usage in conditional context: Test whether given required block is registered
-        if (!is_callable($options['fn'] ?? '')) {
+        if (!\is_callable($options['fn'] ?? '')) {
             if (!$layout->isParsed()) {
                 $layout->parse();
             }

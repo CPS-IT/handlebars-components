@@ -16,14 +16,17 @@
 		"cpsit/typo3-handlebars": "^0.7",
 		"psr/http-message": "^1.0",
 		"psr/log": "^1.0 || ^2.0 || ^3.0",
+		"symfony/dependency-injection": "^4.4 || ^5.0",
 		"symfony/finder": "^4.4 || ^5.0",
 		"symfony/polyfill-php80": "^1.23",
 		"typo3/cms-core": "^10.4 || ^11.5",
 		"typo3/cms-extbase": "^10.4 || ^11.5",
-		"typo3/cms-frontend": "^10.4 || ^11.5"
+		"typo3/cms-frontend": "^10.4 || ^11.5",
+		"zordius/lightncandy": "^1.2"
 	},
 	"require-dev": {
 		"apache-solr-for-typo3/solr": "^11.5@RC",
+		"armin/editorconfig-cli": "^1.5",
 		"ergebnis/composer-normalize": "^2.15",
 		"helmich/typo3-typoscript-lint": "^2.5",
 		"jangregor/phpstan-prophecy": "^1.0",
@@ -35,6 +38,9 @@
 		"saschaegerer/phpstan-typo3": "^1.0",
 		"typo3/coding-standards": "^0.5.0",
 		"typo3/testing-framework": "^6.11.2"
+	},
+	"suggest": {
+		"apache-solr-for-typo3/solr": "This extension provides a pagination component for EXT:solr (^11.5)"
 	},
 	"autoload": {
 		"psr-4": {
@@ -74,9 +80,13 @@
 			"[ -L .Build/web/typo3conf/ext/handlebars_components ] || ln -snvf ../../../../. .Build/web/typo3conf/ext/handlebars_components"
 		],
 		"lint": [
+			"@lint:composer",
+			"@lint:editorconfig",
 			"@lint:php",
 			"@lint:typoscript"
 		],
+		"lint:composer": "@composer normalize --no-check-lock --no-update-lock",
+		"lint:editorconfig": "ec --fix --git-only",
 		"lint:php": "php-cs-fixer fix",
 		"lint:typoscript": "typoscript-lint -c typoscript-lint.yml",
 		"sca": [

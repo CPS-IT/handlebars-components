@@ -9,6 +9,7 @@ default:
 
 stages:
   - build
+  - validate
   - lint
   - sca
   - test
@@ -31,16 +32,46 @@ build:
     paths:
       - .Build/
 
+.validate-template:
+  stage: validate
+  needs:
+    - build
+  before_script:
+    # @todo remove once https://gitlab.321.works/x-it-docker/docker-php/-/merge_requests/7 is merged
+    - composer global config bin-dir /usr/local/bin
+
+validate:composer:
+  extends: .validate-template
+  script:
+    - composer validate --no-check-lock
+
+validate:required-dependencies:
+  extends: .validate-template
+  script:
+    - composer global require maglnet/composer-require-checker
+    - composer require --no-progress --no-plugins apache-solr-for-typo3/solr:"^11.5@RC"
+    - composer-require-checker check --config-file dependency-checker.json
+
+validate:unused-dependencies:
+  extends: .validate-template
+  script:
+    - composer global require icanhazstring/composer-unused
+    - composer install --no-progress --no-plugins
+    - composer-unused
+
 lint:composer:
   stage: lint
   needs:
     - build
   script:
-    - composer normalize --dry-run
-  rules:
-    - if: '$RENDER_DOCS'
-      when: never
-    - when: on_success
+    - composer lint:composer -- --dry-run
+
+lint:editorconfig:
+  stage: lint
+  needs:
+    - build
+  script:
+    - .Build/bin/ec --git-only
 
 lint:php:
   stage: lint
@@ -48,10 +79,6 @@ lint:php:
     - build
   script:
     - composer lint:php -- --dry-run
-  rules:
-    - if: '$RENDER_DOCS'
-      when: never
-    - when: on_success
 
 lint:typoscript:
   stage: lint
@@ -59,10 +86,6 @@ lint:typoscript:
     - build
   script:
     - composer lint:typoscript -- --fail-on-warnings
-  rules:
-    - if: '$RENDER_DOCS'
-      when: never
-    - when: on_success
 
 sca:php:
   stage: sca
@@ -74,10 +97,6 @@ sca:php:
   artifacts:
     reports:
       codequality: .Build/log/phpstan.json
-  rules:
-    - if: '$RENDER_DOCS'
-      when: never
-    - when: on_success
 
 test:
   stage: test
@@ -101,7 +120,3 @@ test:
       junit:
         - .Build/log/coverage/junit/functional.xml
         - .Build/log/coverage/junit/unit.xml
-  rules:
-    - if: '$RENDER_DOCS'
-      when: never
-    - when: on_success

@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Resource\Processing;
 
 use Fr\Typo3HandlebarsComponents\Domain\Model\Media\Media;
+use Fr\Typo3HandlebarsComponents\Resource\ImageDimensions;
 use Fr\Typo3HandlebarsComponents\Resource\Processing\ImageProcessingInstruction;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\FileHandlingTrait;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
@@ -45,6 +46,11 @@ class ImageProcessingInstructionTest extends FunctionalTestCase
     protected $media;
 
     /**
+     * @var ImageDimensions
+     */
+    protected $dimensions;
+
+    /**
      * @var ImageProcessingInstruction
      */
     protected $subject;
@@ -52,8 +58,12 @@ class ImageProcessingInstructionTest extends FunctionalTestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         $this->media = new Media($this->createDummyFile());
-        $this->subject = new ImageProcessingInstruction($this->media, '100c', '200m');
+        $this->dimensions = ImageDimensions::create()
+            ->setWidth('100c')
+            ->setHeight('200m');
+        $this->subject = new ImageProcessingInstruction($this->media, $this->dimensions);
     }
 
     /**
@@ -74,7 +84,10 @@ class ImageProcessingInstructionTest extends FunctionalTestCase
     public function parseReturnsProcessingInstructionsWithParsedCropArea(): void
     {
         $fileReference = $this->createDummyFileReference();
-        $subject = new ImageProcessingInstruction(new Media($fileReference), 100, 200);
+        $dimensions = ImageDimensions::create()
+            ->setWidth(100)
+            ->setHeight(200);
+        $subject = new ImageProcessingInstruction(new Media($fileReference), $dimensions);
 
         /** @var Area $actual */
         $actual = $subject->parse()['crop'];
@@ -91,7 +104,10 @@ class ImageProcessingInstructionTest extends FunctionalTestCase
     public function parseReturnsProcessingInstructionsWithEmptyCropArea(): void
     {
         $fileReference = $this->createDummyFileReference(true);
-        $subject = new ImageProcessingInstruction(new Media($fileReference), 100, 200);
+        $dimensions = ImageDimensions::create()
+            ->setWidth(100)
+            ->setHeight(200);
+        $subject = new ImageProcessingInstruction(new Media($fileReference), $dimensions);
 
         self::assertNull($subject->parse()['crop']);
     }
