@@ -102,6 +102,33 @@ class ExtendHelperTest extends FunctionalTestCase
         self::assertSame($expected, $json);
     }
 
+    /**
+     * @test
+     */
+    public function helperReplacesVariablesCorrectlyInAllContexts(): void
+    {
+        $actual = trim($this->renderer->render('@simple-layout-extended-with-context', [
+            'foo' => 123,
+            'customContext' => [
+                'foo' => 456,
+            ],
+        ]));
+
+        $expected = [
+            'foo' => 456,
+            'customContext' => [
+                'foo' => 456,
+            ],
+        ];
+
+        self::assertJson($actual);
+
+        $json = json_decode($actual, true);
+        unset($json['_layoutStack']);
+
+        self::assertSame($expected, $json);
+    }
+
     public function getTemplateRootPath(): string
     {
         return 'EXT:test_extension/Resources/Templates/';
