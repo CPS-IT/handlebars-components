@@ -1,3 +1,7 @@
+2022-06-24         [RELEASE] Release of handlebars-components 0.5.1 (Elias Häußler)
+2022-06-24 f76df3e [BUGFIX] Replace variables in all contexts with `extend` helper (Elias Häußler)
+2022-04-07 1acd17c [TASK] Remove resolved TODO in CI validation jobs (Elias Häußler)
+
 2022-04-07         [RELEASE] Release of handlebars_components 0.5.0 (Elias Häußler)
 2022-04-07 1c7cfe9 [FEATURE] Provide simple constructor for ImageDimensions (Elias Häußler)
 2022-04-07 f104f44 [TASK] Add TODO for unmerged feature branch (Elias Häußler)
