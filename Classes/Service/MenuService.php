@@ -97,12 +97,12 @@ class MenuService
                 $processedVariables = $dataProcessor->process($this->contentObjectRenderer, [], $processorConfiguration, []);
                 break;
 
-            // Custom menu (calls custom data processors)
+                // Custom menu (calls custom data processors)
             case MenuConfiguration::CUSTOM:
                 $processedVariables = $this->contentDataProcessor->process($this->contentObjectRenderer, $processorConfiguration, []);
                 break;
 
-            // Default menu
+                // Default menu
             default:
                 $dataProcessor = GeneralUtility::makeInstance(MenuProcessor::class);
                 $processedVariables = $dataProcessor->process($this->contentObjectRenderer, [], $processorConfiguration, []);
@@ -157,7 +157,7 @@ class MenuService
                 $menuItem->setAvailable((bool)$processedMenuItem['available']);
                 break;
 
-            // Custom/Default menu
+                // Custom/Default menu
             case MenuConfiguration::CUSTOM:
             default:
                 $menuItem = new MenuItem($link);

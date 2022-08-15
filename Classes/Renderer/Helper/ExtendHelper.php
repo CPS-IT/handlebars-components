@@ -55,7 +55,7 @@ class ExtendHelper implements HelperInterface
 
         // Custom context is optional
         $customContext = [];
-        if ([] !== $arguments) {
+        if ($arguments !== []) {
             $customContext = (array)array_pop($arguments);
         }
 

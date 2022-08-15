@@ -157,11 +157,11 @@ class NumberedPagination implements PaginationInterface
         $currentStartRange = $currentPageNumber - $firstPageNumber;
         $currentEndRange = $lastPageNumber - $currentPageNumber;
 
-        if (0 === $currentStartRange) {
+        if ($currentStartRange === 0) {
             // We're on the first page
             $firstDisplayedPage = $firstPageNumber;
             $lastDisplayedPage = $firstDisplayedPage + $this->maximumNumberOfLinks - 1;
-        } elseif (0 === $currentEndRange) {
+        } elseif ($currentEndRange === 0) {
             // We're on the last page
             $lastDisplayedPage = $lastPageNumber;
             $firstDisplayedPage = $lastDisplayedPage - ($this->maximumNumberOfLinks - 1);

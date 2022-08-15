@@ -106,7 +106,7 @@ class MenuConfiguration
         $excludedParameters = array_filter($excludedParameters, 'is_string');
 
         return new self([
-            'languages' => [] !== $languages ? implode(',', $languages) : 'auto',
+            'languages' => $languages !== [] ? implode(',', $languages) : 'auto',
             'languages.' => [
                 'wrap' => '|',
             ],
@@ -167,7 +167,7 @@ class MenuConfiguration
      */
     protected function validate(): void
     {
-        if (self::CUSTOM === $this->type && !isset($this->typoScriptConfiguration['dataProcessing.'])) {
+        if ($this->type === self::CUSTOM && !isset($this->typoScriptConfiguration['dataProcessing.'])) {
             throw InvalidConfigurationException::create('dataProcessing.');
         }
 

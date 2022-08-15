@@ -40,10 +40,10 @@ trait DynamicVariableInvocationTrait
      */
     public function __call(string $name, array $arguments): bool
     {
-        $className = \get_class($this);
+        $className = static::class;
 
         // Only "is[...]" methods are supported by this class (see method annotations above)
-        if ('is' !== substr($name, 0, 2)) {
+        if (substr($name, 0, 2) !== 'is') {
             throw UnsupportedMethodException::create($name, $className);
         }
 

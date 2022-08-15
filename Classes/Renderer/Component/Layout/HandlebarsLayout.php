@@ -74,7 +74,7 @@ class HandlebarsLayout
      */
     public function getActions(string $name = null): array
     {
-        if (null === $name) {
+        if ($name === null) {
             return $this->actions;
         }
 

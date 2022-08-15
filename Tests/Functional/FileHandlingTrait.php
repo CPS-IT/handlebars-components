@@ -107,7 +107,7 @@ trait FileHandlingTrait
 
     protected function getResourceFactory(): ResourceFactory
     {
-        if (null === $this->resourceFactory) {
+        if ($this->resourceFactory === null) {
             $this->resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
         }
 
@@ -116,7 +116,7 @@ trait FileHandlingTrait
 
     protected function getPersistenceManager(): PersistenceManagerInterface
     {
-        if (null === $this->persistenceManager) {
+        if ($this->persistenceManager === null) {
             $this->persistenceManager = GeneralUtility::makeInstance(PersistenceManagerInterface::class);
         }
 
