@@ -65,10 +65,10 @@ class Media implements MediaInterface
         if ($this->file->hasProperty('alternative')) {
             $alternative = $this->file->getProperty('alternative');
         }
-        if (null === $alternative && $this->file->hasProperty('title')) {
+        if ($alternative === null && $this->file->hasProperty('title')) {
             $alternative = $this->file->getProperty('title');
         }
-        if (null === $alternative) {
+        if ($alternative === null) {
             $alternative = $this->file->getNameWithoutExtension();
         }
 

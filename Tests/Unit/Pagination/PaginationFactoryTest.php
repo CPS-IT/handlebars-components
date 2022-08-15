@@ -160,7 +160,7 @@ class PaginationFactoryTest extends UnitTestCase
     {
         $serverRequest = new ServerRequest('https://www.example.com');
 
-        if (null !== $pageNumber) {
+        if ($pageNumber !== null) {
             $serverRequest = $serverRequest->withQueryParams(['page' => $pageNumber]);
         }
 

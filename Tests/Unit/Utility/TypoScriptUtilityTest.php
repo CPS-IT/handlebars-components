@@ -70,7 +70,7 @@ class TypoScriptUtilityTest extends UnitTestCase
      */
     public function validateTypoScriptArrayValidatesGivenTypoScriptArray(array $typoScriptArray, string $expectedExceptionPath = null): void
     {
-        if (null !== $expectedExceptionPath) {
+        if ($expectedExceptionPath !== null) {
             $this->expectException(InvalidConfigurationException::class);
             $this->expectExceptionCode(1631118231);
             $this->expectExceptionMessage(sprintf('The configuration for path "%s" is missing or invalid.', $expectedExceptionPath));
