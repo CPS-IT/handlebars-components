@@ -5,7 +5,7 @@ variables:
   COMPOSER_VERSION: "2"
 
 default:
-  image: $CI_REGISTRY/x-it-docker/docker-php:8.0-build-stable
+  image: $CI_REGISTRY/x-it-docker/docker-php:8.1-build-stable
 
 stages:
   - build
