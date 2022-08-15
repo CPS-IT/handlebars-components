@@ -138,12 +138,12 @@ class ImageProcessingInstruction
 
     public function isDefault(): bool
     {
-        return self::DEFAULT === $this->type;
+        return $this->type === self::DEFAULT;
     }
 
     public function isSource(): bool
     {
-        return 0 === strpos($this->type, self::SOURCE);
+        return strpos($this->type, self::SOURCE) === 0;
     }
 
     public function getMediaQuery(): ?string
@@ -212,10 +212,10 @@ class ImageProcessingInstruction
     protected function validate(): void
     {
         if (
-            null === $this->getWidth()
-            && null === $this->getHeight()
-            && null === $this->getMaxWidth()
-            && null === $this->getMaxHeight()
+            $this->getWidth() === null
+            && $this->getHeight() === null
+            && $this->getMaxWidth() === null
+            && $this->getMaxHeight() === null
         ) {
             throw InvalidImageDimensionException::forMissingDimensions();
         }

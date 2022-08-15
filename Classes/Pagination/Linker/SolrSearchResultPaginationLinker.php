@@ -53,7 +53,7 @@ final class SolrSearchResultPaginationLinker implements PaginationLinkerInterfac
 
     public function buildUrlForPage(PaginationInterface $pagination, int $page): string
     {
-        if (null === $this->searchRequest) {
+        if ($this->searchRequest === null) {
             throw new \RuntimeException(
                 'Unable to build pagination link without a valid solr search request instance.',
                 1645175669

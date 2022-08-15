@@ -135,7 +135,7 @@ class ImageDimensions
      */
     protected function parseSize($size)
     {
-        if (null === $size) {
+        if ($size === null) {
             return null;
         }
 

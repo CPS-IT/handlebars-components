@@ -95,7 +95,7 @@ class RenderHelper implements HelperInterface
         // Use default context as new context if no custom context is given, otherwise
         // merge both contexts in case merge=true is passed as helper option, e.g.
         // {{render '@foo' customContext merge=true}}
-        if ([] === $context) {
+        if ($context === []) {
             $context = $defaultContext;
         } elseif ($merge) {
             ArrayUtility::mergeRecursiveWithOverrule($defaultContext, $context);
