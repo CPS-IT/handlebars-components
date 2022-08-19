@@ -120,3 +120,6 @@ test:
       junit:
         - .Build/log/coverage/junit/functional.xml
         - .Build/log/coverage/junit/unit.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: .Build/log/coverage/cobertura.xml

@@ -102,7 +102,7 @@
 			"@test:ci:unit"
 		],
 		"test:ci:functional": "phpunit -c phpunit.ci.functional.xml",
-		"test:ci:merge": "phpcov merge --html .Build/log/coverage/html/_merged --text php://stdout .Build/log/coverage/php",
+		"test:ci:merge": "phpcov merge --html .Build/log/coverage/html/_merged --cobertura .Build/log/coverage/cobertura.xml --text php://stdout .Build/log/coverage/php",
 		"test:ci:unit": "phpunit -c phpunit.ci.unit.xml",
 		"test:functional": "phpunit -c phpunit.functional.xml",
 		"test:unit": "phpunit -c phpunit.unit.xml"
