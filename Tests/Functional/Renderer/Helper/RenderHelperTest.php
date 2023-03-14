@@ -33,6 +33,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Http\Uri;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
@@ -134,6 +135,11 @@ class RenderHelperTest extends FunctionalTestCase
      */
     public function helperCanBeCalledToRenderANonCacheableTemplate(): void
     {
+        // Provide dummy request for TYPO3 < 11
+        if ((new Typo3Version())->getMajorVersion() < 11) {
+            $GLOBALS['TYPO3_REQUEST'] = new ServerRequest();
+        }
+
         $GLOBALS['TSFE'] = new TypoScriptFrontendController(
             new Context(),
             new Site('foo', 1, []),

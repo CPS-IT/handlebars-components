@@ -30,7 +30,7 @@ use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference as ExtbaseFileReference;
-use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 /**
  * FileHandlingTrait
@@ -46,7 +46,7 @@ trait FileHandlingTrait
     protected $resourceFactory;
 
     /**
-     * @var PersistenceManagerInterface
+     * @var PersistenceManager
      */
     protected $persistenceManager;
 
@@ -114,10 +114,10 @@ trait FileHandlingTrait
         return $this->resourceFactory;
     }
 
-    protected function getPersistenceManager(): PersistenceManagerInterface
+    protected function getPersistenceManager(): PersistenceManager
     {
         if ($this->persistenceManager === null) {
-            $this->persistenceManager = GeneralUtility::makeInstance(PersistenceManagerInterface::class);
+            $this->persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
         }
 
         return $this->persistenceManager;
