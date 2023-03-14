@@ -25,7 +25,7 @@
 		"zordius/lightncandy": "^1.2"
 	},
 	"require-dev": {
-		"apache-solr-for-typo3/solr": "^11.5",
+		"apache-solr-for-typo3/solr": "^11.0",
 		"armin/editorconfig-cli": "^1.5",
 		"ergebnis/composer-normalize": "^2.15",
 		"helmich/typo3-typoscript-lint": "^2.5",
