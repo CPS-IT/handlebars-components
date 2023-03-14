@@ -40,7 +40,7 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class ContentHelperTest extends FunctionalTestCase
+final class ContentHelperTest extends FunctionalTestCase
 {
     use HandlebarsTemplateResolverTrait;
 
@@ -48,15 +48,8 @@ class ContentHelperTest extends FunctionalTestCase
         'typo3conf/ext/handlebars_components/Tests/Functional/Fixtures/test_extension',
     ];
 
-    /**
-     * @var HandlebarsRenderer
-     */
-    protected $renderer;
-
-    /**
-     * @var TestLogger
-     */
-    protected $logger;
+    protected HandlebarsRenderer $renderer;
+    protected TestLogger $logger;
 
     protected function setUp(): void
     {

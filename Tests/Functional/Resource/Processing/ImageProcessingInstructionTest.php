@@ -37,24 +37,13 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class ImageProcessingInstructionTest extends FunctionalTestCase
+final class ImageProcessingInstructionTest extends FunctionalTestCase
 {
     use FileHandlingTrait;
 
-    /**
-     * @var Media
-     */
-    protected $media;
-
-    /**
-     * @var ImageDimensions
-     */
-    protected $dimensions;
-
-    /**
-     * @var ImageProcessingInstruction
-     */
-    protected $subject;
+    protected Media $media;
+    protected ImageDimensions $dimensions;
+    protected ImageProcessingInstruction $subject;
 
     protected function setUp(): void
     {

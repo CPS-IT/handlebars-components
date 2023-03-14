@@ -37,22 +37,11 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class ImageProcessingInstructionTest extends UnitTestCase
+final class ImageProcessingInstructionTest extends UnitTestCase
 {
-    /**
-     * @var Media
-     */
-    protected $media;
-
-    /**
-     * @var ImageDimensions
-     */
-    protected $dimensions;
-
-    /**
-     * @var ImageProcessingInstruction
-     */
-    protected $subject;
+    protected Media $media;
+    protected ImageDimensions $dimensions;
+    protected ImageProcessingInstruction $subject;
 
     protected function setUp(): void
     {

@@ -33,6 +33,8 @@ use Fr\Typo3HandlebarsComponents\Renderer\Helper\ContentHelper;
 use Fr\Typo3HandlebarsComponents\Renderer\Helper\ExtendHelper;
 use Fr\Typo3HandlebarsComponents\Renderer\Helper\RenderHelper;
 use Fr\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver;
+use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyExtensionConfiguration;
+use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyExtensionConfigurationV10;
 use Fr\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyConfigurationManager;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -41,7 +43,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\DependencyInjection\PublicServicePass;
-use TYPO3\CMS\Core\Exception;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
@@ -52,12 +54,12 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class FeatureRegistrationPassTest extends UnitTestCase
+final class FeatureRegistrationPassTest extends UnitTestCase
 {
     /**
      * @var array<string, bool>
      */
-    protected $activatedFeatures = [
+    protected array $activatedFeatures = [
         'blockHelper' => false,
         'contentHelper' => false,
         'extendHelper' => false,
@@ -156,31 +158,10 @@ class FeatureRegistrationPassTest extends UnitTestCase
         $container->register(ContentObjectRenderer::class);
 
         // Provide dummy extension configuration class
-        $dummyExtensionConfiguration = new class($this->activatedFeatures) {
-            /**
-             * @var array<string, bool>
-             */
-            private $activatedFeatures;
-
-            /**
-             * @param array<string, bool> $activatedFeatures
-             */
-            public function __construct(array $activatedFeatures)
-            {
-                $this->activatedFeatures = $activatedFeatures;
-            }
-
-            public function get(/** @noinspection PhpUnusedParameterInspection */ string $extensionKey, string $path): bool
-            {
-                [, $featureName] = explode('/', $path);
-
-                if (!isset($this->activatedFeatures[$featureName])) {
-                    throw new Exception('dummy exception');
-                }
-
-                return $this->activatedFeatures[$featureName];
-            }
-        };
+        $dummyExtensionConfiguration = (new Typo3Version())->getMajorVersion() < 10
+            ? new DummyExtensionConfigurationV10($this->activatedFeatures)
+            : new DummyExtensionConfiguration($this->activatedFeatures)
+        ;
         $container->set(ExtensionConfiguration::class, $dummyExtensionConfiguration);
 
         // Simulate required services

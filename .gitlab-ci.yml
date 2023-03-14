@@ -12,6 +12,7 @@ stages:
   - validate
   - lint
   - sca
+  - migration
   - test
 
 workflow:
@@ -97,6 +98,13 @@ sca:php:
   artifacts:
     reports:
       codequality: .Build/log/phpstan.json
+
+migration:rector:
+  stage: migration
+  needs:
+    - build
+  script:
+    - composer migration:rector -- --dry-run
 
 test:
   stage: test

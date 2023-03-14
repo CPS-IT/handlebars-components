@@ -39,17 +39,10 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class AbstractPagePresenterTest extends FunctionalTestCase
+final class AbstractPagePresenterTest extends FunctionalTestCase
 {
-    /**
-     * @var PageRenderer
-     */
-    protected $pageRenderer;
-
-    /**
-     * @var AbstractPagePresenterTestClass
-     */
-    protected $subject;
+    protected PageRenderer $pageRenderer;
+    protected AbstractPagePresenterTestClass $subject;
 
     protected function setUp(): void
     {

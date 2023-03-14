@@ -34,19 +34,12 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class PaginationVariablesResolverTest extends UnitTestCase
+final class PaginationVariablesResolverTest extends UnitTestCase
 {
     use PaginationTrait;
 
-    /**
-     * @var PaginationVariablesResolver
-     */
-    protected $subject;
-
-    /**
-     * @var DummyPaginationLinker
-     */
-    protected $linker;
+    protected PaginationVariablesResolver $subject;
+    protected DummyPaginationLinker $linker;
 
     protected function setUp(): void
     {

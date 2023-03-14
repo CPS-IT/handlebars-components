@@ -42,10 +42,7 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  */
 final class DummyMenuProcessor implements DataProcessorInterface
 {
-    /**
-     * @var ContentObjectRenderer
-     */
-    public $cObj;
+    public ContentObjectRenderer $cObj;
 
     /**
      * @param array<string, mixed> $contentObjectConfiguration

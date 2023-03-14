@@ -41,5 +41,5 @@ final class TemplatePathAwareConfigurationTraitTestClass
     /**
      * @var array<string, mixed>
      */
-    public $configuration = [];
+    public array $configuration = [];
 }

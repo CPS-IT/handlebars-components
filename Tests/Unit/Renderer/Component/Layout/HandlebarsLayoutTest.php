@@ -34,17 +34,10 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class HandlebarsLayoutTest extends UnitTestCase
+final class HandlebarsLayoutTest extends UnitTestCase
 {
-    /**
-     * @var BufferedOutput
-     */
-    protected $output;
-
-    /**
-     * @var HandlebarsLayout
-     */
-    protected $subject;
+    protected BufferedOutput $output;
+    protected HandlebarsLayout $subject;
 
     protected function setUp(): void
     {

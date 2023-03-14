@@ -34,17 +34,10 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class OnlineMediaTest extends UnitTestCase
+final class OnlineMediaTest extends UnitTestCase
 {
-    /**
-     * @var File
-     */
-    protected $file;
-
-    /**
-     * @var OnlineMedia
-     */
-    protected $subject;
+    protected File $file;
+    protected OnlineMedia $subject;
 
     protected function setUp(): void
     {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the TYPO3 CMS extension "handlebars_components".
  *
- * Copyright (C) 2021 Elias Häußler <e.haeussler@familie-redlich.de>
+ * Copyright (C) 2023 Elias Häußler <e.haeussler@familie-redlich.de>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,28 +21,41 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Unit\Exception;
+namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures;
 
-use Fr\Typo3HandlebarsComponents\Exception\UnsupportedTypeException;
-use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Exception;
 
 /**
- * UnsupportedTypeExceptionTest
+ * DummyExtensionConfiguration
  *
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
+ * @internal
  */
-final class UnsupportedTypeExceptionTest extends UnitTestCase
+final class DummyExtensionConfiguration extends ExtensionConfiguration
 {
     /**
-     * @test
+     * @var array<string, bool>
      */
-    public function createReturnsExceptionForGivenType(): void
-    {
-        $subject = UnsupportedTypeException::create('foo');
+    private array $activatedFeatures;
 
-        self::assertInstanceOf(UnsupportedTypeException::class, $subject);
-        self::assertSame('The type "foo" is not supported.', $subject->getMessage());
-        self::assertSame(1630333499, $subject->getCode());
+    /**
+     * @param array<string, bool> $activatedFeatures
+     */
+    public function __construct(array $activatedFeatures)
+    {
+        $this->activatedFeatures = $activatedFeatures;
+    }
+
+    public function get(string $extension, string $path = ''): bool
+    {
+        [, $featureName] = explode('/', $path);
+
+        if (!isset($this->activatedFeatures[$featureName])) {
+            throw new Exception('dummy exception');
+        }
+
+        return $this->activatedFeatures[$featureName];
     }
 }

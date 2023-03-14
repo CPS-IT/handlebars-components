@@ -40,20 +40,9 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
  */
 trait FileHandlingTrait
 {
-    /**
-     * @var ResourceFactory
-     */
-    protected $resourceFactory;
-
-    /**
-     * @var PersistenceManager
-     */
-    protected $persistenceManager;
-
-    /**
-     * @var File|null
-     */
-    protected $file;
+    protected ?ResourceFactory $resourceFactory = null;
+    protected ?PersistenceManager $persistenceManager = null;
+    protected ?File $file = null;
 
     protected function createDummyFile(): File
     {
@@ -76,7 +65,7 @@ trait FileHandlingTrait
 
     protected function createDummyFileReference(bool $useEmptyCropping = false, bool $persist = false): FileReference
     {
-        $file = $this->file ?? $this->file = $this->createDummyFile();
+        $file = $this->file ??= $this->createDummyFile();
 
         if ($useEmptyCropping) {
             $crop = '{"default":{"cropArea":{"height":1,"width":1,"x":0,"y":0},"selectedRatio":"NaN","focusArea":null}}';

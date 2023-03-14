@@ -33,7 +33,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class HandlebarsLayoutActionTest extends UnitTestCase
+final class HandlebarsLayoutActionTest extends UnitTestCase
 {
     /**
      * @test
@@ -57,9 +57,7 @@ class HandlebarsLayoutActionTest extends UnitTestCase
          * @param array<string, string> $data
          * @return string
          */
-        $function = function (array $data): string {
-            return $data['foo'];
-        };
+        $function = static fn (array $data): string => $data['foo'];
         $subject = new HandlebarsLayoutAction(['foo' => 'baz'], $function, $mode);
 
         self::assertSame($expected, $subject->render('foo'));

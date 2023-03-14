@@ -42,19 +42,12 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class MediaResourceConverterTest extends FunctionalTestCase
+final class MediaResourceConverterTest extends FunctionalTestCase
 {
     use FileHandlingTrait;
 
-    /**
-     * @var OnlineMediaHelperRegistry
-     */
-    protected $onlineMediaHelperRegistry;
-
-    /**
-     * @var MediaResourceConverter
-     */
-    protected $subject;
+    protected OnlineMediaHelperRegistry $onlineMediaHelperRegistry;
+    protected MediaResourceConverter $subject;
 
     protected function setUp(): void
     {
