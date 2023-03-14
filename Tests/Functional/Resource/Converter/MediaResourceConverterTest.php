@@ -29,6 +29,7 @@ use Fr\Typo3HandlebarsComponents\Exception\UnsupportedResourceException;
 use Fr\Typo3HandlebarsComponents\Resource\Converter\MediaResourceConverter;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\FileHandlingTrait;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyFile;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 use TYPO3\CMS\Core\Resource\ResourceStorage;
@@ -60,6 +61,12 @@ class MediaResourceConverterTest extends FunctionalTestCase
         parent::setUp();
         $this->onlineMediaHelperRegistry = GeneralUtility::makeInstance(OnlineMediaHelperRegistry::class);
         $this->subject = new MediaResourceConverter($this->onlineMediaHelperRegistry);
+
+        // Initialize backend user for TYPO3 < 11
+        if ((new Typo3Version())->getMajorVersion() < 11) {
+            $this->importCSVDataSet(\dirname(__DIR__, 2) . '/Fixtures/be_users.csv');
+            $this->setUpBackendUser(1);
+        }
     }
 
     /**

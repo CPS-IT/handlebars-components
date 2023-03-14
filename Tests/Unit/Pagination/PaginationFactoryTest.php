@@ -30,6 +30,7 @@ use Fr\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyConfigurationManager;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -108,6 +109,10 @@ class PaginationFactoryTest extends UnitTestCase
      */
     public function getReturnsPaginationForSolrSearchResultSet(): void
     {
+        if ((new Typo3Version())->getMajorVersion() < 11) {
+            self::markTestSkipped('The Solr component requires TYPO3 >= 11.5');
+        }
+
         self::assertInstanceOf(
             ResultsPaginator::class,
             $this->subject->get(new SearchResultSet())->getPaginator()
