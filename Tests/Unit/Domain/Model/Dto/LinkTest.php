@@ -32,12 +32,9 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class LinkTest extends UnitTestCase
+final class LinkTest extends UnitTestCase
 {
-    /**
-     * @var Link
-     */
-    protected $subject;
+    protected Link $subject;
 
     protected function setUp(): void
     {

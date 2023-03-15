@@ -34,14 +34,11 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class NumberedPaginationTest extends UnitTestCase
+final class NumberedPaginationTest extends UnitTestCase
 {
     use PaginationTrait;
 
-    /**
-     * @var NumberedPagination
-     */
-    protected $subject;
+    protected NumberedPagination $subject;
 
     protected function setUp(): void
     {

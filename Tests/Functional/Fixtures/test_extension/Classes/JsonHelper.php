@@ -32,7 +32,7 @@ use LightnCandy\SafeString;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class JsonHelper implements HelperInterface
+final class JsonHelper implements HelperInterface
 {
     /**
      * @param array<string, mixed> $context

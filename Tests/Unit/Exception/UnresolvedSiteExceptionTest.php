@@ -32,7 +32,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class UnresolvedSiteExceptionTest extends UnitTestCase
+final class UnresolvedSiteExceptionTest extends UnitTestCase
 {
     /**
      * @test

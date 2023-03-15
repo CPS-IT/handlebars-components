@@ -32,7 +32,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class InvalidImageDimensionExceptionTest extends UnitTestCase
+final class InvalidImageDimensionExceptionTest extends UnitTestCase
 {
     /**
      * @test

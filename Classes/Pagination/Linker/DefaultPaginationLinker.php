@@ -34,10 +34,7 @@ use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
  */
 final class DefaultPaginationLinker implements PaginationLinkerInterface
 {
-    /**
-     * @var UriBuilder
-     */
-    private $uriBuilder;
+    private UriBuilder $uriBuilder;
 
     public function __construct(UriBuilder $uriBuilder)
     {

@@ -10,3 +10,6 @@ parameters:
 		- Classes
 		- Configuration
 		- Tests
+	excludePaths:
+		# @todo Can be removed once support for TYPO3 v10 is dropped
+		- Tests/Functional/Fixtures/DummyExtensionConfigurationV10.php

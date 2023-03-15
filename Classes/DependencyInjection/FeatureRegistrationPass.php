@@ -44,15 +44,8 @@ use TYPO3\CMS\Core\Exception;
  */
 final class FeatureRegistrationPass implements CompilerPassInterface
 {
-    /**
-     * @var ContainerBuilder
-     */
-    private $container;
-
-    /**
-     * @var ExtensionConfiguration
-     */
-    private $extensionConfiguration;
+    private ContainerBuilder $container;
+    private ExtensionConfiguration $extensionConfiguration;
 
     public function process(ContainerBuilder $container): void
     {

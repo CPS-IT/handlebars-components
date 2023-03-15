@@ -39,14 +39,11 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class ImageProcessorTest extends FunctionalTestCase
+final class ImageProcessorTest extends FunctionalTestCase
 {
     use FileHandlingTrait;
 
-    /**
-     * @var ImageProcessor
-     */
-    protected $subject;
+    protected ImageProcessor $subject;
 
     protected function setUp(): void
     {

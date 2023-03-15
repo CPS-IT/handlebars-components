@@ -43,22 +43,15 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class MediaServiceTest extends FunctionalTestCase
+final class MediaServiceTest extends FunctionalTestCase
 {
     use FileHandlingTrait;
 
     private const TEST_MODE_OBJECT = 0;
     private const TEST_MODE_IDENTIFIER = 1;
 
-    /**
-     * @var ContentObjectRenderer
-     */
-    protected $contentObjectRenderer;
-
-    /**
-     * @var MediaService
-     */
-    protected $subject;
+    protected ContentObjectRenderer $contentObjectRenderer;
+    protected MediaService $subject;
 
     protected function setUp(): void
     {

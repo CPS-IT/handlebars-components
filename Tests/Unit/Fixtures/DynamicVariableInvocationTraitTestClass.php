@@ -42,10 +42,7 @@ final class DynamicVariableInvocationTraitTestClass
     public const FOO = 'foo';
     public const BAZ = 'baz';
 
-    /**
-     * @var string
-     */
-    private $type;
+    private string $type;
 
     public function __construct(string $type)
     {

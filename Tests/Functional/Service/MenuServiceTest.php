@@ -39,16 +39,13 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class MenuServiceTest extends FunctionalTestCase
+final class MenuServiceTest extends FunctionalTestCase
 {
     protected $testExtensionsToLoad = [
         'typo3conf/ext/handlebars_components/Tests/Functional/Fixtures/test_extension',
     ];
 
-    /**
-     * @var MenuService
-     */
-    protected $subject;
+    protected MenuService $subject;
 
     protected function setUp(): void
     {
@@ -99,14 +96,12 @@ class MenuServiceTest extends FunctionalTestCase
             3 => '/page-1/page-3',
             4 => '/de/page-1',
         ];
-        $page = function (int $pageId, bool $active = false, bool $current = false, array $subItems = []) use ($slugs): array {
-            return [
-                'link' => $slugs[$pageId],
-                'active' => $active,
-                'current' => $current,
-                'subItems' => $subItems,
-            ];
-        };
+        $page = static fn (int $pageId, bool $active = false, bool $current = false, array $subItems = []): array => [
+            'link' => $slugs[$pageId],
+            'active' => $active,
+            'current' => $current,
+            'subItems' => $subItems,
+        ];
 
         yield 'menu with special=directory' => [
             MenuConfiguration::directory(1),
