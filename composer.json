@@ -12,7 +12,7 @@
 		}
 	],
 	"require": {
-		"php": ">= 7.1 < 8.2",
+		"php": "~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0",
 		"cpsit/typo3-handlebars": "^0.7",
 		"psr/http-message": "^1.0",
 		"psr/log": "^1.0 || ^2.0 || ^3.0",
@@ -25,7 +25,7 @@
 		"zordius/lightncandy": "^1.2"
 	},
 	"require-dev": {
-		"apache-solr-for-typo3/solr": "^11.5@RC",
+		"apache-solr-for-typo3/solr": "^11.0",
 		"armin/editorconfig-cli": "^1.5",
 		"ergebnis/composer-normalize": "^2.15",
 		"helmich/typo3-typoscript-lint": "^2.5",
@@ -36,6 +36,7 @@
 		"phpunit/phpcov": "^8.2",
 		"phpunit/phpunit": "^9.3",
 		"saschaegerer/phpstan-typo3": "^1.0",
+		"ssch/typo3-rector": "^1.1",
 		"typo3/coding-standards": "^0.5.0",
 		"typo3/testing-framework": "^6.11.2"
 	},
@@ -49,8 +50,8 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Fr\\Typo3HandlebarsComponents\\Tests\\": "Tests/",
 			"Fr\\Typo3HandlebarsComponentsTestExtension\\": "Tests/Functional/Fixtures/test_extension/Classes/",
+			"Fr\\Typo3HandlebarsComponents\\Tests\\": "Tests/",
 			"Fr\\Typo3Handlebars\\Tests\\": ".Build/web/typo3conf/ext/handlebars/Tests"
 		}
 	},
@@ -89,6 +90,10 @@
 		"lint:editorconfig": "ec --fix --git-only",
 		"lint:php": "php-cs-fixer fix",
 		"lint:typoscript": "typoscript-lint -c typoscript-lint.yml",
+		"migration": [
+			"@migration:rector"
+		],
+		"migration:rector": "rector process",
 		"sca": [
 			"@sca:php"
 		],
@@ -102,7 +107,7 @@
 			"@test:ci:unit"
 		],
 		"test:ci:functional": "phpunit -c phpunit.ci.functional.xml",
-		"test:ci:merge": "phpcov merge --html .Build/log/coverage/html/_merged --text php://stdout .Build/log/coverage/php",
+		"test:ci:merge": "phpcov merge --html .Build/log/coverage/html/_merged --cobertura .Build/log/coverage/cobertura.xml --text php://stdout .Build/log/coverage/php",
 		"test:ci:unit": "phpunit -c phpunit.ci.unit.xml",
 		"test:functional": "phpunit -c phpunit.functional.xml",
 		"test:unit": "phpunit -c phpunit.unit.xml"

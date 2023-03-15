@@ -32,17 +32,10 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class PageTest extends UnitTestCase
+final class PageTest extends UnitTestCase
 {
-    /**
-     * @var Page\PageType
-     */
-    protected $pageType;
-
-    /**
-     * @var Page
-     */
-    protected $subject;
+    protected Page\PageType $pageType;
+    protected Page $subject;
 
     protected function setUp(): void
     {

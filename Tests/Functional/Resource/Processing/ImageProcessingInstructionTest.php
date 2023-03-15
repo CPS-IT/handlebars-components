@@ -28,6 +28,7 @@ use Fr\Typo3HandlebarsComponents\Resource\ImageDimensions;
 use Fr\Typo3HandlebarsComponents\Resource\Processing\ImageProcessingInstruction;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\FileHandlingTrait;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -36,28 +37,23 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class ImageProcessingInstructionTest extends FunctionalTestCase
+final class ImageProcessingInstructionTest extends FunctionalTestCase
 {
     use FileHandlingTrait;
 
-    /**
-     * @var Media
-     */
-    protected $media;
-
-    /**
-     * @var ImageDimensions
-     */
-    protected $dimensions;
-
-    /**
-     * @var ImageProcessingInstruction
-     */
-    protected $subject;
+    protected Media $media;
+    protected ImageDimensions $dimensions;
+    protected ImageProcessingInstruction $subject;
 
     protected function setUp(): void
     {
         parent::setUp();
+
+        // Initialize backend user for TYPO3 < 11
+        if ((new Typo3Version())->getMajorVersion() < 11) {
+            $this->importCSVDataSet(\dirname(__DIR__, 2) . '/Fixtures/be_users.csv');
+            $this->setUpBackendUser(1);
+        }
 
         $this->media = new Media($this->createDummyFile());
         $this->dimensions = ImageDimensions::create()

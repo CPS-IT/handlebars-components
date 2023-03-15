@@ -35,10 +35,7 @@ use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageFooterInterface;
  */
 final class DummyPageFooter implements PageFooterInterface
 {
-    /**
-     * @var Page
-     */
-    private $page;
+    private Page $page;
 
     public function __construct(Page $page)
     {

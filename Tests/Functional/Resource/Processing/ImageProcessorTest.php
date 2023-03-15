@@ -30,6 +30,7 @@ use Fr\Typo3HandlebarsComponents\Resource\Processing\ImageProcessingInstruction;
 use Fr\Typo3HandlebarsComponents\Resource\Processing\ImageProcessor;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\FileHandlingTrait;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyFile;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -38,19 +39,22 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class ImageProcessorTest extends FunctionalTestCase
+final class ImageProcessorTest extends FunctionalTestCase
 {
     use FileHandlingTrait;
 
-    /**
-     * @var ImageProcessor
-     */
-    protected $subject;
+    protected ImageProcessor $subject;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->subject = new ImageProcessor();
+
+        // Initialize backend user for TYPO3 < 11
+        if ((new Typo3Version())->getMajorVersion() < 11) {
+            $this->importCSVDataSet(\dirname(__DIR__, 2) . '/Fixtures/be_users.csv');
+            $this->setUpBackendUser(1);
+        }
     }
 
     /**

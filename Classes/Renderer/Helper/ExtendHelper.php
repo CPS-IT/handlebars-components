@@ -60,9 +60,7 @@ class ExtendHelper implements HelperInterface
         }
 
         // Create new handlebars layout item
-        $fn = \is_callable($options['fn'] ?? '') ? $options['fn'] : function (): string {
-            return '';
-        };
+        $fn = \is_callable($options['fn'] ?? '') ? $options['fn'] : static fn (): string => '';
         $handlebarsLayout = new HandlebarsLayout($fn);
 
         // Add layout to layout stack

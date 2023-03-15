@@ -32,12 +32,9 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class DefaultContextAwareConfigurationTraitTest extends UnitTestCase
+final class DefaultContextAwareConfigurationTraitTest extends UnitTestCase
 {
-    /**
-     * @var DefaultContextAwareConfigurationTraitTestClass
-     */
-    protected $subject;
+    protected DefaultContextAwareConfigurationTraitTestClass $subject;
 
     protected function setUp(): void
     {

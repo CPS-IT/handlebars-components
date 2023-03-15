@@ -27,6 +27,7 @@ use Fr\Typo3HandlebarsComponents\Domain\Model\Media\Media;
 use Fr\Typo3HandlebarsComponents\Resource\Converter\MediaResourceConverter;
 use Fr\Typo3HandlebarsComponents\Service\MediaService;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\FileHandlingTrait;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\Folder;
@@ -42,22 +43,15 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class MediaServiceTest extends FunctionalTestCase
+final class MediaServiceTest extends FunctionalTestCase
 {
     use FileHandlingTrait;
 
     private const TEST_MODE_OBJECT = 0;
     private const TEST_MODE_IDENTIFIER = 1;
 
-    /**
-     * @var ContentObjectRenderer
-     */
-    protected $contentObjectRenderer;
-
-    /**
-     * @var MediaService
-     */
-    protected $subject;
+    protected ContentObjectRenderer $contentObjectRenderer;
+    protected MediaService $subject;
 
     protected function setUp(): void
     {
@@ -69,6 +63,12 @@ class MediaServiceTest extends FunctionalTestCase
             new FilesProcessor(),
             new MediaResourceConverter(GeneralUtility::makeInstance(OnlineMediaHelperRegistry::class))
         );
+
+        // Initialize backend user for TYPO3 < 11
+        if ((new Typo3Version())->getMajorVersion() < 11) {
+            $this->importCSVDataSet(\dirname(__DIR__) . '/Fixtures/be_users.csv');
+            $this->setUpBackendUser(1);
+        }
     }
 
     /**

@@ -30,7 +30,7 @@ use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference as ExtbaseFileReference;
-use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 /**
  * FileHandlingTrait
@@ -40,20 +40,9 @@ use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
  */
 trait FileHandlingTrait
 {
-    /**
-     * @var ResourceFactory
-     */
-    protected $resourceFactory;
-
-    /**
-     * @var PersistenceManagerInterface
-     */
-    protected $persistenceManager;
-
-    /**
-     * @var File|null
-     */
-    protected $file;
+    protected ?ResourceFactory $resourceFactory = null;
+    protected ?PersistenceManager $persistenceManager = null;
+    protected ?File $file = null;
 
     protected function createDummyFile(): File
     {
@@ -76,7 +65,7 @@ trait FileHandlingTrait
 
     protected function createDummyFileReference(bool $useEmptyCropping = false, bool $persist = false): FileReference
     {
-        $file = $this->file ?? $this->file = $this->createDummyFile();
+        $file = $this->file ??= $this->createDummyFile();
 
         if ($useEmptyCropping) {
             $crop = '{"default":{"cropArea":{"height":1,"width":1,"x":0,"y":0},"selectedRatio":"NaN","focusArea":null}}';
@@ -114,10 +103,10 @@ trait FileHandlingTrait
         return $this->resourceFactory;
     }
 
-    protected function getPersistenceManager(): PersistenceManagerInterface
+    protected function getPersistenceManager(): PersistenceManager
     {
         if ($this->persistenceManager === null) {
-            $this->persistenceManager = GeneralUtility::makeInstance(PersistenceManagerInterface::class);
+            $this->persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
         }
 
         return $this->persistenceManager;

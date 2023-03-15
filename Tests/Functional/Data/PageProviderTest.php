@@ -42,12 +42,9 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class PageProviderTest extends FunctionalTestCase
+final class PageProviderTest extends FunctionalTestCase
 {
-    /**
-     * @var PageProvider
-     */
-    protected $subject;
+    protected PageProvider $subject;
 
     protected function setUp(): void
     {

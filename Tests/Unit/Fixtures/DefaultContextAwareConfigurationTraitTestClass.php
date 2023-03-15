@@ -41,5 +41,5 @@ final class DefaultContextAwareConfigurationTraitTestClass
     /**
      * @var array<string, mixed>
      */
-    public $configuration = [];
+    public array $configuration = [];
 }

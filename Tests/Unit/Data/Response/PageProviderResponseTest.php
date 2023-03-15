@@ -33,17 +33,10 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class PageProviderResponseTest extends UnitTestCase
+final class PageProviderResponseTest extends UnitTestCase
 {
-    /**
-     * @var Page
-     */
-    protected $page;
-
-    /**
-     * @var PageProviderResponse
-     */
-    protected $subject;
+    protected Page $page;
+    protected PageProviderResponse $subject;
 
     protected function setUp(): void
     {

@@ -34,12 +34,12 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class MenuConfigurationTest extends UnitTestCase
+final class MenuConfigurationTest extends UnitTestCase
 {
     /**
      * @var array<string|int, string|array<string, mixed>>
      */
-    protected $configuration = [
+    protected array $configuration = [
         '10' => 'USER',
         '10.' => [
             'userFunc' => 'foo->baz',

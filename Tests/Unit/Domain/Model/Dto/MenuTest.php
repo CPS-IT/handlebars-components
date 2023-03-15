@@ -34,17 +34,13 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class MenuTest extends UnitTestCase
+final class MenuTest extends UnitTestCase
 {
     /**
      * @var MenuItem[]
      */
-    protected $items = [];
-
-    /**
-     * @var Menu
-     */
-    protected $subject;
+    protected array $items = [];
+    protected Menu $subject;
 
     protected function setUp(): void
     {

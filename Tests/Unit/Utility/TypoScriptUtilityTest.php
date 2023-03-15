@@ -33,7 +33,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class TypoScriptUtilityTest extends UnitTestCase
+final class TypoScriptUtilityTest extends UnitTestCase
 {
     /**
      * @test

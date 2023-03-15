@@ -36,22 +36,11 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class MediaTest extends UnitTestCase
+final class MediaTest extends UnitTestCase
 {
-    /**
-     * @var File
-     */
-    protected $file;
-
-    /**
-     * @var Media
-     */
-    protected $subject;
-
-    /**
-     * @var MetaDataAspect|null
-     */
-    protected $metaDataAspect;
+    protected File $file;
+    protected Media $subject;
+    protected ?MetaDataAspect $metaDataAspect = null;
 
     protected function setUp(): void
     {

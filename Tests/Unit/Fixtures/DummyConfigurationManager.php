@@ -38,7 +38,7 @@ final class DummyConfigurationManager implements ConfigurationManagerInterface
     /**
      * @var array<string, mixed>
      */
-    public $configuration = [];
+    public array $configuration = [];
 
     public function setContentObject(ContentObjectRenderer $contentObject): void
     {

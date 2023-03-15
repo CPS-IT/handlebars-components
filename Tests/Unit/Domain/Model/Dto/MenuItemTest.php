@@ -33,17 +33,10 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class MenuItemTest extends UnitTestCase
+final class MenuItemTest extends UnitTestCase
 {
-    /**
-     * @var Link
-     */
-    protected $link;
-
-    /**
-     * @var MenuItem
-     */
-    protected $subject;
+    protected Link $link;
+    protected MenuItem $subject;
 
     protected function setUp(): void
     {

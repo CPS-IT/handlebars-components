@@ -29,6 +29,7 @@ use Fr\Typo3HandlebarsComponents\Exception\UnsupportedResourceException;
 use Fr\Typo3HandlebarsComponents\Resource\Converter\MediaResourceConverter;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\FileHandlingTrait;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyFile;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 use TYPO3\CMS\Core\Resource\ResourceStorage;
@@ -41,25 +42,24 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class MediaResourceConverterTest extends FunctionalTestCase
+final class MediaResourceConverterTest extends FunctionalTestCase
 {
     use FileHandlingTrait;
 
-    /**
-     * @var OnlineMediaHelperRegistry
-     */
-    protected $onlineMediaHelperRegistry;
-
-    /**
-     * @var MediaResourceConverter
-     */
-    protected $subject;
+    protected OnlineMediaHelperRegistry $onlineMediaHelperRegistry;
+    protected MediaResourceConverter $subject;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->onlineMediaHelperRegistry = GeneralUtility::makeInstance(OnlineMediaHelperRegistry::class);
         $this->subject = new MediaResourceConverter($this->onlineMediaHelperRegistry);
+
+        // Initialize backend user for TYPO3 < 11
+        if ((new Typo3Version())->getMajorVersion() < 11) {
+            $this->importCSVDataSet(\dirname(__DIR__, 2) . '/Fixtures/be_users.csv');
+            $this->setUpBackendUser(1);
+        }
     }
 
     /**

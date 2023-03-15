@@ -12,6 +12,7 @@ stages:
   - validate
   - lint
   - sca
+  - migration
   - test
 
 workflow:
@@ -46,7 +47,7 @@ validate:required-dependencies:
   before_script:
     - composer global require maglnet/composer-require-checker
   script:
-    - composer require --no-progress --no-plugins apache-solr-for-typo3/solr:"^11.5@RC"
+    - composer require --no-progress --no-plugins apache-solr-for-typo3/solr:"^11.5"
     - composer-require-checker check --config-file dependency-checker.json
 
 validate:unused-dependencies:
@@ -98,7 +99,39 @@ sca:php:
     reports:
       codequality: .Build/log/phpstan.json
 
+migration:rector:
+  stage: migration
+  needs:
+    - build
+  script:
+    - composer migration:rector -- --dry-run
+
 test:
+  stage: test
+  services:
+    - mariadb:10
+  needs:
+    - job: build
+      artifacts: false
+  image: $CI_REGISTRY/x-it-docker/docker-php:$PHP_VERSION-build-stable
+  variables:
+    MYSQL_DATABASE: "typo3"
+    MYSQL_ROOT_PASSWORD: "typo3"
+    typo3DatabaseHost: "mariadb"
+    typo3DatabaseUsername: "root"
+    typo3DatabasePassword: $MYSQL_ROOT_PASSWORD
+    typo3DatabaseName: $MYSQL_DATABASE
+  script:
+    - composer update --with=typo3/cms-core:"^${TYPO3_VERSION}" --no-progress
+    - composer test
+  parallel:
+    matrix:
+      - PHP_VERSION: ["7.4"]
+        TYPO3_VERSION: ["10.4"]
+      - PHP_VERSION: ["7.4", "8.0", "8.1", "8.2"]
+        TYPO3_VERSION: ["11.5"]
+
+test:coverage:
   stage: test
   services:
     - mariadb:10
@@ -112,7 +145,7 @@ test:
     typo3DatabasePassword: $MYSQL_ROOT_PASSWORD
     typo3DatabaseName: $MYSQL_DATABASE
   script:
-    - composer test:ci -- --testdox
+    - composer test:ci -- --colors=never
     - composer test:ci:merge
   coverage: '/^\s*Lines:\s*\d+.\d+\%/'
   artifacts:
@@ -120,3 +153,6 @@ test:
       junit:
         - .Build/log/coverage/junit/functional.xml
         - .Build/log/coverage/junit/unit.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: .Build/log/coverage/cobertura.xml

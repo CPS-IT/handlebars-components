@@ -56,12 +56,12 @@ class BlockHelper implements HelperInterface
         }
 
         // Walk through layout actions and apply them to the rendered block
-        $fn = $options['fn'] ?? function () {
-            return '';
-        };
+        $fn = $options['fn'] ?? static fn () => '';
 
-        return array_reduce($actions, function (string $value, HandlebarsLayoutAction $action): string {
-            return $action->render($value);
-        }, $fn($data));
+        return array_reduce(
+            $actions,
+            static fn (string $value, HandlebarsLayoutAction $action): string => $action->render($value),
+            $fn($data)
+        );
     }
 }

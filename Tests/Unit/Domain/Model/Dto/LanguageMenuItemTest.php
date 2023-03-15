@@ -35,17 +35,10 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class LanguageMenuItemTest extends UnitTestCase
+final class LanguageMenuItemTest extends UnitTestCase
 {
-    /**
-     * @var SiteLanguage
-     */
-    protected $siteLanguage;
-
-    /**
-     * @var LanguageMenuItem
-     */
-    protected $subject;
+    protected SiteLanguage $siteLanguage;
+    protected LanguageMenuItem $subject;
 
     protected function setUp(): void
     {

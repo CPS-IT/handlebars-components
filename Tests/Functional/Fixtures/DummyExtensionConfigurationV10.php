@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the TYPO3 CMS extension "handlebars_components".
  *
- * Copyright (C) 2022 Elias Häußler <e.haeussler@familie-redlich.de>
+ * Copyright (C) 2023 Elias Häußler <e.haeussler@familie-redlich.de>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,27 +23,41 @@ declare(strict_types=1);
 
 namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageHeaderInterface;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Exception;
 
 /**
- * DummyPageHeader
+ * DummyExtensionConfigurationV10
  *
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  * @internal
+ *
+ * @todo Can be remove once support for TYPO3 v10 is dropped
  */
-final class DummyPageHeader implements PageHeaderInterface
+final class DummyExtensionConfigurationV10 extends ExtensionConfiguration
 {
-    private Page $page;
+    /**
+     * @var array<string, bool>
+     */
+    private array $activatedFeatures;
 
-    public function __construct(Page $page)
+    /**
+     * @param array<string, bool> $activatedFeatures
+     */
+    public function __construct(array $activatedFeatures)
     {
-        $this->page = $page;
+        $this->activatedFeatures = $activatedFeatures;
     }
 
-    public function __toString(): string
+    public function get(string $extension, string $path): bool
     {
-        return (string)$this->page->getId();
+        [, $featureName] = explode('/', $path);
+
+        if (!isset($this->activatedFeatures[$featureName])) {
+            throw new Exception('dummy exception');
+        }
+
+        return $this->activatedFeatures[$featureName];
     }
 }

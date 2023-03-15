@@ -36,15 +36,8 @@ use TYPO3\CMS\Extbase\Object\ObjectManagerInterface;
  */
 final class SolrSearchResultPaginationLinker implements PaginationLinkerInterface
 {
-    /**
-     * @var SearchUriBuilder
-     */
-    private $searchUriBuilder;
-
-    /**
-     * @var SearchRequest|null
-     */
-    private $searchRequest;
+    private SearchUriBuilder $searchUriBuilder;
+    private ?SearchRequest $searchRequest = null;
 
     public function __construct(ObjectManagerInterface $objectManager)
     {

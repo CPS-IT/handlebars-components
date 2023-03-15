@@ -44,20 +44,12 @@ use TYPO3\CMS\Core\Exception;
  */
 final class FeatureRegistrationPass implements CompilerPassInterface
 {
-    /**
-     * @var ContainerBuilder
-     */
-    private $container;
-
-    /**
-     * @var ExtensionConfiguration
-     */
-    private $extensionConfiguration;
+    private ContainerBuilder $container;
+    private ExtensionConfiguration $extensionConfiguration;
 
     public function process(ContainerBuilder $container): void
     {
         $this->container = $container;
-        /* @phpstan-ignore-next-line */
         $this->extensionConfiguration = $this->container->get(ExtensionConfiguration::class);
 
         if ($this->isFeatureEnabled('blockHelper')) {

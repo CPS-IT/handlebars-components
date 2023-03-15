@@ -35,12 +35,9 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class UnsupportedResourceExceptionTest extends UnitTestCase
+final class UnsupportedResourceExceptionTest extends UnitTestCase
 {
-    /**
-     * @var File
-     */
-    protected $file;
+    protected File $file;
 
     protected function setUp(): void
     {

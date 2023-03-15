@@ -33,22 +33,18 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-class ConfigurationServiceTest extends UnitTestCase
+final class ConfigurationServiceTest extends UnitTestCase
 {
     /**
      * @var array<string, mixed>
      */
-    protected $configuration = [
+    protected array $configuration = [
         'foo.' => [
             'baz' => 'hello!',
         ],
         'hello' => 'world',
     ];
-
-    /**
-     * @var ConfigurationService
-     */
-    protected $subject;
+    protected ConfigurationService $subject;
 
     protected function setUp(): void
     {
