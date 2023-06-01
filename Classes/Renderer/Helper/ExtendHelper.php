@@ -74,11 +74,6 @@ class ExtendHelper implements HelperInterface
         $renderData = array_replace_recursive($options['_this'], $customContext, $options['hash']);
 
         // Render layout with merged data
-        $renderedLayout = $this->renderer->render($name, $renderData);
-
-        // Reset layout stack
-        $data['_layoutStack'] = [];
-
-        return $renderedLayout;
+        return $this->renderer->render($name, $renderData);
     }
 }
