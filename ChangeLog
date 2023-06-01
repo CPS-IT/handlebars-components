@@ -1,3 +1,6 @@
+2023-06-01         [RELEASE] Release of handlebars-components 0.6.1 (Elias Häußler)
+2023-06-01 5a5d6b4 [BUGFIX] Keep layout stack persistent during rendering request (Elias Häußler)
+
 2023-03-15         [RELEASE] Release of handlebars-components 0.6.0 (Elias Häußler)
 2023-03-14 6f1a756 [!!!][TASK] Migrate codebase to PHP 7.4, drop PHP < 7.4 (Elias Häußler)
 2023-03-14 f209ffa [BUGFIX] Fix functional tests for TYPO3 v10 (Elias Häußler)
