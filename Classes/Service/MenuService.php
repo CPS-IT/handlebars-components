@@ -143,10 +143,11 @@ class MenuService
      */
     protected function initializeMenuItem(string $menuType, array $processedMenuItem): MenuItem
     {
+        $target = $processedMenuItem['target'] ?? null;
         $link = new Link(
             $processedMenuItem['link'],
             $processedMenuItem['title'],
-            $processedMenuItem['target'] ?: null
+            $target ?: null
         );
 
         switch ($menuType) {
