@@ -68,6 +68,13 @@ class FlatTemplateResolver extends HandlebarsTemplateResolver
             return $this->flattenedTemplates[$templateName]->getPathname();
         }
 
+        preg_match('/(.*)\-\-(.*)/', $templateName, $matches);
+        if (isset($matches[2])){
+            if (isset($this->flattenedTemplates[$matches[1]])) {
+                return $this->flattenedTemplates[$matches[1]]->getPathname();
+            }
+        }
+
         throw new TemplateNotFoundException($templateName, 1628256108);
     }
 
