@@ -38,6 +38,8 @@ use Symfony\Component\Finder\SplFileInfo;
  */
 class FlatTemplateResolver extends HandlebarsTemplateResolver
 {
+    protected const VARIANT_SEPARATOR = '--';
+
     /**
      * @var array<string, SplFileInfo>
      */
@@ -63,6 +65,11 @@ class FlatTemplateResolver extends HandlebarsTemplateResolver
 
         // Strip "@" prefix from given template path
         $templateName = ltrim($templatePath, '@');
+
+        // Strip off template variant
+        if (str_contains($templateName, self::VARIANT_SEPARATOR)) {
+            [$templateName] = explode(self::VARIANT_SEPARATOR, $templateName, 2);
+        }
 
         if (isset($this->flattenedTemplates[$templateName])) {
             return $this->flattenedTemplates[$templateName]->getPathname();

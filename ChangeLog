@@ -1,3 +1,9 @@
+2023-11-10         [RELEASE] Release of handlebars-components 0.6.3 (Elias Häußler)
+2023-11-10 29a4f7d [TASK] Add test for template variant in FlatTemplateResolver (Elias Häußler)
+2023-11-10 17591f2 [TASK] Use more performant check for template variant (Elias Häußler)
+2023-11-08 51e1de3 [TASK] add possibility to find template variants (Steffen Mevius)
+2023-11-10 16497c7 [TASK] Normalize composer.json (Elias Häußler)
+
 2023-07-18         [RELEASE] Release of handlebars_components 0.6.2 (Elias Häußler)
 2023-07-18 e818652 [BUGFIX] Handle undefined array key warning (Elias Häußler)
 
