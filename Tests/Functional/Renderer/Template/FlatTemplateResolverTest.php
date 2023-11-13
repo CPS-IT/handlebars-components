@@ -54,11 +54,21 @@ final class FlatTemplateResolverTest extends FunctionalTestCase
     /**
      * @test
      */
-    public function resolveTemplatePathRespectsTemplateVariantAndReturnsBaseTemplate(): void
+    public function resolveTemplatePathRespectsTemplateVariant(): void
+    {
+        $expected = $this->instancePath . '/typo3conf/ext/test_extension/Resources/Templates/main-layout--variant.hbs';
+
+        self::assertSame($expected, $this->templateResolver->resolveTemplatePath('@main-layout--variant'));
+    }
+
+    /**
+     * @test
+     */
+    public function resolveTemplatePathReturnsBaseTemplateForNonExistingTemplateVariant(): void
     {
         $expected = $this->instancePath . '/typo3conf/ext/test_extension/Resources/Templates/main-layout.hbs';
 
-        self::assertSame($expected, $this->templateResolver->resolveTemplatePath('@main-layout--variant'));
+        self::assertSame($expected, $this->templateResolver->resolveTemplatePath('@main-layout--non-existing-variant'));
     }
 
     public function getTemplateRootPath(): string
