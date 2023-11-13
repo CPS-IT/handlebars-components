@@ -66,13 +66,18 @@ class FlatTemplateResolver extends HandlebarsTemplateResolver
         // Strip "@" prefix from given template path
         $templateName = ltrim($templatePath, '@');
 
+        // Return filename if template exists
+        if (isset($this->flattenedTemplates[$templateName])) {
+            return $this->flattenedTemplates[$templateName]->getPathname();
+        }
+
         // Strip off template variant
         if (str_contains($templateName, self::VARIANT_SEPARATOR)) {
             [$templateName] = explode(self::VARIANT_SEPARATOR, $templateName, 2);
-        }
 
-        if (isset($this->flattenedTemplates[$templateName])) {
-            return $this->flattenedTemplates[$templateName]->getPathname();
+            if (isset($this->flattenedTemplates[$templateName])) {
+                return $this->flattenedTemplates[$templateName]->getPathname();
+            }
         }
 
         throw new TemplateNotFoundException($templateName, 1628256108);
