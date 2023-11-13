@@ -1,3 +1,6 @@
+2023-11-13         [RELEASE] Release of handlebars-components 0.6.4 (Elias Häußler)
+2023-11-13 4369f98 [BUGFIX] Respect existing template variants (Elias Häußler)
+
 2023-11-10         [RELEASE] Release of handlebars-components 0.6.3 (Elias Häußler)
 2023-11-10 29a4f7d [TASK] Add test for template variant in FlatTemplateResolver (Elias Häußler)
 2023-11-10 17591f2 [TASK] Use more performant check for template variant (Elias Häußler)
