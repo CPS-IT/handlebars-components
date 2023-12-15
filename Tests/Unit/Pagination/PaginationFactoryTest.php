@@ -27,8 +27,6 @@ use ApacheSolrForTypo3\Solr\Domain\Search\ResultSet\SearchResultSet;
 use ApacheSolrForTypo3\Solr\Pagination\ResultsPaginator;
 use Fr\Typo3HandlebarsComponents\Pagination\PaginationFactory;
 use Fr\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyConfigurationManager;
-use Prophecy\Argument;
-use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
@@ -45,8 +43,6 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class PaginationFactoryTest extends UnitTestCase
 {
-    use ProphecyTrait;
-
     protected DummyConfigurationManager $configurationManager;
     protected PaginationFactory $subject;
 
@@ -83,17 +79,17 @@ final class PaginationFactoryTest extends UnitTestCase
      */
     public function getReturnsPaginationForQueryResult(): void
     {
-        $queryProphecy = $this->prophesize(QueryInterface::class);
-        $queryResultProphecy = $this->prophesize(QueryResultInterface::class);
-        $queryResultProphecy->getQuery()->willReturn($queryProphecy->reveal());
-        $queryResultProphecy->count()->willReturn(1);
-        $queryProphecy->setLimit(Argument::type('int'))->willReturn($queryProphecy);
-        $queryProphecy->setOffset(Argument::type('int'))->willReturn($queryProphecy);
-        $queryProphecy->execute()->willReturn($queryResultProphecy->reveal());
+        $queryMock = $this->createMock(QueryInterface::class);
+        $queryResultMock = $this->createMock(QueryResultInterface::class);
+        $queryResultMock->method('getQuery')->willReturn($queryMock);
+        $queryResultMock->method('count')->willReturn(1);
+        $queryMock->method('setLimit')->willReturn($queryMock);
+        $queryMock->method('setOffset')->willReturn($queryMock);
+        $queryMock->method('execute')->willReturn($queryResultMock);
 
         self::assertInstanceOf(
             QueryResultPaginator::class,
-            $this->subject->get($queryResultProphecy->reveal())->getPaginator()
+            $this->subject->get($queryResultMock)->getPaginator()
         );
     }
 
