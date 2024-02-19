@@ -24,7 +24,7 @@ $EM_CONF[$_EXTKEY] = [
     'title' => 'Handlebars Components',
     'description' => 'Additional components for EXT:handlebars',
     'category' => 'fe',
-    'version' => '0.6.4',
+    'version' => '1.0.0',
     'state' => 'beta',
     'clearCacheOnLoad' => true,
     'author' => 'Elias Häußler',
@@ -32,11 +32,11 @@ $EM_CONF[$_EXTKEY] = [
     'author_company' => 'coding. powerful. systems. CPS GmbH',
     'constraints' => [
         'depends' => [
-            'typo3' => '10.4.0-11.5.99',
-            'handlebars' => '0.7.0-0.7.99',
+            'typo3' => '12.4.0-12.4.99',
+            'handlebars' => '1.0.0-1.99.99',
         ],
         'suggests' => [
-            'solr' => '11.5.0-11.99.99',
+            'solr' => '12.0.0-12.99.99',
         ],
     ],
 ];
