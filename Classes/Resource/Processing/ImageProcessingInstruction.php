@@ -21,11 +21,11 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Resource\Processing;
+namespace Cpsit\Typo3HandlebarsComponents\Resource\Processing;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Media\MediaInterface;
-use Fr\Typo3HandlebarsComponents\Exception\InvalidImageDimensionException;
-use Fr\Typo3HandlebarsComponents\Resource\ImageDimensions;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Media\MediaInterface;
+use Cpsit\Typo3HandlebarsComponents\Exception\InvalidImageDimensionException;
+use Cpsit\Typo3HandlebarsComponents\Resource\ImageDimensions;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
 

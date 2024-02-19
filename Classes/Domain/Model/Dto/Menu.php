@@ -21,7 +21,7 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Domain\Model\Dto;
+namespace Cpsit\Typo3HandlebarsComponents\Domain\Model\Dto;
 
 /**
  * Menu

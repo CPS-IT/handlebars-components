@@ -24,8 +24,8 @@ declare(strict_types=1);
 namespace Cpsit\Typo3HandlebarsComponents\Renderer\Helper;
 
 use Fr\Typo3Handlebars\Renderer\Helper\HelperInterface;
-use Fr\Typo3HandlebarsComponents\Renderer\Component\Layout\HandlebarsLayout;
-use Fr\Typo3HandlebarsComponents\Renderer\Component\Layout\HandlebarsLayoutAction;
+use Cpsit\Typo3HandlebarsComponents\Renderer\Component\Layout\HandlebarsLayout;
+use Cpsit\Typo3HandlebarsComponents\Renderer\Component\Layout\HandlebarsLayoutAction;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;

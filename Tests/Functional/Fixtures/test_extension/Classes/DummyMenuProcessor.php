@@ -21,13 +21,13 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponentsTestExtension;
+namespace Cpsit\Typo3HandlebarsComponentsTestExtension;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Dto\Link;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Dto\Menu;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Dto\MenuItem;
-use Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
-use Fr\Typo3HandlebarsComponents\Service\MenuService;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Dto\Link;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Dto\Menu;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Dto\MenuItem;
+use Cpsit\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
+use Cpsit\Typo3HandlebarsComponents\Service\MenuService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentDataProcessor;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;

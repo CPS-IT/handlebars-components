@@ -29,7 +29,7 @@ use Cpsit\Typo3HandlebarsComponents\DataProcessing\PageProcessor;
 use Cpsit\Typo3HandlebarsComponents\Domain\Factory\Page\PageFactory;
 use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page;
 use Cpsit\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageContentRenderer;
-use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPresenter;
+use Cpsit\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPresenter;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;

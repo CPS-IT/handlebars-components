@@ -25,7 +25,7 @@ namespace Cpsit\Typo3HandlebarsComponents\Renderer\Helper;
 
 use Fr\Typo3Handlebars\Renderer\Helper\HelperInterface;
 use Fr\Typo3Handlebars\Renderer\RendererInterface;
-use Fr\Typo3HandlebarsComponents\Renderer\Component\Layout\HandlebarsLayout;
+use Cpsit\Typo3HandlebarsComponents\Renderer\Component\Layout\HandlebarsLayout;
 
 /**
  * ExtendHelper

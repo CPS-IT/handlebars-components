@@ -21,9 +21,9 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Domain\Model;
+namespace Cpsit\Typo3HandlebarsComponents\Domain\Model;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageType;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page\PageType;
 
 /**
  * Page

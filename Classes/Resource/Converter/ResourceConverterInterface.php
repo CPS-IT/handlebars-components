@@ -23,7 +23,7 @@ declare(strict_types=1);
 
 namespace Cpsit\Typo3HandlebarsComponents\Resource\Converter;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Media\MediaInterface;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Media\MediaInterface;
 use TYPO3\CMS\Core\Resource\FileInterface;
 
 /**

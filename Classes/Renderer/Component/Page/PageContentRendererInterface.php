@@ -21,9 +21,9 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Renderer\Component\Page;
+namespace Cpsit\Typo3HandlebarsComponents\Renderer\Component\Page;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page;
 
 /**
  * PageContentRendererInterface

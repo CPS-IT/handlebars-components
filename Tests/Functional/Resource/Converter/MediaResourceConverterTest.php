@@ -21,14 +21,14 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Resource\Converter;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Functional\Resource\Converter;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Media\Media;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Media\OnlineMedia;
-use Fr\Typo3HandlebarsComponents\Exception\UnsupportedResourceException;
-use Fr\Typo3HandlebarsComponents\Resource\Converter\MediaResourceConverter;
-use Fr\Typo3HandlebarsComponents\Tests\Functional\FileHandlingTrait;
-use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyFile;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Media\Media;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Media\OnlineMedia;
+use Cpsit\Typo3HandlebarsComponents\Exception\UnsupportedResourceException;
+use Cpsit\Typo3HandlebarsComponents\Resource\Converter\MediaResourceConverter;
+use Cpsit\Typo3HandlebarsComponents\Tests\Functional\FileHandlingTrait;
+use Cpsit\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyFile;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;

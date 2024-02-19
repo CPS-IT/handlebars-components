@@ -21,7 +21,7 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponentsTestExtension;
+namespace Cpsit\Typo3HandlebarsComponentsTestExtension;
 
 use Fr\Typo3Handlebars\Renderer\Helper\HelperInterface;
 use LightnCandy\SafeString;

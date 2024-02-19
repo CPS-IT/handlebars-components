@@ -21,12 +21,12 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Renderer\Helper;
+namespace Cpsit\Typo3HandlebarsComponents\Renderer\Helper;
 
 use Fr\Typo3Handlebars\DataProcessing\DataProcessorInterface;
 use Fr\Typo3Handlebars\Renderer\Helper\HelperInterface;
 use Fr\Typo3Handlebars\Renderer\RendererInterface;
-use Fr\Typo3HandlebarsComponents\Exception\InvalidConfigurationException;
+use Cpsit\Typo3HandlebarsComponents\Exception\InvalidConfigurationException;
 use LightnCandy\SafeString;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\ArrayUtility;

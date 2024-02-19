@@ -21,10 +21,10 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Service\Configuration;
+namespace Cpsit\Typo3HandlebarsComponents\Service\Configuration;
 
-use Fr\Typo3HandlebarsComponents\Exception\InvalidConfigurationException;
-use Fr\Typo3HandlebarsComponents\Utility\TypoScriptUtility;
+use Cpsit\Typo3HandlebarsComponents\Exception\InvalidConfigurationException;
+use Cpsit\Typo3HandlebarsComponents\Utility\TypoScriptUtility;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 

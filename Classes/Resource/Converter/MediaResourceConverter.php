@@ -21,12 +21,12 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Resource\Converter;
+namespace Cpsit\Typo3HandlebarsComponents\Resource\Converter;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Media\Media;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Media\MediaInterface;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Media\OnlineMedia;
-use Fr\Typo3HandlebarsComponents\Exception\UnsupportedResourceException;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Media\Media;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Media\MediaInterface;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Media\OnlineMedia;
+use Cpsit\Typo3HandlebarsComponents\Exception\UnsupportedResourceException;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperInterface;

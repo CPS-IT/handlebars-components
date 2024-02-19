@@ -21,11 +21,11 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Service;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Functional\Service;
 
-use Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
-use Fr\Typo3HandlebarsComponents\Service\MenuService;
-use Fr\Typo3HandlebarsComponentsTestExtension\DummyMenuProcessor;
+use Cpsit\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
+use Cpsit\Typo3HandlebarsComponents\Service\MenuService;
+use Cpsit\Typo3HandlebarsComponentsTestExtension\DummyMenuProcessor;
 use Symfony\Component\Yaml\Yaml;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentDataProcessor;
@@ -153,7 +153,7 @@ final class MenuServiceTest extends FunctionalTestCase
 config.disableAllHeaderCode = 1
 page = PAGE
 page.10 = USER
-page.10.userFunc = Fr\Typo3HandlebarsComponentsTestExtension\DummyMenuProcessor->preProcess
+page.10.userFunc = Cpsit\Typo3HandlebarsComponentsTestExtension\DummyMenuProcessor->preProcess
 page.10.userFunc.menuConfiguration = ' . json_encode($configuration->getTypoScriptConfiguration()) . '
 page.10.userFunc.menuType = ' . $configuration->getType() . '
         ');

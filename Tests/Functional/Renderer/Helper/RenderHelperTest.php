@@ -21,14 +21,14 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Renderer\Helper;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Functional\Renderer\Helper;
 
 use Fr\Typo3Handlebars\Cache\NullCache;
 use Fr\Typo3Handlebars\Renderer\HandlebarsRenderer;
 use Fr\Typo3Handlebars\Tests\Unit\HandlebarsTemplateResolverTrait;
-use Fr\Typo3HandlebarsComponents\Renderer\Helper\RenderHelper;
-use Fr\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver;
-use Fr\Typo3HandlebarsComponentsTestExtension\DummyNonCacheableProcessor;
+use Cpsit\Typo3HandlebarsComponents\Renderer\Helper\RenderHelper;
+use Cpsit\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver;
+use Cpsit\Typo3HandlebarsComponentsTestExtension\DummyNonCacheableProcessor;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Http\ServerRequest;

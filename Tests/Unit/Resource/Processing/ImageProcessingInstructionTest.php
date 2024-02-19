@@ -21,13 +21,13 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Unit\Resource\Processing;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Unit\Resource\Processing;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Media\Media;
-use Fr\Typo3HandlebarsComponents\Exception\InvalidImageDimensionException;
-use Fr\Typo3HandlebarsComponents\Resource\ImageDimensions;
-use Fr\Typo3HandlebarsComponents\Resource\Processing\ImageProcessingInstruction;
-use Fr\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyResourceStorage;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Media\Media;
+use Cpsit\Typo3HandlebarsComponents\Exception\InvalidImageDimensionException;
+use Cpsit\Typo3HandlebarsComponents\Resource\ImageDimensions;
+use Cpsit\Typo3HandlebarsComponents\Resource\Processing\ImageProcessingInstruction;
+use Cpsit\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyResourceStorage;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 

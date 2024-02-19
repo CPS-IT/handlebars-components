@@ -21,10 +21,10 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Renderer\Template;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Functional\Renderer\Template;
 
 use Fr\Typo3Handlebars\Tests\Unit\HandlebarsTemplateResolverTrait;
-use Fr\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver;
+use Cpsit\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -32,7 +32,7 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  *
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
- * @covers \Fr\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver
+ * @covers \Cpsit\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver
  */
 final class FlatTemplateResolverTest extends FunctionalTestCase
 {

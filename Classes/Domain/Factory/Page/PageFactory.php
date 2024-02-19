@@ -21,10 +21,10 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Domain\Factory\Page;
+namespace Cpsit\Typo3HandlebarsComponents\Domain\Factory\Page;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageType;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page\PageType;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\RootlineUtility;
 use TYPO3\CMS\Frontend\Page\PageLayoutResolver;

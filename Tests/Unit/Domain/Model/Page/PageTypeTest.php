@@ -21,9 +21,9 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Unit\Domain\Model\Page;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Unit\Domain\Model\Page;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageType;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page\PageType;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**

@@ -22,7 +22,7 @@
  */
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
-    \Fr\Typo3HandlebarsComponents\Configuration\Extension::KEY,
+    \Cpsit\Typo3HandlebarsComponents\Configuration\Extension::KEY,
     'Configuration/TypoScript/Pagination',
     'Handlebars Components: Pagination'
 );

@@ -21,10 +21,10 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Unit\Service\Configuration;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Unit\Service\Configuration;
 
-use Fr\Typo3HandlebarsComponents\Exception\InvalidConfigurationException;
-use Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
+use Cpsit\Typo3HandlebarsComponents\Exception\InvalidConfigurationException;
+use Cpsit\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
 use TYPO3\CMS\Frontend\DataProcessing\MenuProcessor;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 

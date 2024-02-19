@@ -21,10 +21,10 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Unit\Renderer\Component\Layout;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Unit\Renderer\Component\Layout;
 
-use Fr\Typo3HandlebarsComponents\Exception\UnsupportedTypeException;
-use Fr\Typo3HandlebarsComponents\Renderer\Component\Layout\HandlebarsLayoutAction;
+use Cpsit\Typo3HandlebarsComponents\Exception\UnsupportedTypeException;
+use Cpsit\Typo3HandlebarsComponents\Renderer\Component\Layout\HandlebarsLayoutAction;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**

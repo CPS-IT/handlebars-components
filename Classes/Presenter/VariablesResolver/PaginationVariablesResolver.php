@@ -21,10 +21,10 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Presenter\VariablesResolver;
+namespace Cpsit\Typo3HandlebarsComponents\Presenter\VariablesResolver;
 
-use Fr\Typo3HandlebarsComponents\Pagination\Linker\PaginationLinkerInterface;
-use Fr\Typo3HandlebarsComponents\Pagination\NumberedPagination;
+use Cpsit\Typo3HandlebarsComponents\Pagination\Linker\PaginationLinkerInterface;
+use Cpsit\Typo3HandlebarsComponents\Pagination\NumberedPagination;
 
 /**
  * PaginationVariablesResolver

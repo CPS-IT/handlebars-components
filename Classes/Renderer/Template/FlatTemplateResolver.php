@@ -21,7 +21,7 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Renderer\Template;
+namespace Cpsit\Typo3HandlebarsComponents\Renderer\Template;
 
 use Fr\Typo3Handlebars\Exception\TemplateNotFoundException;
 use Fr\Typo3Handlebars\Renderer\Template\HandlebarsTemplateResolver;

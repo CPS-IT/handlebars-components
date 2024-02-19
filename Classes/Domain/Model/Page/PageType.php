@@ -22,9 +22,9 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Domain\Model\Page;
+namespace Cpsit\Typo3HandlebarsComponents\Domain\Model\Page;
 
-use Fr\Typo3HandlebarsComponents\DynamicVariableInvocationTrait;
+use Cpsit\Typo3HandlebarsComponents\DynamicVariableInvocationTrait;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 
 /**
