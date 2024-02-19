@@ -43,7 +43,7 @@ Example usage:
 $templateRootPaths = [
     // ...
 ];
-$templateResolver = new \Fr\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver($templateRootPaths);
+$templateResolver = new \Cpsit\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver($templateRootPaths);
 
 $templatePath = $templateResolver->resolveTemplatePath('@alert'); // results in modules/000_alert/alert.hbs
 $templatePath = $templateResolver->resolveTemplatePath('modules/000_alert/alert'); // same as above

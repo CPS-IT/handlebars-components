@@ -13,7 +13,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Fr\\Typo3HandlebarsComponentsTestExtension\\": "Classes/"
+			"Cpsit\\Typo3HandlebarsComponentsTestExtension\\": "Classes/"
 		}
 	}
 }

@@ -4,10 +4,10 @@ services:
     autoconfigure: true
     public: false
 
-  Fr\Typo3HandlebarsComponents\:
+  Cpsit\Typo3HandlebarsComponents\:
     resource: '../Classes/*'
     exclude:
       - '../Classes/DependencyInjection/*'
 
-  Fr\Typo3HandlebarsComponents\Pagination\Linker\PaginationLinkerInterface:
-    alias: 'Fr\Typo3HandlebarsComponents\Pagination\Linker\DefaultPaginationLinker'
+  Cpsit\Typo3HandlebarsComponents\Pagination\Linker\PaginationLinkerInterface:
+    alias: 'Cpsit\Typo3HandlebarsComponents\Pagination\Linker\DefaultPaginationLinker'

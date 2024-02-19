@@ -21,12 +21,12 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Pagination;
+namespace Cpsit\Typo3HandlebarsComponents\Pagination;
 
 use ApacheSolrForTypo3\Solr\Domain\Search\ResultSet\SearchResultSet;
 use ApacheSolrForTypo3\Solr\Pagination\ResultsPaginator;
-use Fr\Typo3HandlebarsComponents\Configuration\Extension;
-use Fr\Typo3HandlebarsComponents\ServerRequestTrait;
+use Cpsit\Typo3HandlebarsComponents\Configuration\Extension;
+use Cpsit\Typo3HandlebarsComponents\ServerRequestTrait;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;

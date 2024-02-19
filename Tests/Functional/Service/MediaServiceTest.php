@@ -21,12 +21,12 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Service;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Functional\Service;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Media\Media;
-use Fr\Typo3HandlebarsComponents\Resource\Converter\MediaResourceConverter;
-use Fr\Typo3HandlebarsComponents\Service\MediaService;
-use Fr\Typo3HandlebarsComponents\Tests\Functional\FileHandlingTrait;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Media\Media;
+use Cpsit\Typo3HandlebarsComponents\Resource\Converter\MediaResourceConverter;
+use Cpsit\Typo3HandlebarsComponents\Service\MediaService;
+use Cpsit\Typo3HandlebarsComponents\Tests\Functional\FileHandlingTrait;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileReference;

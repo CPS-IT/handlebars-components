@@ -21,11 +21,11 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Unit\Pagination;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Unit\Pagination;
 
-use Fr\Typo3HandlebarsComponents\Pagination\NumberedPagination;
-use Fr\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyPaginator;
-use Fr\Typo3HandlebarsComponents\Tests\Unit\Fixtures\PaginationTrait;
+use Cpsit\Typo3HandlebarsComponents\Pagination\NumberedPagination;
+use Cpsit\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyPaginator;
+use Cpsit\Typo3HandlebarsComponents\Tests\Unit\Fixtures\PaginationTrait;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**

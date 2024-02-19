@@ -44,8 +44,8 @@ first:
 
 namespace Venor\Extension\Presenter;
 
-use Fr\Typo3HandlebarsComponents\Data\Response\PageProviderResponse;
-use Fr\Typo3HandlebarsComponents\Presenter\AbstractPagePresenter;
+use Cpsit\Typo3HandlebarsComponents\Data\Response\PageProviderResponse;
+use Cpsit\Typo3HandlebarsComponents\Presenter\AbstractPagePresenter;
 
 class PagePresenter extends AbstractPagePresenter
 {
@@ -92,7 +92,7 @@ in order to make it available, e.g. within TypoScript:
 # Configuration/Services.yaml
 
 services:
-  Fr\Typo3HandlebarsComponents\DataProcessing\PageProcessor:
+  Cpsit\Typo3HandlebarsComponents\DataProcessing\PageProcessor:
     tags: ['handlebars.processor']
     calls:
       - setPresenter: ['@Vendor\Extension\Presenter\PagePresenter']
@@ -115,7 +115,7 @@ First create the custom `PageHeader` and/or `PageFooter` models:
 
 namespace Vendor\Extension\Domain\Model\Page;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageHeaderInterface;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page\PageHeaderInterface;
 
 class PageHeader implements PageHeaderInterface
 {
@@ -128,7 +128,7 @@ class PageHeader implements PageHeaderInterface
 
 namespace Vendor\Extension\Domain\Model\Page;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageFooterInterface;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page\PageFooterInterface;
 
 class PageFooter implements PageFooterInterface
 {
@@ -145,8 +145,8 @@ Now create the associated factories:
 
 namespace Vendor\Extension\Domain\Factory\Page;
 
-use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageHeaderFactoryInterface;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page;
+use Cpsit\Typo3HandlebarsComponents\Domain\Factory\Page\PageHeaderFactoryInterface;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page;
 use Vendor\Extension\Domain\Model\Page\PageHeader;
 
 class PageHeaderFactory implements PageHeaderFactoryInterface
@@ -167,8 +167,8 @@ class PageHeaderFactory implements PageHeaderFactoryInterface
 
 namespace Vendor\Extension\Domain\Factory\Page;
 
-use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageFooterFactoryInterface;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page;
+use Cpsit\Typo3HandlebarsComponents\Domain\Factory\Page\PageFooterFactoryInterface;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page;
 use Vendor\Extension\Domain\Model\Page\PageFooter;
 
 class PageFooterFactory implements PageFooterFactoryInterface
@@ -194,7 +194,7 @@ Last but not least you need to register the factories in the
 # Configuration/Services.yaml
 
 services:
-  Fr\Typo3HandlebarsComponents\Data\PageProvider:
+  Cpsit\Typo3HandlebarsComponents\Data\PageProvider:
     arguments:
       $pageHeaderFactory: '@Vendor\Extension\Domain\Factory\Page\PageHeaderFactory'
       $pageFooterFactory: '@Vendor\Extension\Domain\Factory\Page\PageFooterFactory'
@@ -218,8 +218,8 @@ namespace Vendor\Extension\Renderer\Component\Page;
 
 use Fr\Typo3Handlebars\ContentObjectRendererAwareInterface;
 use Fr\Typo3Handlebars\Traits\ContentObjectRendererAwareTrait;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page;
-use Fr\Typo3HandlebarsComponents\Renderer\Component\Page\PageContentRendererInterface;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page;
+use Cpsit\Typo3HandlebarsComponents\Renderer\Component\Page\PageContentRendererInterface;
 
 class PageContentRenderer implements PageContentRendererInterface, ContentObjectRendererAwareInterface
 {
@@ -247,6 +247,6 @@ Lastly, you need to register this implementation in your `Services.yaml`:
 # Configuration/Services.yaml
 
 services:
-  Fr\Typo3HandlebarsComponents\Renderer\Component\Page\PageContentRendererInterface:
+  Cpsit\Typo3HandlebarsComponents\Renderer\Component\Page\PageContentRendererInterface:
     alias: 'Vendor\Extension\Renderer\Component\Page\PageContentRenderer'
 ```

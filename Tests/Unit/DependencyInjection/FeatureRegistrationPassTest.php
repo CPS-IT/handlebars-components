@@ -21,7 +21,7 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Unit\DependencyInjection;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Unit\DependencyInjection;
 
 use Fr\Typo3Handlebars\DependencyInjection\Extension\HandlebarsExtension;
 use Fr\Typo3Handlebars\Renderer\Helper\HelperInterface;

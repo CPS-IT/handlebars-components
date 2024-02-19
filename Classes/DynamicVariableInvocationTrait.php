@@ -21,10 +21,10 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents;
+namespace Cpsit\Typo3HandlebarsComponents;
 
-use Fr\Typo3HandlebarsComponents\Exception\UnsupportedMethodException;
-use Fr\Typo3HandlebarsComponents\Exception\UnsupportedTypeException;
+use Cpsit\Typo3HandlebarsComponents\Exception\UnsupportedMethodException;
+use Cpsit\Typo3HandlebarsComponents\Exception\UnsupportedTypeException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**

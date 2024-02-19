@@ -21,7 +21,7 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\DataProcessing;
+namespace Cpsit\Typo3HandlebarsComponents\DataProcessing;
 
 use Fr\Typo3Handlebars\Exception\InvalidTemplateFileException;
 

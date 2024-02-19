@@ -29,7 +29,7 @@ implementation different menus can be created depending on their type
 [TypoScript reference](https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/ContentObjects/Hmenu/Index.html#special-directory)
 
 ```php
-use \Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
+use \Cpsit\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
 
 $rootPageId = 17;
 $levels = 3;
@@ -43,7 +43,7 @@ $menu = $menuService->buildMenu($menuConfiguration);
 [TypoScript reference](https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/ContentObjects/Hmenu/Index.html#special-list)
 
 ```php
-use \Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
+use \Cpsit\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
 
 $pageIds = [7, 17, 27];
 
@@ -56,7 +56,7 @@ $menu = $menuService->buildMenu($menuConfiguration);
 [TypoScript reference](https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/ContentObjects/Hmenu/Index.html#special-rootline)
 
 ```php
-use \Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
+use \Cpsit\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
 
 $begin = 1;
 $end = -1;
@@ -70,7 +70,7 @@ $menu = $menuService->buildMenu($menuConfiguration);
 [Documentation](https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/ContentObjects/Fluidtemplate/DataProcessing/LanguageMenuProcessor.html)
 
 ```php
-use \Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
+use \Cpsit\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
 
 $languages = []; // resolves to 'auto' (include all languages)
 // or
@@ -115,7 +115,7 @@ The custom `DataProcessor` is now referenced via the TypoScript
 configuration to handle the menu processing:
 
 ```php
-use \Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
+use \Cpsit\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
 use \Vendor\Extension\DataProcessing\Menu\CustomMenuProcessor;
 
 $menuConfiguration = MenuConfiguration::custom(CustomMenuProcessor::class);
@@ -133,11 +133,11 @@ the menu type using the `MenuService` as described above.
 
 namespace Vendor\Extension\Domain\Factory\Dto;
 
-use Fr\Typo3HandlebarsComponents\Domain\Factory\Dto\MenuFactoryInterface;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Dto\Menu;
-use Fr\Typo3HandlebarsComponents\Exception\UnsupportedTypeException;
-use Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
-use Fr\Typo3HandlebarsComponents\Service\MenuService;
+use Cpsit\Typo3HandlebarsComponents\Domain\Factory\Dto\MenuFactoryInterface;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Dto\Menu;
+use Cpsit\Typo3HandlebarsComponents\Exception\UnsupportedTypeException;
+use Cpsit\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
+use Cpsit\Typo3HandlebarsComponents\Service\MenuService;
 
 class MenuFactory implements MenuFactoryInterface
 {

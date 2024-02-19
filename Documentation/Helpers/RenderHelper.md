@@ -255,8 +255,8 @@ render the final template:
 # MenuProcessor.php
 
 use Fr\Typo3Handlebars\DataProcessing\AbstractDataProcessor;
-use Fr\Typo3HandlebarsComponents\DataProcessing\DefaultContextAwareConfigurationTrait;
-use Fr\Typo3HandlebarsComponents\DataProcessing\TemplatePathAwareConfigurationTrait;
+use Cpsit\Typo3HandlebarsComponents\DataProcessing\DefaultContextAwareConfigurationTrait;
+use Cpsit\Typo3HandlebarsComponents\DataProcessing\TemplatePathAwareConfigurationTrait;
 
 /**
  * @property MenuProvider $provider;

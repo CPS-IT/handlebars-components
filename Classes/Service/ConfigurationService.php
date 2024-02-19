@@ -21,9 +21,9 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Service;
+namespace Cpsit\Typo3HandlebarsComponents\Service;
 
-use Fr\Typo3HandlebarsComponents\Utility\TypoScriptUtility;
+use Cpsit\Typo3HandlebarsComponents\Utility\TypoScriptUtility;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;

@@ -21,13 +21,13 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Presenter;
+namespace Cpsit\Typo3HandlebarsComponents\Presenter;
 
 use Fr\Typo3Handlebars\Data\Response\ProviderResponseInterface;
 use Fr\Typo3Handlebars\Exception\UnableToPresentException;
 use Fr\Typo3Handlebars\Presenter\AbstractPresenter;
 use Fr\Typo3Handlebars\Renderer\RendererInterface;
-use Fr\Typo3HandlebarsComponents\Data\Response\PageProviderResponse;
+use Cpsit\Typo3HandlebarsComponents\Data\Response\PageProviderResponse;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 

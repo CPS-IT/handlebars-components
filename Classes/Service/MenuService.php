@@ -21,15 +21,15 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Service;
+namespace Cpsit\Typo3HandlebarsComponents\Service;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Dto\LanguageMenuItem;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Dto\Link;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Dto\Menu;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Dto\MenuItem;
-use Fr\Typo3HandlebarsComponents\Exception\UnresolvedSiteException;
-use Fr\Typo3HandlebarsComponents\ServerRequestTrait;
-use Fr\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Dto\LanguageMenuItem;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Dto\Link;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Dto\Menu;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Dto\MenuItem;
+use Cpsit\Typo3HandlebarsComponents\Exception\UnresolvedSiteException;
+use Cpsit\Typo3HandlebarsComponents\ServerRequestTrait;
+use Cpsit\Typo3HandlebarsComponents\Service\Configuration\MenuConfiguration;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

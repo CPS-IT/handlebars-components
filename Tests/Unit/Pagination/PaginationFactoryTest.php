@@ -21,12 +21,12 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Unit\Pagination;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Unit\Pagination;
 
 use ApacheSolrForTypo3\Solr\Domain\Search\ResultSet\SearchResultSet;
 use ApacheSolrForTypo3\Solr\Pagination\ResultsPaginator;
-use Fr\Typo3HandlebarsComponents\Pagination\PaginationFactory;
-use Fr\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyConfigurationManager;
+use Cpsit\Typo3HandlebarsComponents\Pagination\PaginationFactory;
+use Cpsit\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyConfigurationManager;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Core\Http\ServerRequest;

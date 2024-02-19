@@ -21,9 +21,9 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents;
+namespace Cpsit\Typo3HandlebarsComponents;
 
-use Fr\Typo3HandlebarsComponents\DependencyInjection\FeatureRegistrationPass;
+use Cpsit\Typo3HandlebarsComponents\DependencyInjection\FeatureRegistrationPass;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;

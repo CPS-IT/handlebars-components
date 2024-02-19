@@ -21,14 +21,14 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Presenter;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Functional\Presenter;
 
 use Fr\Typo3Handlebars\Data\Response\SimpleProviderResponse;
 use Fr\Typo3Handlebars\Exception\UnableToPresentException;
-use Fr\Typo3HandlebarsComponents\Data\Response\PageProviderResponse;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page;
-use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\AbstractPagePresenterTestClass;
-use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyRenderer;
+use Cpsit\Typo3HandlebarsComponents\Data\Response\PageProviderResponse;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page;
+use Cpsit\Typo3HandlebarsComponents\Tests\Functional\Fixtures\AbstractPagePresenterTestClass;
+use Cpsit\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyRenderer;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;

@@ -21,7 +21,7 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Renderer\Helper;
+namespace Cpsit\Typo3HandlebarsComponents\Renderer\Helper;
 
 use Fr\Typo3Handlebars\Renderer\Helper\HelperInterface;
 use Fr\Typo3HandlebarsComponents\Renderer\Component\Layout\HandlebarsLayout;

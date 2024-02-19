@@ -21,10 +21,10 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Service;
+namespace Cpsit\Typo3HandlebarsComponents\Service;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Media\MediaInterface;
-use Fr\Typo3HandlebarsComponents\Resource\Converter\ResourceConverterInterface;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Media\MediaInterface;
+use Cpsit\Typo3HandlebarsComponents\Resource\Converter\ResourceConverterInterface;
 use TYPO3\CMS\Core\Resource\Collection\AbstractFileCollection;
 use TYPO3\CMS\Core\Resource\File as CoreFile;
 use TYPO3\CMS\Core\Resource\FileReference as CoreFileReference;

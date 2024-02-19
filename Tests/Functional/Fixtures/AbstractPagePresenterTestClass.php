@@ -21,10 +21,10 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Functional\Fixtures;
 
-use Fr\Typo3HandlebarsComponents\Data\Response\PageProviderResponse;
-use Fr\Typo3HandlebarsComponents\Presenter\AbstractPagePresenter;
+use Cpsit\Typo3HandlebarsComponents\Data\Response\PageProviderResponse;
+use Cpsit\Typo3HandlebarsComponents\Presenter\AbstractPagePresenter;
 
 /**
  * AbstractPagePresenterTestClass

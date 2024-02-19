@@ -36,13 +36,13 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Fr\\Typo3HandlebarsComponents\\": "Classes/"
+			"Cpsit\\Typo3HandlebarsComponents\\": "Classes/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Fr\\Typo3HandlebarsComponentsTestExtension\\": "Tests/Functional/Fixtures/test_extension/Classes/",
-			"Fr\\Typo3HandlebarsComponents\\Tests\\": "Tests/",
+			"Cpsit\\Typo3HandlebarsComponentsTestExtension\\": "Tests/Functional/Fixtures/test_extension/Classes/",
+			"Cpsit\\Typo3HandlebarsComponents\\Tests\\": "Tests/",
 			"Fr\\Typo3Handlebars\\Tests\\": ".Build/web/typo3conf/ext/handlebars/Tests"
 		}
 	},

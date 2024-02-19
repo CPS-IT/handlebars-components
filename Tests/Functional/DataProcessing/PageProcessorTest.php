@@ -21,14 +21,14 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Functional\DataProcessing;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Functional\DataProcessing;
 
 use Doctrine\DBAL\Result;
-use Fr\Typo3HandlebarsComponents\Data\PageProvider;
-use Fr\Typo3HandlebarsComponents\DataProcessing\PageProcessor;
-use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageFactory;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page;
-use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageContentRenderer;
+use Cpsit\Typo3HandlebarsComponents\Data\PageProvider;
+use Cpsit\Typo3HandlebarsComponents\DataProcessing\PageProcessor;
+use Cpsit\Typo3HandlebarsComponents\Domain\Factory\Page\PageFactory;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page;
+use Cpsit\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageContentRenderer;
 use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPresenter;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

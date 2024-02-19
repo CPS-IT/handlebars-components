@@ -52,9 +52,9 @@ $mediaService->getFromFolders($folders);
 ### Process images
 
 ```php
-use Fr\Typo3HandlebarsComponents\Resource\ImageDimensions;
-use Fr\Typo3HandlebarsComponents\Resource\Processing\ImageProcessingInstruction;
-use Fr\Typo3HandlebarsComponents\Service\MediaService;
+use Cpsit\Typo3HandlebarsComponents\Resource\ImageDimensions;
+use Cpsit\Typo3HandlebarsComponents\Resource\Processing\ImageProcessingInstruction;
+use Cpsit\Typo3HandlebarsComponents\Service\MediaService;
 
 $processedImages = [];
 

@@ -21,9 +21,9 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Exception;
+namespace Cpsit\Typo3HandlebarsComponents\Exception;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Media\MediaInterface;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Media\MediaInterface;
 use TYPO3\CMS\Core\Resource\FileInterface;
 
 /**

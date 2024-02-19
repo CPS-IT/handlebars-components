@@ -21,17 +21,17 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Data;
+namespace Cpsit\Typo3HandlebarsComponents\Data;
 
 use Fr\Typo3Handlebars\ContentObjectRendererAwareInterface;
 use Fr\Typo3Handlebars\Data\DataProviderInterface;
 use Fr\Typo3Handlebars\Data\Response\ProviderResponseInterface;
 use Fr\Typo3Handlebars\Traits\ContentObjectRendererAwareTrait;
-use Fr\Typo3HandlebarsComponents\Data\Response\PageProviderResponse;
-use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageFactory;
-use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageFooterFactoryInterface;
-use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageHeaderFactoryInterface;
-use Fr\Typo3HandlebarsComponents\Renderer\Component\Page\PageContentRendererInterface;
+use Cpsit\Typo3HandlebarsComponents\Data\Response\PageProviderResponse;
+use Cpsit\Typo3HandlebarsComponents\Domain\Factory\Page\PageFactory;
+use Cpsit\Typo3HandlebarsComponents\Domain\Factory\Page\PageFooterFactoryInterface;
+use Cpsit\Typo3HandlebarsComponents\Domain\Factory\Page\PageHeaderFactoryInterface;
+use Cpsit\Typo3HandlebarsComponents\Renderer\Component\Page\PageContentRendererInterface;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**

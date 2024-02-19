@@ -21,11 +21,11 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Unit\Exception;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Unit\Exception;
 
-use Fr\Typo3HandlebarsComponents\Domain\Model\Media\Media;
-use Fr\Typo3HandlebarsComponents\Exception\UnsupportedResourceException;
-use Fr\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyResourceStorage;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Media\Media;
+use Cpsit\Typo3HandlebarsComponents\Exception\UnsupportedResourceException;
+use Cpsit\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyResourceStorage;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 

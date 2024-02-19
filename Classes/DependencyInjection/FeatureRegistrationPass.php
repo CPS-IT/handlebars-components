@@ -21,15 +21,15 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\DependencyInjection;
+namespace Cpsit\Typo3HandlebarsComponents\DependencyInjection;
 
 use Fr\Typo3Handlebars\Renderer\Helper\HelperInterface;
-use Fr\Typo3HandlebarsComponents\Configuration\Extension;
-use Fr\Typo3HandlebarsComponents\Renderer\Helper\BlockHelper;
-use Fr\Typo3HandlebarsComponents\Renderer\Helper\ContentHelper;
-use Fr\Typo3HandlebarsComponents\Renderer\Helper\ExtendHelper;
-use Fr\Typo3HandlebarsComponents\Renderer\Helper\RenderHelper;
-use Fr\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver;
+use Cpsit\Typo3HandlebarsComponents\Configuration\Extension;
+use Cpsit\Typo3HandlebarsComponents\Renderer\Helper\BlockHelper;
+use Cpsit\Typo3HandlebarsComponents\Renderer\Helper\ContentHelper;
+use Cpsit\Typo3HandlebarsComponents\Renderer\Helper\ExtendHelper;
+use Cpsit\Typo3HandlebarsComponents\Renderer\Helper\RenderHelper;
+use Cpsit\Typo3HandlebarsComponents\Renderer\Template\FlatTemplateResolver;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;

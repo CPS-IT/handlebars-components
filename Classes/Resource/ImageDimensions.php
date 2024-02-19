@@ -21,9 +21,9 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Resource;
+namespace Cpsit\Typo3HandlebarsComponents\Resource;
 
-use Fr\Typo3HandlebarsComponents\Exception\InvalidImageDimensionException;
+use Cpsit\Typo3HandlebarsComponents\Exception\InvalidImageDimensionException;
 use TYPO3\CMS\Core\Utility\MathUtility;
 
 /**

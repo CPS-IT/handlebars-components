@@ -21,12 +21,12 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Data\Response;
+namespace Cpsit\Typo3HandlebarsComponents\Data\Response;
 
 use Fr\Typo3Handlebars\Data\Response\ProviderResponseInterface;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageFooterInterface;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageHeaderInterface;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page\PageFooterInterface;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page\PageHeaderInterface;
 
 /**
 * PageProviderResponse

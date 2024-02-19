@@ -84,7 +84,7 @@ namespace Vendor\Extension\Data;
 
 use Fr\Typo3Handlebars\Data\DataProviderInterface;
 use Fr\Typo3Handlebars\Data\Response\ProviderResponseInterface;
-use Fr\Typo3HandlebarsComponents\Pagination\PaginationFactory;
+use Cpsit\Typo3HandlebarsComponents\Pagination\PaginationFactory;
 use Vendor\Extension\Data\Response\MyBeautifulProviderResponse;
 
 final class MyBeautifulProvider implements DataProviderInterface
@@ -118,8 +118,8 @@ namespace Vendor\Extension\Presenter;
 use Fr\Typo3Handlebars\Data\Response\ProviderResponseInterface;
 use Fr\Typo3Handlebars\Exception\UnableToPresentException;
 use Fr\Typo3Handlebars\Presenter\AbstractPresenter;
-use Fr\Typo3HandlebarsComponents\Pagination\Linker\DefaultPaginationLinker;
-use Fr\Typo3HandlebarsComponents\Presenter\VariablesResolver\PaginationVariablesResolver;
+use Cpsit\Typo3HandlebarsComponents\Pagination\Linker\DefaultPaginationLinker;
+use Cpsit\Typo3HandlebarsComponents\Presenter\VariablesResolver\PaginationVariablesResolver;
 use Vendor\Extension\Data\Response\MyBeautifulProviderResponse;
 
 final class MyBeautifulPresenter extends AbstractPresenter

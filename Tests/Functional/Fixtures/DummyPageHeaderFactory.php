@@ -21,11 +21,11 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Functional\Fixtures;
 
-use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageHeaderFactoryInterface;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page;
-use Fr\Typo3HandlebarsComponents\Domain\Model\Page\PageHeaderInterface;
+use Cpsit\Typo3HandlebarsComponents\Domain\Factory\Page\PageHeaderFactoryInterface;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page;
+use Cpsit\Typo3HandlebarsComponents\Domain\Model\Page\PageHeaderInterface;
 
 /**
  * DummyPageHeaderFactory

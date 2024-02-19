@@ -21,16 +21,16 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Functional\Data;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Functional\Data;
 
-use Fr\Typo3HandlebarsComponents\Data\PageProvider;
-use Fr\Typo3HandlebarsComponents\Data\Response\PageProviderResponse;
-use Fr\Typo3HandlebarsComponents\Domain\Factory\Page\PageFactory;
-use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageContentRenderer;
-use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageFooter;
-use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageFooterFactory;
-use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageHeader;
-use Fr\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageHeaderFactory;
+use Cpsit\Typo3HandlebarsComponents\Data\PageProvider;
+use Cpsit\Typo3HandlebarsComponents\Data\Response\PageProviderResponse;
+use Cpsit\Typo3HandlebarsComponents\Domain\Factory\Page\PageFactory;
+use Cpsit\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageContentRenderer;
+use Cpsit\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageFooter;
+use Cpsit\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageFooterFactory;
+use Cpsit\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageHeader;
+use Cpsit\Typo3HandlebarsComponents\Tests\Functional\Fixtures\DummyPageHeaderFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\Page\PageLayoutResolver;

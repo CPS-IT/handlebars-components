@@ -21,9 +21,9 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Unit\DataProcessing;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Unit\DataProcessing;
 
-use Fr\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DefaultContextAwareConfigurationTraitTestClass;
+use Cpsit\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DefaultContextAwareConfigurationTraitTestClass;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**

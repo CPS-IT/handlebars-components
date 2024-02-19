@@ -21,10 +21,10 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Tests\Unit\Service;
+namespace Cpsit\Typo3HandlebarsComponents\Tests\Unit\Service;
 
-use Fr\Typo3HandlebarsComponents\Service\ConfigurationService;
-use Fr\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyConfigurationManager;
+use Cpsit\Typo3HandlebarsComponents\Service\ConfigurationService;
+use Cpsit\Typo3HandlebarsComponents\Tests\Unit\Fixtures\DummyConfigurationManager;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**

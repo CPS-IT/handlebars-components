@@ -21,9 +21,9 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3HandlebarsComponents\Utility;
+namespace Cpsit\Typo3HandlebarsComponents\Utility;
 
-use Fr\Typo3HandlebarsComponents\Exception\InvalidConfigurationException;
+use Cpsit\Typo3HandlebarsComponents\Exception\InvalidConfigurationException;
 
 /**
  * TypoScriptUtility
