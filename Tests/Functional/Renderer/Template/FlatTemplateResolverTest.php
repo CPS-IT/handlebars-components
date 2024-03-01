@@ -38,11 +38,11 @@ final class FlatTemplateResolverTest extends FunctionalTestCase
 {
     use HandlebarsTemplateResolverTrait;
 
-    protected $testExtensionsToLoad = [
+    protected array $testExtensionsToLoad = [
         'typo3conf/ext/handlebars_components/Tests/Functional/Fixtures/test_extension',
     ];
 
-    protected $initializeDatabase = false;
+    protected bool $initializeDatabase = false;
 
     protected function setUp(): void
     {

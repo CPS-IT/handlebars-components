@@ -41,7 +41,7 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  */
 final class MenuServiceTest extends FunctionalTestCase
 {
-    protected $testExtensionsToLoad = [
+    protected array $testExtensionsToLoad = [
         'typo3conf/ext/handlebars_components/Tests/Functional/Fixtures/test_extension',
     ];
 
