@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace Cpsit\Typo3HandlebarsComponents\Exception;
 
 use Cpsit\Typo3HandlebarsComponents\Enums\CropVariant;
+use Exception;
 
 /**
  * UnsupportedAspectRatioException

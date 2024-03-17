@@ -156,6 +156,7 @@ class MediaVariablesResolver implements VariablesResolverInterface
      */
     private function resolvePicture(MediaInterface $media): array
     {
+        $pictureData = [];
         foreach ($this->dimensions as $type => $dimensions) {
             $processingInstruction = new ImageProcessingInstruction($media, $dimensions, $type);
             $processingInstruction->setCropVariant($this->cropVariant->value);

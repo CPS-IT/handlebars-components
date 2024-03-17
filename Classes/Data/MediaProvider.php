@@ -39,7 +39,8 @@ use Cpsit\Typo3HandlebarsComponents\Service\MediaService;
  */
 class MediaProvider implements DataProviderInterface
 {
-    private string $mediaFieldName = 'image';
+    protected string $mediaFieldName = 'image';
+    protected string $tableName = 'tt_content';
 
     public function __construct(
         private readonly MediaService $mediaService,
@@ -48,9 +49,14 @@ class MediaProvider implements DataProviderInterface
     /**
      * @return MediaProviderResponse
      */
-    public function get(array $data, string $tableName = 'tt_content', $fieldName = 'image'): ProviderResponseInterface
+    public function get(array $data): ProviderResponseInterface
     {
-        $media = $this->mediaService->getFromRelation($fieldName, $tableName, $data);
+        $media = $this->mediaService->getFromRelation(
+            $this->mediaFieldName,
+            $this->tableName,
+            $data
+        );
+
         $orientation = $this->createMediaOrientation($data['imageorient'] ?? null);
         $imageDimensions = MediaImageDimensions::getForAspectRatio(MediaImageDimensions::ASPECT_RATIO_NONE);
 
@@ -65,6 +71,13 @@ class MediaProvider implements DataProviderInterface
         $clone = clone $this;
         $clone->mediaFieldName = $mediaFieldName;
 
+        return $clone;
+    }
+
+    public function forTable(string $tableName): self
+    {
+        $clone = clone $this;
+        $clone->tableName = $tableName;
         return $clone;
     }
 

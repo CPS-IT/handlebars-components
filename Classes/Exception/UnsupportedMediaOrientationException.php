@@ -23,6 +23,8 @@ declare(strict_types=1);
 
 namespace Cpsit\Typo3HandlebarsComponents\Exception;
 
+use Exception;
+
 /**
  * UnsupportedMediaOrientationException
  *
