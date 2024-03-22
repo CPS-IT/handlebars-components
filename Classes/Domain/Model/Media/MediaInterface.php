@@ -41,10 +41,7 @@ interface MediaInterface
 
     public function getAlternative(): string;
 
-    /**
-     * @return mixed
-     */
-    public function getProperty(string $propertyName);
+    public function getProperty(string $propertyName): mixed;
 
     public function hasProperty(string $propertyName): bool;
 }
