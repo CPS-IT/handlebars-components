@@ -75,7 +75,7 @@ class Media implements MediaInterface
         return $alternative;
     }
 
-    public function getProperty(string $propertyName)
+    public function getProperty(string $propertyName): mixed
     {
         return $this->file->getProperty($propertyName);
     }
