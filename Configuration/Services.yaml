@@ -11,3 +11,8 @@ services:
 
   Cpsit\Typo3HandlebarsComponents\Pagination\Linker\PaginationLinkerInterface:
     alias: 'Cpsit\Typo3HandlebarsComponents\Pagination\Linker\DefaultPaginationLinker'
+
+  Cpsit\Typo3HandlebarsComponents\Data\MediaProvider:
+    public: true
+  Cpsit\Typo3HandlebarsComponents\Presenter\VariablesResolver\MediaVariablesResolver:
+    public: true
