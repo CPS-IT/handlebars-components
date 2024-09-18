@@ -13,7 +13,7 @@
 	],
 	"require": {
 		"php": "~8.2.0",
-		"cpsit/typo3-handlebars": "dev-v1/support-typo3-v12"
+		"cpsit/typo3-handlebars": "*"
 	},
 	"require-dev": {
 		"armin/editorconfig-cli": "^1.5",
